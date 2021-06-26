@@ -1,7 +1,5 @@
 import React, {useState} from "react";
-import { Switch, Route, Redirect, withRouter } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import Header from "./HeaderComponent";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Footer from "./FooterComponent";
 import Home from "./HomeComponent";
 import About from "./AboutComponent";
@@ -13,14 +11,15 @@ import Wall from "./WallComponent";
 import { GALLERYCONTENT } from "../shared/galleryContent";
 import HouseCouncil from "./HouseCouncil";
 import Announcements from "./Announcements";
+import Header from "./HeaderComponent";
 
-function Main(props) {
+function Main() {
 
     const [galleryContent] = useState(GALLERYCONTENT);
 
     return (
         <div>
-            <Header/>
+            <Header />
             <Switch>
                 <Route path="/home" component={() => (<Home />)} />
                 <Route
