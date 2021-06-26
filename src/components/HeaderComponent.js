@@ -35,43 +35,49 @@ function Header() {
                                 <span><HomeIcon fontSize="small" /></span> Home
                             </NavLink>
                         </NavItem>
-                        <NavItem onClick={() => {history.push('/clubs')}}>
-                            <UncontrolledDropdown
-                                onMouseEnter={() => setClubShown(true)}
-                                onMouseLeave={() => setClubShown(false)}
-                                nav inNavbar>
-                                <DropdownToggle nav noCaret>
-                                        <span><GroupWorkIcon fontSize="small" /></span> Clubs <span><KeyboardArrowDownIcon /></span>
-                                </DropdownToggle>
-                                {isClubShown && <DropdownMenu>
-                                    <a className="dropdown-item"  href={"/clubs/clubsList"}>List of Clubs </a>
-
-                                    <DropdownItem divider />
-                                    <DropdownItem>
-                                        <NavLink className="dropdown-item"  to={"/"}>New Club Registration  </NavLink>
-                                    </DropdownItem>
-                                </DropdownMenu>}
-                            </UncontrolledDropdown>
+                        <NavItem onMouseEnter={() => setClubShown(true)}
+                                 onMouseLeave={() => setClubShown(false)}
+                        >
+                            <NavLink className="nav-link" to="/clubs">
+                                <span><GroupWorkIcon fontSize="small" /></span> Clubs
+                            </NavLink>
                         </NavItem>
-                        <NavItem onClick={() => {history.push('/events')}}>
-                            <UncontrolledDropdown
-                                onMouseOver={() => setEventShown(true)}
-                                onMouseLeave={() => setEventShown(false)}
-                                nav inNavbar>
-                                <DropdownToggle nav noCaret>
-                                    <span><EventIcon fontSize="small" /></span> Events <span><KeyboardArrowDownIcon /></span>
-                                </DropdownToggle>
-                                {isEventShown && <DropdownMenu>
-                                    <DropdownItem>
-                                        <NavLink className="dropdown-item"  to={"/"}>Event Registration</NavLink>
-                                    </DropdownItem>
-                                    <DropdownItem divider />
-                                    <DropdownItem>
-                                        <NavLink className="dropdown-item"  to={"/events/pastEvents"}>Past Events</NavLink>
-                                    </DropdownItem>
-                                </DropdownMenu>}
-                            </UncontrolledDropdown>
+                        <UncontrolledDropdown
+                            onMouseEnter={() => setClubShown(true)}
+                            onMouseLeave={() => setClubShown(false)}
+                            nav inNavbar>
+                            <DropdownToggle nav noCaret>
+                                    <span><KeyboardArrowDownIcon /></span>
+                            </DropdownToggle>
+                            {isClubShown && <DropdownMenu>
+                                <NavLink className="dropdown-item justify-content-center"  to={"/clubs/clubsList"}>
+                                    List of Clubs </NavLink>
+                                <DropdownItem>
+                                    <a className="dropdown-item "  href="#">New Club Registration</a>
+                                </DropdownItem>
+                            </DropdownMenu>}
+                        </UncontrolledDropdown>
+                        <NavItem onMouseEnter={() => setEventShown(true)}
+                                 onMouseLeave={() => setEventShown(false)}
+                        >
+                            <NavLink className="nav-link" to="/events">
+                                <span><EventIcon fontSize="small" /></span> Events
+                            </NavLink>
                         </NavItem>
+                        <UncontrolledDropdown
+                            onMouseEnter={() => setEventShown(true)}
+                            onMouseLeave={() => setEventShown(false)}
+                            nav inNavbar>
+                            <DropdownToggle nav noCaret>
+                                <span><KeyboardArrowDownIcon /></span>
+                            </DropdownToggle>
+                            {isEventShown && <DropdownMenu>
+                                <a className="dropdown-item"  href={"#"}>Event Registration</a>
+                                <DropdownItem>
+                                    <NavLink className="dropdown-item"  to={"/events/pastEvents"}>Past Events</NavLink>
+                                </DropdownItem>
+                            </DropdownMenu>}
+                        </UncontrolledDropdown>
                         <NavItem>
                             <NavLink className="nav-link" to="/wall">
                                 <span><PhotoLibraryIcon fontSize="small" /></span> Wall
