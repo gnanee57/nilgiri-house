@@ -59,9 +59,23 @@
   background-color: #0900ff;
   vertical-align: center;
 }
+.navbar-brand {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.6rem;
+}
 
-.navbar-dark .navbar-nav .nav-link {
-  font-size: medium;
+.nav-link {
+  color: white;
+  font-weight: bolder;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+.nav-link:hover {
+  background-color: #1888ff;
+  border-radius: 4px;
+  transition: all 0.2s ease-out;
 }
 
 

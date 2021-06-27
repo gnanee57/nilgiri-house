@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Footer from "./FooterComponent";
 import Home from "./HomeComponent";
 import About from "./AboutComponent";
 import Club from "./ClubComponent"
@@ -12,6 +11,7 @@ import { GALLERYCONTENT } from "../shared/galleryContent";
 import HouseCouncil from "./HouseCouncil";
 import Announcements from "./Announcements";
 import Header from "./HeaderComponent";
+import FooterPage from "./FooterComponent";
 
 function Main() {
 
@@ -62,7 +62,7 @@ function Main() {
                 />
                 <Redirect to="/home" />
             </Switch>
-            <Footer />
+            <FooterPage />
         </div>
     );
 }

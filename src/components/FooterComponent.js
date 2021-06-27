@@ -1,50 +1,71 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Col, Container, Row, Footer } from 'mdbreact';
+import 'mdbreact/dist/css/mdb.css'
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import TelegramIcon from '@material-ui/icons/Telegram';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import {Link} from "react-router-dom";
 
-function Footer() {
-    return(
-        <div className="footer">
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-4 offset-1 col-sm-2">
-                        <h5>Quick Links</h5>
-                        <ul className="list-unstyled">
-                            <li><Link to='/home'>Home</Link></li>
-                            <li><Link to='/events'>Events</Link></li>
-                            <li><Link to='/clubs'>Clubs</Link></li>
-                        </ul>
-                    </div>
-                    <div className="col-7 col-sm-5">
-                        <h5>Our Address</h5>
-                        <address>
-                            121, Clear Water Bay Road<br />
-                            Clear Water Bay, Kowloon<br />
-                            HONG KONG<br />
-                            <i className="fa fa-phone fa-lg"></i>: +852 1234 5678<br />
-                            <i className="fa fa-fax fa-lg"></i>: +852 8765 4321<br />
-                            <i className="fa fa-envelope fa-lg"></i>: <a href="mailto:confusion@food.net">
-                            confusion@food.net</a>
-                        </address>
-                    </div>
-                    <div className="col-12 col-sm-4 align-self-center">
-                        <div className="text-center">
-                            <a className="btn btn-social-icon btn-google" href="http://google.com/+"><i className="fa fa-google-plus"></i></a>
-                            <a className="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i className="fa fa-facebook"></i></a>
-                            <a className="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i className="fa fa-linkedin"></i></a>
-                            <a className="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i className="fa fa-twitter"></i></a>
-                            <a className="btn btn-social-icon btn-google" href="http://youtube.com/"><i className="fa fa-youtube"></i></a>
-                            <a className="btn btn-social-icon" href="mailto:"><i className="fa fa-envelope-o"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div className="row justify-content-center">
-                    <div className="col-auto">
-                        <p>© Copyright 2021 :: Nilgiri House Council</p>
-                    </div>
-                </div>
+function FooterPage(){
+    return (
+        <Footer color="primary-color" className="page-footer font-small pt-4 mt-4">
+            <div className="text-center">
+                <ul className="list-unstyled list-inline">
+                    <li className="list-inline-item"><a className="btn-floating btn-sm btn-fb mx-1"><FacebookIcon /></a></li>
+                    <li className="list-inline-item"><a className="btn-floating btn-sm btn-gplus mx-1"><InstagramIcon /></a></li>
+                    <li className="list-inline-item"><a className="btn-floating btn-sm btn-li mx-1"><TelegramIcon /></a></li>
+                    <li className="list-inline-item"><a className="btn-floating btn-sm btn-li mx-1"><WhatsAppIcon /></a></li>
+                </ul>
             </div>
-        </div>
+            <hr/>
+
+            <Container className="text-left">
+                <Row>
+                    <Col md="6">
+                        <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Subscribe to our NewsLetter</h5>
+                        <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit
+                            amet, consectetur adipisicing elit.</p>
+                    </Col>
+                    <hr className="clearfix w-100 d-md-none" />
+                    <Col md="2">
+                        <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Quick Links</h5>
+                        <ul className="list-unstyled">
+                            <li><Link to={'/home'}>Home</Link></li>
+                            <li><Link to={'/clubs'}>Clubs</Link></li>
+                            <li><Link to={'/houseCouncil'}>House Council</Link></li>
+                            <li><Link to={'events'}>Events</Link></li>
+                        </ul>
+                    </Col>
+                    <hr className="clearfix w-100 d-md-none" />
+                    <Col md="2">
+                        <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Forms</h5>
+                        <ul className="list-unstyled">
+                            <li><a href="#!">New Club Registration</a></li>
+                            <li><a href="#!">Event Registration</a></li>
+                            <li><a href="#!">Grievance Form</a></li>
+                            <li><a href="#!">Suggestion Form</a></li>
+                        </ul>
+                    </Col>
+                    <hr className="clearfix w-100 d-md-none" />
+                    <Col md="2">
+                        <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Contact Us</h5>
+                        <ul className="list-unstyled">
+                            <li><a href="#!">Link 1</a></li>
+                            <li><a href="#!">Link 2</a></li>
+                            <li><a href="#!">Link 3</a></li>
+                            <li><a href="#!">Link 4</a></li>
+                        </ul>
+                    </Col>
+                </Row>
+            </Container>
+            <div className="footer-copyright text-center">
+                <Container fluid>
+                    &copy; {(new Date().getFullYear())} Copyright: Nilgiri House Council
+                </Container>
+            </div>
+        </Footer>
     );
 }
 
-export default Footer;
+export default FooterPage;

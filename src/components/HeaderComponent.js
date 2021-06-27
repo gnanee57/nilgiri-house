@@ -52,9 +52,8 @@ function Header() {
                             {isClubShown && <DropdownMenu>
                                 <NavLink className="dropdown-item justify-content-center"  to={"/clubs/clubsList"}>
                                     List of Clubs </NavLink>
-                                <DropdownItem>
-                                    <a className="dropdown-item "  href="#">New Club Registration</a>
-                                </DropdownItem>
+                                <DropdownItem divider />
+                                <a className="dropdown-item"  href="#">New Club Registration</a>
                             </DropdownMenu>}
                         </UncontrolledDropdown>
                         <NavItem onMouseEnter={() => setEventShown(true)}
@@ -73,9 +72,8 @@ function Header() {
                             </DropdownToggle>
                             {isEventShown && <DropdownMenu>
                                 <a className="dropdown-item"  href={"#"}>Event Registration</a>
-                                <DropdownItem>
-                                    <NavLink className="dropdown-item"  to={"/events/pastEvents"}>Past Events</NavLink>
-                                </DropdownItem>
+                                <DropdownItem divider />
+                                <NavLink className="dropdown-item"  to={"/events/pastEvents"}>Past Events</NavLink>
                             </DropdownMenu>}
                         </UncontrolledDropdown>
                         <NavItem>
