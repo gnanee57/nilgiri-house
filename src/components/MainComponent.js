@@ -12,6 +12,7 @@ import HouseCouncil from "./HouseCouncil";
 import Announcements from "./Announcements";
 import Header from "./HeaderComponent";
 import FooterPage from "./FooterComponent";
+import EventRegistration from "./EventRegistration";
 
 function Main() {
 
@@ -33,8 +34,12 @@ function Main() {
                     component={() => (<ClubsList />)}
                 />
                 <Route
-                    path="/events"
+                    path="/events/eventsCalendar"
                     component={() => (<Events />)}
+                />
+                <Route
+                    path="/events/eventRegistration"
+                    component={() => (<EventRegistration />)}
                 />
                 <Route
                     path="/events/pastEvents"

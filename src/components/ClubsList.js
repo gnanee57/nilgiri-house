@@ -2,7 +2,7 @@ import React from "react";
 
 function ClubsList() {
     return(
-        <div>Aboutus</div>
+        <div>Clubs List</div>
     );
 }
 

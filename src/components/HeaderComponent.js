@@ -13,11 +13,9 @@ import {NavLink, useHistory} from "react-router-dom";
 function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
-    const [click, setClick] = useState(true);
     let [isClubShown, setClubShown] = useState(false);
     const [isEventShown, setEventShown] = useState(false);
 
-    let history = useHistory();
 
     return (
         <div>
@@ -59,7 +57,7 @@ function Header() {
                         <NavItem onMouseEnter={() => setEventShown(true)}
                                  onMouseLeave={() => setEventShown(false)}
                         >
-                            <NavLink className="nav-link" to="/events">
+                            <NavLink className="nav-link" to="/events/eventsCalendar">
                                 <span><EventIcon fontSize="small" /></span> Events
                             </NavLink>
                         </NavItem>
@@ -71,7 +69,7 @@ function Header() {
                                 <span><KeyboardArrowDownIcon /></span>
                             </DropdownToggle>
                             {isEventShown && <DropdownMenu>
-                                <a className="dropdown-item"  href={"#"}>Event Registration</a>
+                                <NavLink className="dropdown-item"  to={"/events/eventRegistration"}>Event Registration</NavLink>
                                 <DropdownItem divider />
                                 <NavLink className="dropdown-item"  to={"/events/pastEvents"}>Past Events</NavLink>
                             </DropdownMenu>}
