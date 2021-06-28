@@ -16,6 +16,8 @@
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "5.0.0",
     "date-fns": "^2.0.0-beta.5",
+    "express": "^4.17.1",
+    "googleapis": "^78.0.0",
     "mdbreact": "^5.0.2",
     "moment": "^2.24.0",
     "react": "^17.0.2",
@@ -34,6 +36,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": [
       "react-app",

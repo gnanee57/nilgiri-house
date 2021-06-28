@@ -21,37 +21,55 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const modelObject = {
-    eventName: '',
-    eventDescription: '',
-    tag: '',
-    hostName: '',
-    hostEmail: '',
-    anyCoHost: false,
-    coHostName: '',
-    coHostEmail: '',
-    noParticipants: '',
-    maxParticipants: '',
-    mode: '',
-    selectedDate: new Date(),
-    startTime: new Date().getTime(),
-    endTime: new Date().getTime(),
-    support: '',
-}
-
+export let formData;
 
 export default function EventRegistration() {
 
-    const [values, setValues] = useState(modelObject);
+    const [eventName, setEventName] = useState('');
+    const [eventDescription, setEventDescription] = useState('');
+    const [tag, setTag] = useState('');
+    const [hostName, setHostName] = useState('');
+    const [hostEmail, setHostEmail] = useState('');
+    const [anyCoHost, setAnyCoHost] = useState(false);
+    const [coHostName, setCoHostName] = useState('');
+    const [coHostEmail, setCoHostEmail] = useState('');
+    const [noParticipants, setNoParticipants] = useState('');
+    const [maxParticipants, setMaxParticipants] = useState('');
+    const [mode, setMode] = useState('');
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [startTime, setStartTime] = useState(new Date());
+    const [endTime, setEndTime] = useState(new Date());
+    const [support, setSupport] = useState('');
+
 
 
     const resetForm = () => {
-        setValues(modelObject);
+        setEventName('');
+        setEventDescription('');
+        setTag('');
+        setHostName('');
+        setHostEmail('');
+        setAnyCoHost(false);
+        setCoHostName('');
+        setCoHostEmail('');
+        setNoParticipants('');
+        setMaxParticipants('');
+        setMode('');
+        setSelectedDate(new Date());
+        setStartTime(new Date());
+        setEndTime(new Date());
+        setSupport('');
     }
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(values);
+        for (let i = 0; i < e.target.length; i++) {
+            if(e.target[i].name != ''){
+                formData = JSON.stringify(e.target[i].value);
+                console.log(formData)
+                console.log(e.target[i].name + ':' + e.target[i].value);
+            }
+        }
         resetForm();
     }
 
@@ -68,26 +86,26 @@ export default function EventRegistration() {
                         <TextField
                             required
                             fullWidth
-                            id="eventName"
+                            name="eventName"
                             label="Name of the Event"
                             placeholder="Enter the event name"
-                            value={values.eventName}
+                            value={eventName}
                             margin="normal"
                             InputLabelProps={{
                                 shrink: true,
                             }}
-                            onChange={(e) => setValues({ eventName: e.target.value})}
+                            onChange={(e) => setEventName(e.target.value)}
                         />
                     </div>
                     <div className="col-6">
                         <TextField
                             required
                             fullWidth
-                            id="eventDescription"
+                            name="eventDescription"
                             label="Event Description"
                             multiline
-                            value={values.eventDescription}
-                            onChange={(e) => setValues({ eventDescription: e.target.value})}
+                            value={eventDescription}
+                            onChange={(e) => setEventDescription(e.target.value)}
                             rows={4}
                             placeholder="Tell us about the event..."
                             InputLabelProps={{
@@ -99,11 +117,11 @@ export default function EventRegistration() {
                         <TextField
                             required
                             data-shrink = {false}
-                            id="tag"
+                            name="tag"
                             select
                             label="Choose event Tag:"
-                            value={values.tag}
-                            onChange={(e) => setValues({ tag: e.target.value})}
+                            value={tag}
+                            onChange={(e) => setTag(e.target.value)}
                         >
                             <MenuItem value={''}></MenuItem>
                             <MenuItem value={'anime'}>ANIME</MenuItem>
@@ -131,10 +149,10 @@ export default function EventRegistration() {
                             <TextField
                                 required
                                 fullWidth
-                                id="hostName"
+                                name="hostName"
                                 label="Host Name"
-                                value={values.hostName}
-                                onChange={(e) => setValues({ hostName: e.target.value})}
+                                value={hostName}
+                                onChange={(e) => setHostName(e.target.value)}
                                 placeholder="Enter Name of the Host"
                                 InputLabelProps={{
                                     shrink: true,
@@ -145,10 +163,10 @@ export default function EventRegistration() {
                             <TextField
                                 required
                                 fullWidth
-                                id="hostEmail"
+                                name="hostEmail"
                                 label="Host Email"
-                                value={values.hostEmail}
-                                onChange={(e) => setValues({ hostEmail: e.target.value})}
+                                value={hostEmail}
+                                onChange={(e) => setHostEmail(e.target.value)}
                                 placeholder="Enter Host Email:"
                                 helperText="Enter Student Email"
                                 InputLabelProps={{
@@ -161,11 +179,11 @@ export default function EventRegistration() {
                         <TextField
                             required
                             data-shrink = {false}
-                            id="anyCoHost"
+                            name="anyCoHost"
                             select
                             label="Another Host?[Max - 2]"
-                            value={values.anyCoHost}
-                            onChange={(e) => setValues({ anyCoHost: e.target.value})}
+                            value={anyCoHost}
+                            onChange={(e) => setAnyCoHost(e.target.value)}
                         >
                             <MenuItem value={true}>Yes</MenuItem>
                             <MenuItem value={false}>No</MenuItem>
@@ -174,13 +192,13 @@ export default function EventRegistration() {
                     <div  className="row">
                         <div className="col-3">
                             <TextField
-                                disabled={!(values.anyCoHost)}
+                                disabled={!(anyCoHost)}
                                 required
                                 fullWidth
-                                id="coHostName"
+                                name="coHostName"
                                 label="Co-Host Name"
-                                value={values.coHostName}
-                                onChange={(e) => setValues({ coHostName: e.target.value})}
+                                value={coHostName}
+                                onChange={(e) => setCoHostName(e.target.value)}
                                 placeholder="Enter Name of the Co-Host"
                                 InputLabelProps={{
                                     shrink: true,
@@ -189,13 +207,13 @@ export default function EventRegistration() {
                         </div>
                         <div className="col-3">
                             <TextField
-                                disabled={!(values.anyCoHost)}
+                                disabled={!(anyCoHost)}
                                 required
                                 fullWidth
-                                id="coHostEmail"
+                                name="coHostEmail"
                                 label="Co-Host Email"
-                                value={values.coHostEmail}
-                                onChange={(e) => setValues({coHostEmail: e.target.value})}
+                                value={coHostEmail}
+                                onChange={(e) => setCoHostEmail(e.target.value)}
                                 placeholder="Enter Co-Host Email:"
                                 helperText="Enter Student Email"
                                 InputLabelProps={{
@@ -208,11 +226,11 @@ export default function EventRegistration() {
                         <div className="col-md-3">
                             <TextField
                                 required
-                                id="noParticipants"
+                                name="noParticipants"
                                 label="No. of Expected Participants"
                                 type="number"
-                                value={values.noParticipants}
-                                onChange={(e) => setValues({ noParticipants: e.target.value})}
+                                value={noParticipants}
+                                onChange={(e) => setNoParticipants(e.target.value)}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
@@ -221,11 +239,11 @@ export default function EventRegistration() {
                         <div className="col-md-3">
                             <TextField
                                 required
-                                id="maxParticipants"
+                                name="maxParticipants"
                                 label="Participant Handling Limit"
                                 type="number"
-                                value={values.maxParticipants}
-                                onChange={(e) => setValues({ maxParticipants: e.target.value})}
+                                value={maxParticipants}
+                                onChange={(e) => setMaxParticipants(e.target.value)}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
@@ -237,11 +255,11 @@ export default function EventRegistration() {
                                     <TextField
                                         required
                                         data-shrink = {false}
-                                        id="mode"
+                                        name="mode"
                                         select
                                         label="Mode of Event:"
-                                        value={values.mode}
-                                        onChange={(e) => setValues({ mode: e.target.value})}
+                                        value={mode}
+                                        onChange={(e) => setMode(e.target.value)}
                                     >
                                         <MenuItem value={''}></MenuItem>
                                         <MenuItem value={'gmeeet'}>GMEET</MenuItem>
@@ -258,10 +276,10 @@ export default function EventRegistration() {
                                         variant="inline"
                                         format="DD-MM-YYYY"
                                         margin="normal"
-                                        id="date-picker-inline"
+                                        name="selectedDate"
                                         label="Preferred Date"
-                                        value={values.selectedDate}
-                                        onChange={(e) => setValues({ selectedDate: e.target.value})}
+                                        value={selectedDate}
+                                        onChange={(e) => setSelectedDate(e.target.value)}
                                         KeyboardButtonProps={{
                                             'aria-label': 'change date',
                                         }}
@@ -275,10 +293,10 @@ export default function EventRegistration() {
                                     <KeyboardTimePicker
                                         required
                                         margin="normal"
-                                        id="time-picker"
+                                        name="startTime"
                                         label="Preferred Start Time"
-                                        value={values.startTime}
-                                        onChange={(e) => setValues({startTime: e.target.value})}
+                                        value={startTime}
+                                        onChange={(e) => setStartTime(e.target.value)}
                                         KeyboardButtonProps={{
                                             'aria-label': 'change time',
                                         }}
@@ -288,10 +306,10 @@ export default function EventRegistration() {
                                     <KeyboardTimePicker
                                         required
                                         margin="normal"
-                                        id="time-picker"
+                                        name="endTime"
                                         label="Preferred End Time"
-                                        value={values.endTime}
-                                        onChange={(e) => setValues({ endTime: e.target.value})}
+                                        value={endTime}
+                                        onChange={(e) => setEndTime(e.target.value)}
                                         KeyboardButtonProps={{
                                             'aria-label': 'change time',
                                         }}
@@ -303,11 +321,11 @@ export default function EventRegistration() {
                     <div className="col-6">
                         <TextField
                             fullWidth
-                            id="eventDescription"
+                            name="eventDescription"
                             label="Any kind of additional support required from the NHC? If yes, please explain."
                             multiline
-                            value={values.support}
-                            onChange={(e) => setValues({ support: e.target.value})}
+                            value={support}
+                            onChange={(e) => setSupport(e.target.value)}
                             rows={4}
                             placeholder=""
                             InputLabelProps={{
