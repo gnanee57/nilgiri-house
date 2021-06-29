@@ -6,9 +6,9 @@ import Main from './components/MainComponent';
 function App() {
   return (
       <BrowserRouter>
-        <div>
-          <Main />
-        </div>
+          <div>
+              <Main />
+          </div>
       </BrowserRouter>
   );
 }

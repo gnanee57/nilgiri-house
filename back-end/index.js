@@ -4,7 +4,7 @@ const { google } = require("googleapis");
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/api", (req, res) => {
+app.get("/eventRegister", (req, res) => {
     res.render("index");
 });
 

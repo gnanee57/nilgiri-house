@@ -10,7 +10,15 @@ import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import ReactPlayer from 'react-player';
 import {Description, BrushSharp, DevicesOther, MusicNote, PhotoCamera} from "@material-ui/icons";
+import wall from "../nilgiri_gallery.jpg";
+import {Jumbotron} from "reactstrap";
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -55,62 +63,59 @@ const useStyles = makeStyles((theme) => ({
     scroller: {
         flexGrow: "0"
     },
-    gridRoot: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
-    },
     gridList: {
-        width: 500,
-        height: 450,
+        width: "500 px",
+        height: "450 px",
     },
-
 }));
 
 function RenderContent(props) {
+    const classes = useStyles();
+
     const content = props.galleryContent.map(content => {
-        /*const contentType = content => {
-            if (content.type === 'audio') {
-                return (
-                    <ReactAudioPlayer
-                        src={content.link}
-                        controls
-                    />
-                );
-            };
-            if (content.type === 'video') {
-                return (
-                    <ReactPlayer url={content.link} />
-                );
-            }
-        }*/
-        return (
-            <Grid item xs={12} sm={6} md={4}>
-                <Card raised ={true}>
-                    <CardActionArea>
-                        <div className="video-background">
-                            <div className="video-foreground">
-                                <iframe width="420" height="315" src={content.link}
-                                        frameBorder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen></iframe>
-                            </div>
-                        </div>
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {content.name}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                {content.contentTitle}
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
-            </Grid>
-        );
+
+        if (content.contentType === "video") {
+            return (
+                <Grid item xs={12} sm={6} md={4}>
+                    <Card raised ={true}>
+                        <CardActionArea>
+                            <ReactPlayer
+                                url={content.link}
+                                controls={true}
+                                width="420px"
+                                height="315px"
+                            />
+                            <CardContent>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    <span>by: {content.author}</span>
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                    </Card>
+                </Grid>
+
+            );
+        }
+        if (content.contentType === "image") {
+            return (
+                <Grid item xs={12} sm={6} md={4}>
+                    <Card raised ={true}>
+                        <CardActionArea>
+                            <GridListTile cols={3} key={content.link}>
+                                <img src={content.link} height="500px" width="440px"/>
+                                <GridListTileBar
+                                    subtitle={<span>by: {content.author} </span>}
+                                />
+                            </GridListTile>
+                        </CardActionArea>
+                    </Card>
+                </Grid>
+
+            );
+        }
+
     });
+
     return (
         <Grid
             container
@@ -132,6 +137,9 @@ function Wall(props) {
     };
     return (
         <div className={classes.root}>
+            <Jumbotron>
+                <img src={wall} width="1349" height="440" />
+            </Jumbotron>
             <AppBar position="static" color="default">
                 <Tabs
                     classes={{ root: classes.root, scroller: classes.scroller }}

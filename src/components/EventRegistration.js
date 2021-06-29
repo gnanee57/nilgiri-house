@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export let formData;
+let formData;
 
 export default function EventRegistration() {
 
@@ -61,14 +61,29 @@ export default function EventRegistration() {
         setSupport('');
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        for (let i = 0; i < e.target.length; i++) {
-            if(e.target[i].name != ''){
-                formData = JSON.stringify(e.target[i].value);
-                console.log(formData)
-                console.log(e.target[i].name + ':' + e.target[i].value);
+        /*for (let i = 0; i < e.target.length; i++) {
+            if (e.target[i].name != '') {
+                formData[e.target[i].name] = e.target[i].value
+
             }
+        }
+        console.log(formData)*/
+        try {
+            const response = await fetch('https://v1.nocodeapi.com/nilgiriwebad/google_sheets/yTirTveSAIcHfgHB?tabId=eventRegistration', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify([[eventName, eventDescription, tag, hostName, hostEmail,
+                        anyCoHost, coHostName, coHostEmail, noParticipants, maxParticipants, mode, selectedDate,
+                        startTime, endTime, support, new Date().toLocaleString()]])
+                }
+            );
+            await response.json()
+        } catch (err) {
+            console.log(err);
         }
         resetForm();
     }
@@ -279,7 +294,7 @@ export default function EventRegistration() {
                                         name="selectedDate"
                                         label="Preferred Date"
                                         value={selectedDate}
-                                        onChange={(e) => setSelectedDate(e.target.value)}
+                                        onChange={setSelectedDate}
                                         KeyboardButtonProps={{
                                             'aria-label': 'change date',
                                         }}
@@ -296,7 +311,7 @@ export default function EventRegistration() {
                                         name="startTime"
                                         label="Preferred Start Time"
                                         value={startTime}
-                                        onChange={(e) => setStartTime(e.target.value)}
+                                        onChange={setStartTime}
                                         KeyboardButtonProps={{
                                             'aria-label': 'change time',
                                         }}
@@ -309,7 +324,7 @@ export default function EventRegistration() {
                                         name="endTime"
                                         label="Preferred End Time"
                                         value={endTime}
-                                        onChange={(e) => setEndTime(e.target.value)}
+                                        onChange={setEndTime}
                                         KeyboardButtonProps={{
                                             'aria-label': 'change time',
                                         }}

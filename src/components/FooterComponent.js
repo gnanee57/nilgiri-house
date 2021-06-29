@@ -42,7 +42,7 @@ function FooterPage(){
                         <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Forms</h5>
                         <ul className="list-unstyled">
                             <li><a href="#!">New Club Registration</a></li>
-                            <li><a href="#!">Event Registration</a></li>
+                            <li><Link to={"/events/eventRegistration"}>Event Registration</Link></li>
                             <li><a href="#!">Grievance Form</a></li>
                             <li><a href="#!">Suggestion Form</a></li>
                         </ul>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./HomeComponent";
 import About from "./AboutComponent";
@@ -14,15 +14,20 @@ import Header from "./HeaderComponent";
 import FooterPage from "./FooterComponent";
 import EventRegistration from "./EventRegistration";
 
-function Main() {
+
+function Main(props) {
+
 
     const [galleryContent] = useState(GALLERYCONTENT);
+
 
     return (
         <div>
             <Header />
             <Switch>
-                <Route path="/home" component={() => (<Home />)} />
+                <Route
+                    path="/home"
+                    component={() => (<Home featuredContent={galleryContent.filter(content => content.featured === 1)}/>)} />
                 <Route
                     exact
                     path="/clubs"
@@ -48,7 +53,8 @@ function Main() {
                 <Route
                     path="/wall"
                     component={() => (
-                        <Wall galleryContent={galleryContent}/>
+
+                            <Wall galleryContent={galleryContent}/>
                     )}
                 />
                 <Route
