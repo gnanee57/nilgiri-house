@@ -1,12 +1,10 @@
 import React from "react";
 import home from '../home.jpg';
-import {Button, Jumbotron} from "reactstrap";
+import {Jumbotron} from "reactstrap";
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import IconButton from '@material-ui/core/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
 import PropTypes from 'prop-types';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -15,9 +13,8 @@ import Box from '@material-ui/core/Box';
 import ReactPlayer from "react-player";
 import CardContent from "@material-ui/core/CardContent";
 import {Grid} from "@material-ui/core";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import Card from "@material-ui/core/Card";
 import {Link} from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -187,10 +184,12 @@ function Home(props) {
                 <h3>Our Talents</h3>
                 <FeaturedTabs featuredContent={props.featuredContent}/>
                 <div style={{ display: "flex" }}>
-                    <Link to={'/wall'}>
-                        <Button style={{ marginLeft: "1200px" }} color="link">
+                    <Button variant="outlined" color="primary" style={{ marginLeft: "1200px" }}>
+                        <Link to={'/wall'}>
                             view more
-                        </Button></Link>
+                        </Link>
+                    </Button>
+
                 </div>
             </div>
         </div>
