@@ -1,0 +1,52 @@
+import DateFnsUtils from '@date-io/date-fns';
+<div className='col-md-12'>
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <KeyboardDatePicker
+                                        required
+                                        autoOk={true}
+                                        showTodayButton={true}
+                                        variant="inline"
+                                        format="dd/MM/yyyy"
+                                        margin="normal"
+                                        name="selectedDate"
+                                        label="Preferred Date"
+                                        value={selectedDate}
+                                        onChange={setSelectedDate}
+                                        KeyboardButtonProps={{
+                                            'aria-label': 'change date',
+                                        }}
+                                    />
+                                </MuiPickersUtilsProvider></div>
+                            </div>
+                        </div>
+                        <div className='row'>
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <div className="col-md-3">
+                                    <KeyboardTimePicker
+                                        required
+                                        margin="normal"
+                                        name="startTime"
+                                        label="Preferred Start Time"
+                                        value={startTime}
+                                        onChange={setStartTime}
+                                        KeyboardButtonProps={{
+                                            'aria-label': 'change time',
+                                        }}
+                                    />
+                                </div>
+                                <div className="col-md-3">
+                                    <KeyboardTimePicker
+                                        required
+                                        margin="normal"
+                                        name="endTime"
+                                        label="Preferred End Time"
+                                        value={endTime}
+                                        onChange={setEndTime}
+                                        KeyboardButtonProps={{
+                                            'aria-label': 'change time',
+                                        }}
+                                    />
+                                </div>
+                            </MuiPickersUtilsProvider>
+                        </div>
+                    </div>
