@@ -11,9 +11,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
-const today = new Date()
-const tomorrow = new Date()
+import {Jumbotron} from "reactstrap";
+import eventBanner from "../nilgiri_events.jpg";
+import useWindowSize from "./useWindowSize";
 
 const calendarApiRef = createRef();
 
@@ -115,8 +115,14 @@ function Events() {
         }
 
     }
-    return (
 
+    const size = useWindowSize();
+
+    return (
+        <div>
+            <Jumbotron>
+                <img src={eventBanner} width={size.width - 17} height="440" />
+            </Jumbotron>
         <div className="container">
             <div className="row">
                 Past Events
@@ -129,6 +135,7 @@ function Events() {
                     <EventDetails event = {eventDetail} />
                 </div>
             </div>
+        </div>
         </div>
     );
 }

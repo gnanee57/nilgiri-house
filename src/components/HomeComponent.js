@@ -1,5 +1,6 @@
 import React from "react";
 import home from '../home.jpg';
+import useWindowSize from "./useWindowSize";
 import {Jumbotron} from "reactstrap";
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -175,26 +176,25 @@ function FeaturedTabs(props) {
 
 
 function Home(props) {
+    const size = useWindowSize();
+
     return(
         <div>
             <Jumbotron>
-                <img src={home} width="1349" height="440" />
+                <img src={home} width={size.width - 17} height="440" />
             </Jumbotron>
             <div>
                 <h3>Our Talents</h3>
                 <FeaturedTabs featuredContent={props.featuredContent}/>
                 <div style={{ display: "flex" }}>
-                    <Button variant="outlined" color="primary" style={{ marginLeft: "1200px" }}>
+                    <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
                         <Link to={'/wall'}>
                             view more
                         </Link>
                     </Button>
-
                 </div>
             </div>
         </div>
-
-
 
     );
 }

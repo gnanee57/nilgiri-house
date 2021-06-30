@@ -6,6 +6,9 @@ import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker,} from 
 import {Grid, MenuItem,} from "@material-ui/core";
 import * as PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
+import register from "../nilgiri_register.jpg";
+import {Jumbotron} from "reactstrap";
+import useWindowSize from "./useWindowSize";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -89,8 +92,13 @@ export default function EventRegistration() {
     }
 
     const classes = useStyles();
-
+    const size = useWindowSize();
     return (
+        <>
+            <Jumbotron>
+                <img src={register} width={size.width - 17} height="440" />
+            </Jumbotron>
+
         <div className="container">
             <div className="row mt-5 ">
                 <div className="col-12 ">
@@ -358,5 +366,6 @@ export default function EventRegistration() {
                 </form>
             </div>
         </div>
+        </>
     );
 }

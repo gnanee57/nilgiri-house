@@ -18,6 +18,7 @@ import ReactPlayer from 'react-player';
 import {Description, BrushSharp, DevicesOther, MusicNote, PhotoCamera} from "@material-ui/icons";
 import wall from "../nilgiri_gallery.jpg";
 import {Jumbotron} from "reactstrap";
+import useWindowSize from "./useWindowSize";
 
 
 function TabPanel(props) {
@@ -130,6 +131,7 @@ function RenderContent(props) {
 
 function Wall(props) {
     const classes = useStyles();
+    const size = useWindowSize();
     const [active, setActive] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -138,7 +140,7 @@ function Wall(props) {
     return (
         <div className={classes.root}>
             <Jumbotron>
-                <img src={wall} width="1349" height="440" />
+                <img src={wall} width={size.width - 17} height="440" />
             </Jumbotron>
             <AppBar position="static" color="default">
                 <Tabs
