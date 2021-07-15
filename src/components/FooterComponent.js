@@ -34,7 +34,7 @@ function FooterPage(){
                             <li><Link to={'/home'}>Home</Link></li>
                             <li><Link to={'/clubs'}>Clubs</Link></li>
                             <li><Link to={'/houseCouncil'}>House Council</Link></li>
-                            <li><Link to={'events'}>Events</Link></li>
+                            <li><Link to={'/events/eventsCalendar'}>Events</Link></li>
                         </ul>
                     </Col>
                     <hr className="clearfix w-100 d-md-none" />
