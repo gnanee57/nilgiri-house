@@ -41,7 +41,7 @@ function HouseCouncil() {
             </Jumbotron>
             <div className={'container-fluid'}>
                 <div className={'row'}>
-                    <div className={'col-6'}>
+                    <div className={'col-md-6'}>
                         <Card body outline className={'border-0'}>
                             <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
                                 <CardTitle tag="h5" style={{
@@ -64,7 +64,7 @@ function HouseCouncil() {
                             </CardBody>
                         </Card>
                     </div>
-                    <div className={'col-6'}>
+                    <div className={'col-md-6'}>
                         <Card body outline className={'border-0'}>
                             <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
                                 <CardTitle tag="h5" style={{
@@ -84,7 +84,7 @@ function HouseCouncil() {
                     </div>
                 </div>
                 <div className={'row'}>
-                    <div className={'col-12'}>
+                    <div className={'col-md-12'}>
                         <Card body outline className={'border-0'}>
                             <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
                                 <CardTitle tag="h5" style={{
@@ -157,9 +157,9 @@ function HouseCouncil() {
                     </div>
                 </div>
                 <div className={'row'}>
-                    <div className={'col-12'}>
+                    <div className={'col-md-12'}>
                         <div className={'row'}>
-                            <div className={'col-4'}>
+                            <div className={'col-md-4'}>
                                 <Card body outline className={'border-0'}>
                                     <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
                                         <CardTitle tag="h5" style={{
@@ -171,7 +171,7 @@ function HouseCouncil() {
                                     </CardHeader>
                                 </Card>
                             </div>
-                            <div className={'col-4'}>
+                            <div className={'col-md-4'}>
                                 <Card body outline className={'border-0'}>
                                     <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
                                         <CardTitle tag="h5" style={{
@@ -183,7 +183,7 @@ function HouseCouncil() {
                                     </CardHeader>
                                 </Card>
                             </div>
-                            <div className={'col-4'}>
+                            <div className={'col-md-4'}>
                                 <Card body outline className={'border-0'}>
                                     <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
                                         <CardTitle tag="h5" style={{
@@ -261,7 +261,7 @@ function HouseCouncil() {
                     </div>
                 </div>
                 <div className={'row'}>
-                    <div className={'col-12'}>
+                    <div className={'col-lg-12'}>
                         <Card body outline className={'border-0'}>
                             <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
                                 <CardTitle tag="h5" style={{

@@ -288,7 +288,7 @@ function RiddleSegment() {
                     fontFamily : 'Trebuchet MS',
                     fontStyle: 'italic',
                     fontSize: 'small',
-                }}>Want to answer the Riddle? <a href="#" target={'_blank'}>
+                }}>Want to answer the Riddle? <a href="https://forms.gle/CgCLZGmSPFrEUbUP9" target={'_blank'}>
                     Fill this form.</a>
                 </CardText>
             </CardFooter>
@@ -373,7 +373,7 @@ function UpcomingEvents() {
 function Home(props) {
     const size = useWindowSize();
     return(
-        <div>
+        <>
             <Jumbotron>
                 <img src={home} width={size.width - 17} height="500" />
             </Jumbotron>
@@ -399,6 +399,13 @@ function Home(props) {
                                             fontSize: 'x-large',
                                             fontWeight: 'bold'
                                         }}>Our Wall</CardTitle>
+                                        <CardSubtitle className="mb-2 text-muted" style={{
+                                            justifyContent: 'center',
+                                            fontFamily : 'Trebuchet MS',
+                                            fontStyle: 'italic',
+                                            fontSize: 'small',
+                                        }}>Want your work to be posted on Nilgiri Wall? <a
+                                            href={'https://forms.gle/fFftSgDAHcX7DDHp6'} target={'_blank'}>Fill this form</a></CardSubtitle>
                                     </CardHeader>
                                 </Card>
                                 <Divider />
@@ -413,14 +420,53 @@ function Home(props) {
                             </div>
                         </div>
                     </div>
-
                     <div className={'col-md-3'}>
                         <UpcomingEvents />
                         <RiddleSegment />
                     </div>
                 </div>
+                <div className={'row'}>
+                    <div className={'col-md-12'}>
+                        <Card body outline className={'border-0'}>
+                            <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
+                                <CardTitle tag="h5" style={{
+                                    fontFamily : 'Trebuchet MS',
+                                    textTransform: 'uppercase',
+                                    fontSize: 'x-large',
+                                    fontWeight: 'bold'
+                                }}>Glimpses</CardTitle>
+                            </CardHeader>
+                            <div className={"row"}>
+                                <div className={'col-md-4'}>
+                                    <ReactPlayer
+                                        url={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
+                                        controls={true}
+                                        width="420px"
+                                        height="315px"
+                                    />
+                                </div>
+                                <div className={'col-md-4'}>
+                                    <ReactPlayer
+                                        url={"https://r2---sn-5jucgv5qc5oq-h55k.googlevideo.com/videoplayback?expire=1626362685&ei=3f7vYO_eJsf54-EP4e6aGA&ip=49.204.194.211&id=o-AJNw5BMqAbmWuIw-ElXFRUuBNOdUzwebmeLxWYBENNh3&itag=22&source=youtube&requiressl=yes&mh=iT&mm=31%2C29&mn=sn-5jucgv5qc5oq-h55k%2Csn-cvh76ney&ms=au%2Crdu&mv=m&mvi=2&pcm2cms=yes&pl=23&initcwndbps=1226250&vprv=1&mime=video%2Fmp4&ns=gBHJ9D2xqQ60NSsQ_Kcvt4QG&cnr=14&ratebypass=yes&dur=106.370&lmt=1593578892195773&mt=1626340855&fvip=4&fexp=24001373%2C24007246&c=WEB&txp=5432432&n=XWpCNF54NOJ-JcVw6i&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRgIhAMRtwdAXhT6jfexFCf-ydyg_IQqvzwk1q_ofwqgbCYQUAiEAmr6_1_PF2vVfRcoMcAZrNmJ6zTdS1t7YgodJ2dV_pc8%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpcm2cms%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRgIhAJw6y9S3fgZ8zWkNjaoeOkfaLee1K_T-Mr0zXGVX0DLOAiEAhcFdJWWWzLEvKoM6Nukap5vdjArR3N57fhlQwDNCFGA%3D"}
+                                        controls={true}
+                                        width="420px"
+                                        height="315px"
+                                    />
+                                </div>
+                                <div className={'col-md-4'}>
+                                    <ReactPlayer
+                                        url={"https://r1---sn-5jucgv5qc5oq-h55k.googlevideo.com/videoplayback?expire=1626362988&ei=DADwYKi9DtHJ4-EPy_GmuAw&ip=49.204.194.211&id=o-ANnOc-bZbGdHxZ-WzgIexQrA7W5OChPwOJ52S_Bh5ydL&itag=22&source=youtube&requiressl=yes&mh=YD&mm=31%2C29&mn=sn-5jucgv5qc5oq-h55k%2Csn-cvh7knsz&ms=au%2Crdu&mv=m&mvi=1&pcm2cms=yes&pl=23&initcwndbps=1201250&vprv=1&mime=video%2Fmp4&ns=Zt4SPkYsbtZlq8WP5jMOfhwG&cnr=14&ratebypass=yes&dur=191.518&lmt=1618894614283782&mt=1626341104&fvip=5&fexp=24001373%2C24007246&c=WEB&txp=6316222&n=WtncLPMLhGilGmHAjT&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRAIgNxjKRczf9VpOvuHBsEPrUxB3O17psXw89ADTcuLCYq4CIA5zI6md-kFGpB_yagjVeS3ivF-_pG1oBezZ3gLJ_vP6&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpcm2cms%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIgPsj9Pd-WtyJeUBOGke_lycxQApFzhE9u2XXd3NiB-dcCIQDZC4aL52mvssFy7Kr5ztQ1rb1nlAG9k1h869HMI4GFNA%3D%3D"}
+                                        controls={true}
+                                        width="420px"
+                                        height="315px"
+                                    />
+                                </div>
+                            </div>
+                        </Card>
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
 
     );
 }

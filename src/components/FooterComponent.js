@@ -32,9 +32,11 @@ function FooterPage(){
                         <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Quick Links</h5>
                         <ul className="list-unstyled">
                             <li><Link to={'/home'}>Home</Link></li>
-                            <li><Link to={'/clubs'}>Clubs</Link></li>
-                            <li><Link to={'/houseCouncil'}>House Council</Link></li>
                             <li><Link to={'/events/eventsCalendar'}>Events</Link></li>
+                            <li><a href={'https://sites.google.com/student.onlinedegree.iitm.ac.in/nilgiri-house-academia'}
+                                   target={"_blank"}>Academia</a></li>
+                            <li><a href={'https://sites.google.com/student.onlinedegree.iitm.ac.in/treehouse'}
+                                   target={"_blank"}>Tree House</a></li>
                         </ul>
                     </Col>
                     <hr className="clearfix w-100 d-md-none" />
