@@ -125,8 +125,8 @@ function About() {
 
     return (
         <>
-            <Jumbotron>
-                <img src={aboutBanner} width={size.width - 17} height="500" />
+            <Jumbotron className={'col-md-12 d-none d-sm-block'}>
+                <img src={aboutBanner} width={size.width  - 17} height="500" />
             </Jumbotron>
             <div className="container-fluid">
                 <div className="row m-4">

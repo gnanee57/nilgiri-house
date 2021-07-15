@@ -96,8 +96,8 @@ export default function EventRegistration() {
     const size = useWindowSize();
     return (
         <>
-            <Jumbotron>
-                <img src={register} width={size.width - 17} height="500" />
+            <Jumbotron className={'col-md-12 d-none d-sm-block'}>
+                <img src={register} width={size.width  - 17} height="500" />
             </Jumbotron>
             <div className="container-fluid">
                 <div className="row m-5">

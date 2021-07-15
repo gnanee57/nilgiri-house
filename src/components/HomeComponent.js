@@ -250,7 +250,7 @@ function RiddleSegment() {
                     justifyContent: 'center',
                     fontFamily : 'Trebuchet MS',
                     fontSize: 'medium',
-                }}>Riddle of the Day :: Riddle-1</CardTitle>
+                }}>Riddle of the Day :: Riddle-2</CardTitle>
                 <CardSubtitle className="mb-2 text-muted" style={{
                     justifyContent: 'center',
                     fontFamily : 'Trebuchet MS',
@@ -266,23 +266,33 @@ function RiddleSegment() {
                     fontSize: 'small',
                     fontWeight: 'bold'
                 }}>
-                    I have keys, but no locks. I have space, but no room. You can enter, but you can’t go outside. What am I?
+                    <p>Jill Called the Police, she said, "My Husband is Dead, He didn't come from work yesterday.
+                    I was waiting for him all night long, And in the morning I found him dead by the door." The Police
+                    arrived at crime scene and questioned three suspects - Simon, The neighbour, Lila, The neighbour and Jill,
+                        The wife. </p>
+                    <p>Simon said, "I woke when Jill began screaming, I rushed to her house and saw her standing by her dead
+                        husband." </p>
+                    <p>Lila said, "I came up from the club late at night and fell asleep at ones."</p>
+                    <p>Jill said, "I was so worried that couldn't get asleep until 4 am. I slept for couple of hours, then
+                        got up and look for George. I found him right in front of house!"</p>
+                    <p>Who is Lying?</p>
                 </CardText>
             </CardBody>
-            <CardImg height={"25%"} src={'https://i.insider.com/5e29be67ab49fd3eba5daa5c?width=700&format=jpeg&auto=webp'} alt="Card image cap"/>
+            <CardImg height={"25%"} src={'https://drive.google.com/uc?export=download&id=13v3m8Fe65Gquo55xfVeWfKIaEt898QEM'} alt="Card image cap"/>
             <CardFooter style={{backgroundColor : '#e6e5ff'}}>
                 <CardSubtitle className="mb-2 text-muted" style={{
                     justifyContent: 'center',
                     fontFamily : 'Trebuchet MS',
                     fontStyle: 'italic',
                     fontSize: 'small',
-                }}>The Answer for Riddle - 1 : TBD</CardSubtitle>
+                }}>The Answer for Riddle - 1 : Computer KeyBoard</CardSubtitle>
                 <CardSubtitle className="mb-2 text-muted" style={{
                     justifyContent: 'center',
                     fontFamily : 'Trebuchet MS',
                     fontStyle: 'italic',
                     fontSize: 'small',
-                }}>Top Answers for Riddle - 1 is given by : TBD</CardSubtitle>
+                }}>Top Answers for Riddle - 1 is given by :<br/> P Sumana Aswini (GroupId: 326)
+                    <br/> Harsha (GroupId: 322)  </CardSubtitle>
                 <CardText style={{
                     justifyContent: 'center',
                     fontFamily : 'Trebuchet MS',
@@ -374,8 +384,8 @@ function Home(props) {
     const size = useWindowSize();
     return(
         <>
-            <Jumbotron>
-                <img src={home} width={size.width - 17} height="500" />
+            <Jumbotron className='col-md-12 d-none d-sm-block'>
+                <img src={home} width={size.width  - 17} height="500" />
             </Jumbotron>
             <div className='container-fluid mt-2 overflow-hidden'>
                 <div className='row mb-3'>
@@ -389,7 +399,7 @@ function Home(props) {
                             </div>
                         </div>
                         <div className={'row'}>
-                            <div className='col-md-12'>
+                            <div className='col-md-12 d-none d-lg-block '>
                                 <Card body outline className={'border-0'}>
                                     <CardHeader style={{backgroundColor : '#e6e5ff'}}>
                                         <CardTitle tag="h5" style={{
@@ -437,7 +447,15 @@ function Home(props) {
                                 }}>Glimpses</CardTitle>
                             </CardHeader>
                             <div className={"row"}>
-                                <div className={'col-md-4'}>
+                                <div className={'d-block d-sm-block d-md-none'}>
+                                    <ReactPlayer
+                                        url={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
+                                        controls={true}
+                                        width="320px"
+                                        height="250px"
+                                    />
+                                </div>
+                                <div className={'col-md-6 col-lg-4 d-none d-sm-block'}>
                                     <ReactPlayer
                                         url={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
                                         controls={true}
@@ -445,17 +463,33 @@ function Home(props) {
                                         height="315px"
                                     />
                                 </div>
-                                <div className={'col-md-4'}>
+                                <div className={'d-block d-sm-block d-md-none'}>
                                     <ReactPlayer
-                                        url={"https://r2---sn-5jucgv5qc5oq-h55k.googlevideo.com/videoplayback?expire=1626362685&ei=3f7vYO_eJsf54-EP4e6aGA&ip=49.204.194.211&id=o-AJNw5BMqAbmWuIw-ElXFRUuBNOdUzwebmeLxWYBENNh3&itag=22&source=youtube&requiressl=yes&mh=iT&mm=31%2C29&mn=sn-5jucgv5qc5oq-h55k%2Csn-cvh76ney&ms=au%2Crdu&mv=m&mvi=2&pcm2cms=yes&pl=23&initcwndbps=1226250&vprv=1&mime=video%2Fmp4&ns=gBHJ9D2xqQ60NSsQ_Kcvt4QG&cnr=14&ratebypass=yes&dur=106.370&lmt=1593578892195773&mt=1626340855&fvip=4&fexp=24001373%2C24007246&c=WEB&txp=5432432&n=XWpCNF54NOJ-JcVw6i&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRgIhAMRtwdAXhT6jfexFCf-ydyg_IQqvzwk1q_ofwqgbCYQUAiEAmr6_1_PF2vVfRcoMcAZrNmJ6zTdS1t7YgodJ2dV_pc8%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpcm2cms%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRgIhAJw6y9S3fgZ8zWkNjaoeOkfaLee1K_T-Mr0zXGVX0DLOAiEAhcFdJWWWzLEvKoM6Nukap5vdjArR3N57fhlQwDNCFGA%3D"}
+                                        url={'https://drive.google.com/uc?export=download&id=1EDfAmePz9Kj7aO-u4VnlDBL_H5f4lQ5N'}
+                                        controls={true}
+                                        width="320px"
+                                        height="250px"
+                                    />
+                                </div>
+                                <div className={'col-md-6 col-lg-4 d-none d-sm-block'}>
+                                    <ReactPlayer
+                                        url={'https://drive.google.com/uc?export=download&id=1EDfAmePz9Kj7aO-u4VnlDBL_H5f4lQ5N'}
                                         controls={true}
                                         width="420px"
                                         height="315px"
                                     />
                                 </div>
-                                <div className={'col-md-4'}>
+                                <div className={'d-block d-sm-block d-md-none'}>
                                     <ReactPlayer
-                                        url={"https://r1---sn-5jucgv5qc5oq-h55k.googlevideo.com/videoplayback?expire=1626362988&ei=DADwYKi9DtHJ4-EPy_GmuAw&ip=49.204.194.211&id=o-ANnOc-bZbGdHxZ-WzgIexQrA7W5OChPwOJ52S_Bh5ydL&itag=22&source=youtube&requiressl=yes&mh=YD&mm=31%2C29&mn=sn-5jucgv5qc5oq-h55k%2Csn-cvh7knsz&ms=au%2Crdu&mv=m&mvi=1&pcm2cms=yes&pl=23&initcwndbps=1201250&vprv=1&mime=video%2Fmp4&ns=Zt4SPkYsbtZlq8WP5jMOfhwG&cnr=14&ratebypass=yes&dur=191.518&lmt=1618894614283782&mt=1626341104&fvip=5&fexp=24001373%2C24007246&c=WEB&txp=6316222&n=WtncLPMLhGilGmHAjT&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRAIgNxjKRczf9VpOvuHBsEPrUxB3O17psXw89ADTcuLCYq4CIA5zI6md-kFGpB_yagjVeS3ivF-_pG1oBezZ3gLJ_vP6&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpcm2cms%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIgPsj9Pd-WtyJeUBOGke_lycxQApFzhE9u2XXd3NiB-dcCIQDZC4aL52mvssFy7Kr5ztQ1rb1nlAG9k1h869HMI4GFNA%3D%3D"}
+                                        url={'https://drive.google.com/uc?export=download&id=1MxYzRyKC-g-UIPdoQ60mg4BM3vC5tmzi'}
+                                        controls={true}
+                                        width="320px"
+                                        height="250px"
+                                    />
+                                </div>
+                                <div className={'col-lg-4 d-none d-sm-block'}>
+                                    <ReactPlayer
+                                        url={'https://drive.google.com/uc?export=download&id=1MxYzRyKC-g-UIPdoQ60mg4BM3vC5tmzi'}
                                         controls={true}
                                         width="420px"
                                         height="315px"

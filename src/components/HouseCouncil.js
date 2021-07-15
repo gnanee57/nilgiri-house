@@ -19,10 +19,15 @@ const useStyles = makeStyles((theme) => ({
         '& > *': {
             margin: theme.spacing(3.5),
         },
+        justifyContent: 'center'
     },
     medium: {
         width: theme.spacing(25),
         height: theme.spacing(25),
+    },
+    small: {
+        width: theme.spacing(32.5),
+        height: theme.spacing(32.5),
     },
     large: {
         width: theme.spacing(45),
@@ -36,8 +41,8 @@ function HouseCouncil() {
 
     return (
         <>
-            <Jumbotron>
-                <img src={houseCouncil} width={size.width - 17} height="500" />
+            <Jumbotron className={'col-md-12 d-none d-sm-block'}>
+                <img src={houseCouncil} width={size.width  - 17} height="500" />
             </Jumbotron>
             <div className={'container-fluid'}>
                 <div className={'row'}>
@@ -83,7 +88,7 @@ function HouseCouncil() {
                         </Card>
                     </div>
                 </div>
-                <div className={'row'}>
+                <div className={'row d-none d-lg-block'}>
                     <div className={'col-md-12'}>
                         <Card body outline className={'border-0'}>
                             <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
@@ -156,48 +161,89 @@ function HouseCouncil() {
                         </CardGroup>
                     </div>
                 </div>
-                <div className={'row'}>
+                <div className={'row d-block d-sm-block d-md-block d-lg-none'}>
+                    <div className={'col-md-12 d-block d-lg-none'}>
+                        <Card body outline className={'border-0'}>
+                            <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
+                                <CardTitle tag="h5" style={{
+                                    fontFamily : 'Trebuchet MS',
+                                    textTransform: 'uppercase',
+                                    fontSize: 'x-large',
+                                    fontWeight: 'bold'
+                                }}>Our Mentors</CardTitle>
+                            </CardHeader>
+                        </Card>
+                        <Card body outline className={'border-0 text-center'}>
+                            <div className={classes.root}>
+                                <Avatar src={viswadeep} className={classes.small} />
+                            </div>
+                            <CardBody>
+                                <CardTitle tag="h5" style={{
+                                    fontFamily : 'Trebuchet MS',
+                                    textTransform: 'uppercase',
+                                    fontSize: 'large',
+                                    fontWeight: 'bold'
+                                }}>Viswadeep V</CardTitle>
+                                <CardSubtitle className="mb-2 text-muted" style={{
+                                    justifyContent: 'center',
+                                    fontFamily : 'Trebuchet MS',
+                                    fontStyle: 'italic',
+                                    fontSize: 'medium',
+                                }}>Senior Engineer – Deployment of Digital Twin</CardSubtitle>
+                            </CardBody>
+                        </Card>
+                        <Card body outline className={'border-0 text-center'}>
+                            <div className={classes.root}>
+                                <Avatar src={ponraj} className={classes.small} />
+                            </div>
+                            <CardBody>
+                                <CardTitle tag="h5" style={{
+                                    fontFamily : 'Trebuchet MS',
+                                    textTransform: 'uppercase',
+                                    fontSize: 'large',
+                                    fontWeight: 'bold'
+                                }}>Ponraj BV</CardTitle>
+                                <CardSubtitle className="mb-2 text-muted" style={{
+                                    justifyContent: 'center',
+                                    fontFamily : 'Trebuchet MS',
+                                    fontStyle: 'italic',
+                                    fontSize: 'medium',
+                                }}>UHC - Mentor <br /> Co-Founder of Startup, Phd Scholar at NIT Trichy</CardSubtitle>
+                            </CardBody>
+                        </Card>
+                        <Card body outline className={'border-0 text-center'}>
+                            <div className={classes.root}>
+                                <Avatar src={saragupta} className={classes.small} />
+                            </div>
+                            <CardBody>
+                                <CardTitle tag="h5" style={{
+                                    fontFamily : 'Trebuchet MS',
+                                    textTransform: 'uppercase',
+                                    fontSize: 'large',
+                                    fontWeight: 'bold'
+                                }}>SARA GUPTA</CardTitle>
+                                <CardSubtitle className="mb-2 text-muted" style={{
+                                    justifyContent: 'center',
+                                    fontFamily : 'Trebuchet MS',
+                                    fontStyle: 'italic',
+                                    fontSize: 'medium',
+                                }}>Associate Software Developer at Robert Bosch</CardSubtitle>
+                            </CardBody>
+                        </Card>
+                    </div>
+                </div>
+                <div className={'row d-none d-lg-block'}>
                     <div className={'col-md-12'}>
-                        <div className={'row'}>
-                            <div className={'col-md-4'}>
-                                <Card body outline className={'border-0'}>
-                                    <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
-                                        <CardTitle tag="h5" style={{
-                                            fontFamily : 'Trebuchet MS',
-                                            textTransform: 'uppercase',
-                                            fontSize: 'x-large',
-                                            fontWeight: 'bold'
-                                        }}>Our Secretary</CardTitle>
-                                    </CardHeader>
-                                </Card>
-                            </div>
-                            <div className={'col-md-4'}>
-                                <Card body outline className={'border-0'}>
-                                    <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
-                                        <CardTitle tag="h5" style={{
-                                            fontFamily : 'Trebuchet MS',
-                                            textTransform: 'uppercase',
-                                            fontSize: 'x-large',
-                                            fontWeight: 'bold'
-                                        }}>Our Deputy Secretary</CardTitle>
-                                    </CardHeader>
-                                </Card>
-                            </div>
-                            <div className={'col-md-4'}>
-                                <Card body outline className={'border-0'}>
-                                    <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
-                                        <CardTitle tag="h5" style={{
-                                            fontFamily : 'Trebuchet MS',
-                                            textTransform: 'uppercase',
-                                            fontSize: 'x-large',
-                                            fontWeight: 'bold'
-                                        }}>Our Web Admin</CardTitle>
-                                    </CardHeader>
-                                </Card>
-                            </div>
-                        </div>
                         <CardGroup>
                             <Card body outline className={'border-0 text-center'}>
+                                <CardHeader style={{backgroundColor : '#e6e5ff'}}>
+                                    <CardTitle tag="h5" style={{
+                                        fontFamily : 'Trebuchet MS',
+                                        textTransform: 'uppercase',
+                                        fontSize: 'x-large',
+                                        fontWeight: 'bold'
+                                    }}>Our Secretary</CardTitle>
+                                </CardHeader>
                                 <div className={classes.root}>
                                     <Avatar src={sowmya} className={classes.large} />
                                 </div>
@@ -218,6 +264,14 @@ function HouseCouncil() {
                                 </CardBody>
                             </Card>
                             <Card body outline className={'border-0 text-center'}>
+                                <CardHeader style={{backgroundColor : '#e6e5ff'}}>
+                                    <CardTitle tag="h5" style={{
+                                        fontFamily : 'Trebuchet MS',
+                                        textTransform: 'uppercase',
+                                        fontSize: 'x-large',
+                                        fontWeight: 'bold'
+                                    }}>Our Deputy Secretary</CardTitle>
+                                </CardHeader>
                                 <div className={classes.root}>
                                     <Avatar src={gokul} className={classes.large} />
                                 </div>
@@ -238,8 +292,106 @@ function HouseCouncil() {
                                 </CardBody>
                             </Card>
                             <Card body outline className={'border-0 text-center'}>
+                                <CardHeader style={{backgroundColor : '#e6e5ff'}}>
+                                    <CardTitle tag="h5" style={{
+                                        fontFamily : 'Trebuchet MS',
+                                        textTransform: 'uppercase',
+                                        fontSize: 'x-large',
+                                        fontWeight: 'bold'
+                                    }}>Our Web Admin</CardTitle>
+                                </CardHeader>
                                 <div className={classes.root}>
                                     <Avatar src={gnaneswar} className={classes.large} />
+                                </div>
+                                <CardBody>
+                                    <CardTitle tag="h5" style={{
+                                        fontFamily : 'Trebuchet MS',
+                                        textTransform: 'uppercase',
+                                        fontSize: 'large',
+                                        fontWeight: 'bold'
+                                    }}>KSS GNANESWAR SAI KUMAR</CardTitle>
+                                    <CardSubtitle className="mb-2 text-muted" style={{
+                                        justifyContent: 'center',
+                                        textTransform: 'uppercase',
+                                        fontFamily : 'Trebuchet MS',
+                                        fontStyle: 'italic',
+                                        fontSize: 'medium',
+                                    }}>[21f1004073]</CardSubtitle>
+                                </CardBody>
+                            </Card>
+                        </CardGroup>
+                    </div>
+                </div>
+                <div className={'row d-block d-sm-block d-md-block d-lg-none'}>
+                    <div className={'col-md-12'}>
+                        <CardGroup>
+                            <Card body outline className={'border-0 text-center'}>
+                                <CardHeader style={{backgroundColor : '#e6e5ff'}}>
+                                    <CardTitle tag="h5" style={{
+                                        fontFamily : 'Trebuchet MS',
+                                        textTransform: 'uppercase',
+                                        fontSize: 'x-large',
+                                        fontWeight: 'bold'
+                                    }}>Our Secretary</CardTitle>
+                                </CardHeader>
+                                <div className={classes.root}>
+                                    <Avatar src={sowmya} className={classes.medium} />
+                                </div>
+                                <CardBody>
+                                    <CardTitle tag="h5" style={{
+                                        fontFamily : 'Trebuchet MS',
+                                        textTransform: 'uppercase',
+                                        fontSize: 'large',
+                                        fontWeight: 'bold'
+                                    }}>Sowmya Ramesh</CardTitle>
+                                    <CardSubtitle className="mb-2 text-muted" style={{
+                                        justifyContent: 'center',
+                                        fontFamily : 'Trebuchet MS',
+                                        textTransform: 'uppercase',
+                                        fontStyle: 'italic',
+                                        fontSize: 'medium',
+                                    }}>[21f1001426]</CardSubtitle>
+                                </CardBody>
+                            </Card>
+                            <Card body outline className={'border-0 text-center'}>
+                                <CardHeader style={{backgroundColor : '#e6e5ff'}}>
+                                    <CardTitle tag="h5" style={{
+                                        fontFamily : 'Trebuchet MS',
+                                        textTransform: 'uppercase',
+                                        fontSize: 'x-large',
+                                        fontWeight: 'bold'
+                                    }}>Our Deputy Secretary</CardTitle>
+                                </CardHeader>
+                                <div className={classes.root}>
+                                    <Avatar src={gokul} className={classes.medium} />
+                                </div>
+                                <CardBody>
+                                    <CardTitle tag="h5" style={{
+                                        fontFamily : 'Trebuchet MS',
+                                        textTransform: 'uppercase',
+                                        fontSize: 'large',
+                                        fontWeight: 'bold'
+                                    }}>Gokulakrishnan M</CardTitle>
+                                    <CardSubtitle className="mb-2 text-muted" style={{
+                                        justifyContent: 'center',
+                                        textTransform: 'uppercase',
+                                        fontFamily : 'Trebuchet MS',
+                                        fontStyle: 'italic',
+                                        fontSize: 'medium',
+                                    }}>[21f1007026]</CardSubtitle>
+                                </CardBody>
+                            </Card>
+                            <Card body outline className={'border-0 text-center'}>
+                                <CardHeader style={{backgroundColor : '#e6e5ff'}}>
+                                    <CardTitle tag="h5" style={{
+                                        fontFamily : 'Trebuchet MS',
+                                        textTransform: 'uppercase',
+                                        fontSize: 'x-large',
+                                        fontWeight: 'bold'
+                                    }}>Our Web Admin</CardTitle>
+                                </CardHeader>
+                                <div className={classes.root}>
+                                    <Avatar src={gnaneswar} className={classes.medium} />
                                 </div>
                                 <CardBody>
                                     <CardTitle tag="h5" style={{

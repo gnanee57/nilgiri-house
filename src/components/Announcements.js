@@ -11,8 +11,8 @@ function Announcements() {
 
     return (
         <>
-            <Jumbotron>
-                <img src={announcement} width={size.width - 17} height="500" />
+            <Jumbotron className={'col-md-12 d-none d-sm-block'}>
+                <img src={announcement} width={size.width  - 17} height="500" />
             </Jumbotron>
             <Card body outline className={'border-0'}>
                 <CardHeader style={{backgroundColor : '#e6e5ff'}}>
