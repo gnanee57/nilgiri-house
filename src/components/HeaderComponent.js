@@ -70,8 +70,6 @@ function Header() {
                             </DropdownToggle>
                             {isEventShown && <DropdownMenu>
                                 <NavLink className="dropdown-item"  to={"/events/eventRegistration"}>Event Registration</NavLink>
-                                <DropdownItem divider />
-                                <NavLink className="dropdown-item"  to={"/events/pastEvents"}>Past Events</NavLink>
                             </DropdownMenu>}
                         </UncontrolledDropdown>
                         <NavItem>

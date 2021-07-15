@@ -5,7 +5,6 @@ import About from "./AboutComponent";
 import Club from "./ClubComponent"
 import ClubsList from "./ClubsList";
 import Events from "./EventComponent";
-import PastEvents from "./PastEvents";
 import Wall from "./WallComponent";
 import { GALLERYCONTENT } from "../shared/galleryContent";
 import HouseCouncil from "./HouseCouncil";
@@ -45,10 +44,6 @@ function Main(props) {
                 <Route
                     path="/events/eventRegistration"
                     component={() => (<EventRegistration />)}
-                />
-                <Route
-                    path="/events/pastEvents"
-                    component={() => (<PastEvents />)}
                 />
                 <Route
                     path="/wall"

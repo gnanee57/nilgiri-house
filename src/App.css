@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: Trebuchet MS;
 }
 
 .App-logo {
@@ -37,18 +38,6 @@
   }
 }
 
-.row-header{
-  margin:0px auto;
-  padding:0px auto;
-}
-
-.row-content {
-  margin:0px auto;
-  padding: 50px 0px 50px 0px;
-  border-bottom: 1px ridge;
-  min-height:400px;
-}
-
 .footer{
   background-color: #ebeaff;
   margin:0px auto;
@@ -60,13 +49,14 @@
   vertical-align: center;
 }
 .navbar-brand {
-  font-family: sans-serif;
+  font-family: Trebuchet MS;
   font-weight: bold;
   font-size: 1.6rem;
 }
 
 .nav-link {
   color: white;
+  font-family: Trebuchet MS;
   font-weight: bolder;
   text-decoration: none;
   padding: 0.5rem 1rem;
@@ -77,5 +67,13 @@
   border-radius: 4px;
   transition: all 0.2s ease-out;
 }
+
+.nav-link:active {
+  background-color: #1888ff;
+  border-radius: 4px;
+  transition: all 0.2s ease-out;
+}
+
+
 
 

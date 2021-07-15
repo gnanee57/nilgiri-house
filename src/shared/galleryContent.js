@@ -28,7 +28,7 @@ export const GALLERYCONTENT =
             authorId: 1,
             author: "Abhishek Dixit",
             groupId: 205,
-            featured: 1,
+            featured: 0,
             contentType: "image",
             shareUrl: "https://drive.google.com/file/d/1KQvOX9cUWEwbaqUS2Ce5KhtOYmsC7-gO/view?usp=sharing",
             link: "https://drive.google.com/uc?export=download&id=1KQvOX9cUWEwbaqUS2Ce5KhtOYmsC7-gO"
@@ -94,7 +94,7 @@ export const GALLERYCONTENT =
             authorId: 3,
             author: "G.Naveenkumar",
             groupId: 134,
-            featured: 1,
+            featured: 0,
             contentType: "image",
             shareUrl: "https://drive.google.com/file/d/1xI2whACzv7e4C5KtdZ5rqSVNQoEDviEG/view?usp=sharing ,",
             link: "https://drive.google.com/uc?export=download&id=1xI2whACzv7e4C5KtdZ5rqSVNQoEDviEG"
@@ -149,7 +149,7 @@ export const GALLERYCONTENT =
             authorId: 4,
             author: "Harshit Katiyar",
             groupId: 206,
-            featured: 1,
+            featured: 0,
             contentType: "image",
             shareUrl: "https://drive.google.com/file/d/19YStY21zN3dG5jbUSI26nnR5VafcMIwq/view?usp=sharing ,",
             link: "https://drive.google.com/uc?export=download&id=19YStY21zN3dG5jbUSI26nnR5VafcMIwq"
@@ -226,7 +226,7 @@ export const GALLERYCONTENT =
             authorId: 5,
             author: "Kushagra Pandya",
             groupId: 303,
-            featured: 1,
+            featured: 0,
             contentType: "image",
             shareUrl: "https://drive.google.com/file/d/13b3k4aHJu0bih93ojFn5o-xz7zjRg3Bq/view?usp=sharing ,",
             link: "https://drive.google.com/uc?export=download&id=13b3k4aHJu0bih93ojFn5o-xz7zjRg3Bq"
@@ -325,7 +325,7 @@ export const GALLERYCONTENT =
             authorId: 5,
             author: "Kushagra Pandya",
             groupId: 312,
-            featured: 1,
+            featured: 0,
             contentType: "image",
             shareUrl: "https://drive.google.com/file/d/17XLGuMLoR-oonAfrWfdpHypURqcKot2Y/view?usp=sharing",
             link: "https://drive.google.com/uc?export=download&id=17XLGuMLoR-oonAfrWfdpHypURqcKot2Y"

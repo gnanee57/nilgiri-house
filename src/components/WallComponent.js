@@ -140,7 +140,7 @@ function Wall(props) {
     return (
         <div className={classes.root}>
             <Jumbotron>
-                <img src={wall} width={size.width - 17} height="440" />
+                <img src={wall} width={size.width - 17} height="500" />
             </Jumbotron>
             <AppBar position="static" color="default">
                 <Tabs

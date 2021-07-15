@@ -6,6 +6,8 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import {Link} from "react-router-dom";
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+
 
 function FooterPage(){
     return (
@@ -24,8 +26,6 @@ function FooterPage(){
                 <Row>
                     <Col md="6">
                         <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Subscribe to our NewsLetter</h5>
-                        <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit.</p>
                     </Col>
                     <hr className="clearfix w-100 d-md-none" />
                     <Col md="2">
@@ -51,10 +51,8 @@ function FooterPage(){
                     <Col md="2">
                         <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Contact Us</h5>
                         <ul className="list-unstyled">
-                            <li><a href="#!">Link 1</a></li>
-                            <li><a href="#!">Link 2</a></li>
-                            <li><a href="#!">Link 3</a></li>
-                            <li><a href="#!">Link 4</a></li>
+                            <li><a href="mailto:nilgiri-ds@student.onlinedegree.iitm.ac.in">
+                                <MailOutlineIcon fontSize={'small'} style={{marginRight: '4px'}}/>Mail us</a></li>
                         </ul>
                     </Col>
                 </Row>

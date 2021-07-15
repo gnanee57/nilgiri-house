@@ -1,30 +1,22 @@
-import React, {createRef, useState} from 'react'
+import React, {createRef, useRef, useState} from 'react'
 import FullCalendar from '@fullcalendar/react'
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import '@fullcalendar/core';
-import interactionPlugin from '@fullcalendar/interaction'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import '@fullcalendar/daygrid/main.css'
+import interactionPlugin from '@fullcalendar/interaction';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import listPlugin from '@fullcalendar/list';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {Jumbotron} from "reactstrap";
+import {Card, CardBody, CardFooter, CardHeader, CardSubtitle, CardText, CardTitle, Jumbotron} from "reactstrap";
 import eventBanner from "../nilgiri_events.jpg";
 import useWindowSize from "./useWindowSize";
-
-const calendarApiRef = createRef();
+import moment from "moment";
+import {CardActions} from "@material-ui/core";
 
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
     },
     title: {
         fontSize: 14,
@@ -36,107 +28,173 @@ const useStyles = makeStyles({
 
 function Events() {
     const [eventDetail, setEventDetail] = useState(null);
+    const calendarRef = useRef(null);
 
     const eventClicked = (event) => {
+        calendarRef.current.getApi().gotoDate(event.el.fcSeg.eventRange.range.start)
+        console.log(event.event._def.extendedProps.attachments)
         console.log(event.event._def.title)
-        console.log(event.el.fcSeg.eventRange.range.start)
-        console.log(event.el.fcSeg.eventRange.range.end)
+        console.log(moment(event.event._instance.range.start))
+        console.log(event.event._instance.range.end)
         console.log(event.event._def.extendedProps.description)
     }
 
     const Calendar = () => {
         return (
             <FullCalendar
-                ref={calendarApiRef} nowIndicator navLinks
+                ref={calendarRef} nowIndicator navLinks
                 headerToolbar={{
-                    left: 'prev,today,next',
+                    left: 'prevYear,prev,today,next,nextYear',
                     center: 'title',
-                    right: 'dayGridMonth, dayGridWeek, dayGridDay'
+                    right: 'dayGridMonth,dayGridWeek,dayGridDay,listWeek'
+                }}
+                buttonText={{
+                    today: 'Today',
+                    month: 'Month',
+                    week: 'Week',
+                    day: 'Day',
+                    list: 'List'
                 }}
                 plugins={[
                     googleCalendarPlugin,
                     interactionPlugin,
-                    dayGridPlugin
+                    dayGridPlugin,
+                    listPlugin
                 ]}
                 googleCalendarApiKey = 'AIzaSyAz2qNTpW9Tf7CPxctJ76LR--UEAdfOGsQ'
                 events= {{
-                    googleCalendarId: 'c_1odtkdev6kslj8js0c2bbb2vio@group.calendar.google.com',
+                    googleCalendarId: 'c_classroomeec35ce9@group.calendar.google.com',
                 }}
                 eventClick={eventClickInfo => {
-                    eventClickInfo.jsEvent.preventDefault();
                     eventClickInfo.jsEvent.cancelBubble = true;
+                    eventClickInfo.jsEvent.preventDefault();
                     console.log(eventClickInfo)
                     setEventDetail(eventClickInfo)
                     eventClicked(eventClickInfo)
                 }}
                 editable
                 selectable
-                defaultView="dayGridMonth"
             />
         );
     }
 
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
+
+    const EventAttachment = (props) => {
+        if(props.event.event._def.extendedProps.attachments[0] != null) {
+            return (
+                <CardActions>
+                    <Button size="small" href={props.event.event._def.extendedProps.attachments[0].fileUrl} target="_blank">
+                        {props.event.event._def.extendedProps.attachments[0].title}
+                    </Button>
+                </CardActions>
+            );
+        }
+        else {
+            return (
+                <div></div>
+            );
+        }
+    }
 
     const EventDetails = (props) => {
         if(props.event != null) {
             return (
-                <Card className={classes.root}>
-                    <CardContent>
-                        <Typography className={classes.title} color="textSecondary" gutterBottom>
-                            {props.event.event._def.title}
-                        </Typography>
-                        <Typography variant="h5" component="h2">
-                            be{bull}nev{bull}o{bull}lent
-                        </Typography>
-                        <Typography className={classes.pos} color="textSecondary"
-                                    dangerouslySetInnerHTML={{__html:props.event.event._def.extendedProps.description}}
-                        >
-                        </Typography>
-                        <Typography variant="body2" component="p">
-                            well meaning and kindly.
-                            <br/>
-                            {'"a benevolent smile"'}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button size="small">Learn More</Button>
-                    </CardActions>
+                <Card body outline className={'border-0'}>
+                    <CardHeader style={{backgroundColor : '#e6e5ff'}} >
+                        <CardTitle tag="h5" style={{
+                            justifyContent: 'center',
+                            fontFamily : 'Trebuchet MS',
+                        }}>Event / Actvity Name: {props.event.event._def.title}</CardTitle>
+                        <CardSubtitle className="mb-2 text-muted" style={{
+                            justifyContent: 'center',
+                            fontFamily : 'Trebuchet MS',
+                            fontStyle: 'italic',
+                            fontSize: 'small',
+                        }}>
+                            Start Date/Time: {moment(props.event.event._instance.range.start).subtract({'h': 5, 'm':30}).format(
+                                "MMMM Do YYYY, h:mm a")} <br/>
+                            End Date/Time: {moment(props.event.event._instance.range.end).subtract({'h': 5, 'm':30}).format(
+                            "MMMM Do YYYY, h:mm a")}
+                        </CardSubtitle>
+                    </CardHeader>
+                    <CardBody>
+                        <CardText style={{
+                            justifyContent: 'center',
+                            fontFamily: 'Trebuchet MS',
+                            fontStyle: 'italic',
+                            fontSize: 'small',
+                            fontWeight: 'bold'
+                        }} >
+                            Event Description:
+                        </CardText>
+                        <CardText style={{
+                            justifyContent: 'center',
+                            fontFamily: 'Trebuchet MS',
+                            fontStyle: 'italic',
+                            fontSize: 'small',
+                            fontWeight: 'bold'
+                        }} dangerouslySetInnerHTML={{__html:props.event.event._def.extendedProps.description}} />
+                    </CardBody>
+                    <EventAttachment event = {eventDetail} />
+                    <CardFooter style={{backgroundColor : '#e6e5ff'}}>
+                        <CardText style={{
+                            justifyContent: 'center',
+                            fontFamily : 'Trebuchet MS',
+                            fontStyle: 'italic',
+                            fontSize: 'small',
+                        }}><a href={'https://calendar.google.com/calendar/u/3?' +
+                        'cid=Y19jbGFzc3Jvb21lZWMzNWNlOUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t'} target={'_blank'}>Click here
+                        </a>, to add this calendar to your Google Calendar
+                        </CardText>
+                    </CardFooter>
                 </Card>
             );
         }
         else {
             return (
-            <div>
-                No Event Selected
-            </div>
+                <Card body outline className={'border-0'}>
+                    <CardHeader style={{backgroundColor : '#e6e5ff'}} >
+                        <CardTitle tag="h5" style={{
+                            justifyContent: 'center',
+                            fontFamily : 'Trebuchet MS',
+                        }}>No Event Selected</CardTitle>
+                        <CardSubtitle className="mb-2 text-muted" style={{
+                            justifyContent: 'center',
+                            fontFamily : 'Trebuchet MS',
+                            fontStyle: 'italic',
+                            fontSize: 'small',
+                        }}>
+                            Click an Event/Activity in the Calendar to display the details.
+                        </CardSubtitle>
+                    </CardHeader>
+                </Card>
             );
         }
-
-    }
+    };
 
     const size = useWindowSize();
 
     return (
-        <div>
+        <>
             <Jumbotron>
-                <img src={eventBanner} width={size.width - 17} height="440" />
+                <img src={eventBanner} width={size.width - 17} height="500" />
             </Jumbotron>
-        <div className="container">
-            <div className="row">
-                Past Events
-            </div>
-            <div className="row">
-                <div className="col-12 col-md-8 justify-content-start">
-                    <Calendar />
+            <div className="container-fluid">
+                <div className="row m-4">
+                    <div className="col-12 col-md-7">
+                        <h4 style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                            textTransform: 'capitalize', fontSize: 'xx-large', fontWeight: 'bold', marginBottom: '25px'}}>
+                            Nilgiri House :: Events / Activities Calendar
+                        </h4>
+                        <Calendar />
+                    </div>
+                    <div className ="col-12 col-md-5 justify-content-start mt-5">
+                        <EventDetails event = {eventDetail} />
+                    </div>
                 </div>
-                <div className ="col-12 col-md-4 justify-content-start">
-                    <EventDetails event = {eventDetail} />
-                </div>
             </div>
-        </div>
-        </div>
+        </>
     );
 }
 

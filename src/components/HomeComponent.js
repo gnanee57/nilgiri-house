@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import home from '../home.jpg';
+import birthdayPic from './birthday.png';
+import {BIRTHDAYCONTENT} from "../shared/birthdayContent";
+import Divider from '@material-ui/core/Divider';
 import useWindowSize from "./useWindowSize";
-import {Jumbotron} from "reactstrap";
+import { Card, CardBody, CardFooter, CardHeader, CardImg, CardSubtitle, CardText, CardTitle, Jumbotron, } from "reactstrap";
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -16,6 +19,7 @@ import CardContent from "@material-ui/core/CardContent";
 import {Grid} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,7 +55,7 @@ function FeaturedVideoContent(props) {
                         url={content.link}
                         controls={true}
                         width="360px"
-                        height="140px"
+                        height="180px"
                     />
                     <CardContent>
                         <Typography variant="body2" color="textSecondary" component="p">
@@ -64,27 +68,30 @@ function FeaturedVideoContent(props) {
     });
         return (
             <div className="container">
-                <div className="rows-col-md-5"/>
+                <div className="rows-col-md-8"/>
                 <Grid
                     container
                 >
+
                     <GridList className={classes.gridList} cols={2}>
                         {content}
                     </GridList>
                 </Grid>
-
             </div>
 
         );
 }
+
+
+
 function FeaturedImageContent(props) {
     const classes = useStyles();
     const content = props.content.map(content => {
         if (content.tabId === 2 || content.tabId === 3) {
-            return (
 
+            return (
                     <GridListTile>
-                        <img src={content.link} height="200px" width="150px" />
+                        <img src={content.link} height="200px" width="150px"/>
                         <GridListTileBar
                             subtitle={<span>by: {content.author} </span>}
                         />
@@ -92,22 +99,21 @@ function FeaturedImageContent(props) {
             );
         }
     });
+            return (
+            <div className="container">
+                <div className="rows-col-md-5"/>
+                <Grid
+                    container
+                >
+                    <GridList className={classes.gridList}  cols={2.5}>
+                        {content}
+                    </GridList>
+                </Grid>
+            </div>
+            );
 
-    return (
-        <div className="container">
-            <div className="rows-col-md-5"/>
-            <Grid
-                container
-            >
-                <GridList className={classes.gridList}  cols={4}>
-                    {content}
-                </GridList>
-            </Grid>
-
-        </div>
 
 
-    );
 }
 
 function TabPanel(props) {
@@ -174,24 +180,244 @@ function FeaturedTabs(props) {
     );
 }
 
+function BirthdaySegment() {
 
-function Home(props) {
-    const size = useWindowSize();
+    const Birthday = (props) => {
+        console.log(props)
+        if (props.item.length != 0) {
+            return (
+                <>
+                    <CardImg height={"50%"} src={props.item[0].linkUrl} alt="Card image cap"/>
+                    <CardBody>
+                        <CardText style={{
+                            justifyContent: 'center',
+                            fontFamily: 'Trebuchet MS',
+                            fontStyle: 'italic',
+                            fontSize: 'small',
+                            fontWeight: 'bold'
+                        }}>
+                            Wish you many more happy returns of the Day "{props.item[0].name}". May all your dreams come true.
+                        </CardText>
+                    </CardBody>
+                </>
+            );
+        }
+        else {
+            return (
+                <>
+                    <CardImg src={birthdayPic} alt="Card image cap"/>
 
-    return(
-        <div>
-            <Jumbotron>
-                <img src={home} width={size.width - 17} height="440" />
-            </Jumbotron>
-            <div>
-                <h3>Our Talents</h3>
-                <FeaturedTabs featuredContent={props.featuredContent}/>
+                </>
+            );
+        }
+    };
+
+    return (
+        <Card body outline className={'border-0'}>
+            <CardHeader style={{backgroundColor : '#e6e5ff'}} >
+                <CardTitle tag="h5" style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                }}>Birthday of the Day</CardTitle>
+                <CardSubtitle className="mb-2 text-muted" style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                    fontStyle: 'italic',
+                    fontSize: 'small',
+                }}>Date: {moment().format("MMM Do YY")}</CardSubtitle>
+            </CardHeader>
+            <Birthday item = {BIRTHDAYCONTENT.filter(item => moment(item.date).isSame(moment(), 'day'))} />
+            <CardFooter style={{backgroundColor : '#e6e5ff'}}>
+                <CardText style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                    fontStyle: 'italic',
+                    fontSize: 'small',
+                }}>Want your birthday to be displayed? <a href="https://forms.gle/Y46JLFWhBzbtEobYA" target={'_blank'}>
+                    Fill this form.</a>
+                </CardText>
+            </CardFooter>
+        </Card>
+    );
+}
+
+function RiddleSegment() {
+
+    return (
+        <Card body outline className={'border-0'}>
+            <CardHeader style={{backgroundColor : '#e6e5ff'}} >
+                <CardTitle tag="h5" style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                    fontSize: 'medium',
+                }}>Riddle of the Day :: Riddle-1</CardTitle>
+                <CardSubtitle className="mb-2 text-muted" style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                    fontStyle: 'italic',
+                    fontSize: 'small',
+                }}>Date: {moment().format("MMM Do YY")}</CardSubtitle>
+            </CardHeader>
+            <CardBody>
+                <CardText style={{
+                    justifyContent: 'center',
+                    fontFamily: 'Trebuchet MS',
+                    fontStyle: 'italic',
+                    fontSize: 'small',
+                    fontWeight: 'bold'
+                }}>
+                    I have keys, but no locks. I have space, but no room. You can enter, but you can’t go outside. What am I?
+                </CardText>
+            </CardBody>
+            <CardImg height={"25%"} src={'https://i.insider.com/5e29be67ab49fd3eba5daa5c?width=700&format=jpeg&auto=webp'} alt="Card image cap"/>
+            <CardFooter style={{backgroundColor : '#e6e5ff'}}>
+                <CardSubtitle className="mb-2 text-muted" style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                    fontStyle: 'italic',
+                    fontSize: 'small',
+                }}>The Answer for Riddle - 1 : TBD</CardSubtitle>
+                <CardSubtitle className="mb-2 text-muted" style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                    fontStyle: 'italic',
+                    fontSize: 'small',
+                }}>Top Answers for Riddle - 1 is given by : TBD</CardSubtitle>
+                <CardText style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                    fontStyle: 'italic',
+                    fontSize: 'small',
+                }}>Want to answer the Riddle? <a href="#" target={'_blank'}>
+                    Fill this form.</a>
+                </CardText>
+            </CardFooter>
+        </Card>
+    );
+}
+
+function FeaturedAnnouncements() {
+    return (
+        <Card body outline className={'border-0'}>
+            <CardHeader style={{backgroundColor : '#e6e5ff'}}>
+                <CardTitle tag="h5" style={{
+                    justifyContent: 'start',
+                    fontFamily : 'Trebuchet MS',
+                }}>Announcements / Updates</CardTitle>
+            </CardHeader>
+            <CardBody>
+                <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                    fontSize: 'medium', fontWeight: 'bold'}}>
+                    {moment('2021-07-15').format("MMM Do YY")} : The Expression of Interest(EOI) Form
+                    for forming official clubs of Nilgiri House will be released tomorrow.
+                    ({moment('2021-07-16').format("MMM Do YY")})
+                </CardText>
+                <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                    fontSize: 'medium', fontWeight: 'bold'}}>
+                    {moment('2021-07-14').format("MMM Do YY")} : As discussed in House council meetings, All
+                    the house members have to opt for an active, passive or absentee membership that suits their needs.
+                    So please fill this <a href={'https://forms.gle/xALs8NTencD12kqd6'} target={'_blank'}> G Form </a>
+                    given to opt your membership.
+                </CardText>
+                <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                    fontSize: 'medium', fontWeight: 'bold'}}>
+                    {moment('2021-07-13').format("MMM Do YY")} : Please write an essay on the advantages and
+                    disadvantages of learning English remotely as a part of the course. You may write about the English
+                    course content and features that you like and dislike the most. The maximum word limit is 400 words
+                    or a one-word page. The essays will be evaluated randomly and given feedbacks.
+                    Use this <a href={'https://forms.gle/XVaUmTCS7vHny9hw6'} target={'_blank'}> G Form </a> to submit
+                    your essay. Deadline: 16th July (11.00 pm)
+                </CardText>
                 <div style={{ display: "flex" }}>
                     <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
-                        <Link to={'/wall'}>
+                        <Link to={'/announcements'}>
                             view more
                         </Link>
                     </Button>
+                </div>
+            </CardBody>
+        </Card>
+    );
+}
+
+function UpcomingEvents() {
+    return (
+        <Card body outline className={'border-0'} >
+            <CardHeader style={{backgroundColor : '#e6e5ff'}}>
+                <CardTitle tag="h5" style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                }}>Upcoming Events</CardTitle>
+            </CardHeader>
+            <CardBody>
+                <CardText style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                    fontStyle: 'italic',
+                    fontSize: 'small',
+                    fontWeight: 'bold'
+                }}>{moment('2021-07-15').format("MMM Do YY")} : Launch of Nilgiri House Website
+                </CardText>
+                <div style={{ display: "flex" }}>
+                    <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
+                        <Link to={'/events/eventsCalendar'}>
+                            view more
+                        </Link>
+                    </Button>
+                </div>
+            </CardBody>
+        </Card>
+    );
+}
+
+function Home(props) {
+    const size = useWindowSize();
+    return(
+        <div>
+            <Jumbotron>
+                <img src={home} width={size.width - 17} height="500" />
+            </Jumbotron>
+            <div className='container-fluid mt-2 overflow-hidden'>
+                <div className='row mb-3'>
+                    <div className={'col-md-9'}>
+                        <div className={'row'}>
+                            <div className={'col-md-4'}>
+                                <BirthdaySegment />
+                            </div>
+                            <div className={'col-md-8'}>
+                                <FeaturedAnnouncements />
+                            </div>
+                        </div>
+                        <div className={'row'}>
+                            <div className='col-md-12'>
+                                <Card body outline className={'border-0'}>
+                                    <CardHeader style={{backgroundColor : '#e6e5ff'}}>
+                                        <CardTitle tag="h5" style={{
+                                            justifyContent: 'start',
+                                            fontFamily : 'Trebuchet MS',
+                                            textTransform: 'uppercase',
+                                            fontSize: 'x-large',
+                                            fontWeight: 'bold'
+                                        }}>Our Wall</CardTitle>
+                                    </CardHeader>
+                                </Card>
+                                <Divider />
+                                <FeaturedTabs featuredContent={props.featuredContent}/>
+                                <div style={{ display: "flex" }}>
+                                    <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
+                                        <Link to={'/wall'}>
+                                            view more
+                                        </Link>
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={'col-md-3'}>
+                        <UpcomingEvents />
+                        <RiddleSegment />
+                    </div>
                 </div>
             </div>
         </div>
