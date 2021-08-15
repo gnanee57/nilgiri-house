@@ -383,13 +383,19 @@ function Home(props) {
         },
         {
             id: 2,
+            src: 'https://drive.google.com/uc?export=download&id=11jDE1seOidJ_-eIwS-00DAV7R7jHHVPi',
+            altText: 'IITM Meme Event',
+
+        },
+        {
+            id: 3,
             src: 'https://drive.google.com/uc?export=download&id=1pU0irR8JV9EaBKNuX23NK2qOE_A9VEEP',
             altText: 'IITM Meme Event',
 
         },
     ];
 
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(1);
     const [animating, setAnimating] = useState(false);
 
     const next = () => {
@@ -434,6 +440,7 @@ function Home(props) {
                             </CardHeader>
                             <div className={'row'}>
                                 <div className={'col-md-4'}>
+                                    <div><p></p></div>
                                     <Carousel
                                         activeIndex={activeIndex}
                                         next={next}
@@ -472,7 +479,7 @@ function Home(props) {
                                                 fontFamily : 'Trebuchet MS',
                                                 fontStyle: 'italic',
                                                 fontSize: 'large',
-                                            }}>Want to Participate?<a
+                                            }}>Want to Participate? <a
                                                 href={'https://forms.gle/K7z5NYWThwizMy1U7'} target={'_blank'}>Click here</a> to Register!!!</CardSubtitle>
 
                                         </p>
