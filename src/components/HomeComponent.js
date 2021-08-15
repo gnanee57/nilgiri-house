@@ -4,7 +4,10 @@ import birthdayPic from './birthday.png';
 import {BIRTHDAYCONTENT} from "../shared/birthdayContent";
 import Divider from '@material-ui/core/Divider';
 import useWindowSize from "./useWindowSize";
-import { Card, CardBody, CardFooter, CardHeader, CardImg, CardSubtitle, CardText, CardTitle, Jumbotron, } from "reactstrap";
+import { Card, CardBody, CardFooter, CardHeader, CardImg, CardSubtitle, CardText, CardTitle, Jumbotron, Carousel,
+    CarouselItem,
+    CarouselControl,
+    CarouselIndicators,} from "reactstrap";
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -250,7 +253,7 @@ function RiddleSegment() {
                     justifyContent: 'center',
                     fontFamily : 'Trebuchet MS',
                     fontSize: 'medium',
-                }}>Riddle of the Day :: Riddle-2</CardTitle>
+                }}>Riddle of the Day</CardTitle>
                 <CardSubtitle className="mb-2 text-muted" style={{
                     justifyContent: 'center',
                     fontFamily : 'Trebuchet MS',
@@ -266,39 +269,28 @@ function RiddleSegment() {
                     fontSize: 'small',
                     fontWeight: 'bold'
                 }}>
-                    <p>Jill Called the Police, she said, "My Husband is Dead, He didn't come from work yesterday.
-                    I was waiting for him all night long, And in the morning I found him dead by the door." The Police
-                    arrived at crime scene and questioned three suspects - Simon, The neighbour, Lila, The neighbour and Jill,
-                        The wife. </p>
-                    <p>Simon said, "I woke when Jill began screaming, I rushed to her house and saw her standing by her dead
-                        husband." </p>
-                    <p>Lila said, "I came up from the club late at night and fell asleep at ones."</p>
-                    <p>Jill said, "I was so worried that couldn't get asleep until 4 am. I slept for couple of hours, then
-                        got up and look for George. I found him right in front of house!"</p>
-                    <p>Who is Lying?</p>
+                    Will be Updated...
                 </CardText>
             </CardBody>
-            <CardImg height={"25%"} src={'https://drive.google.com/uc?export=download&id=13v3m8Fe65Gquo55xfVeWfKIaEt898QEM'} alt="Card image cap"/>
             <CardFooter style={{backgroundColor : '#e6e5ff'}}>
                 <CardSubtitle className="mb-2 text-muted" style={{
                     justifyContent: 'center',
                     fontFamily : 'Trebuchet MS',
                     fontStyle: 'italic',
                     fontSize: 'small',
-                }}>The Answer for Riddle - 1 : Computer KeyBoard</CardSubtitle>
+                }}>The Answer for Riddle - 2 : To be Updated</CardSubtitle>
                 <CardSubtitle className="mb-2 text-muted" style={{
                     justifyContent: 'center',
                     fontFamily : 'Trebuchet MS',
                     fontStyle: 'italic',
                     fontSize: 'small',
-                }}>Top Answers for Riddle - 1 is given by :<br/> P Sumana Aswini (GroupId: 326)
-                    <br/> Harsha (GroupId: 322)  </CardSubtitle>
+                }}>Top Answers for Riddle - 2 is given by :<br/> To be Updated </CardSubtitle>
                 <CardText style={{
                     justifyContent: 'center',
                     fontFamily : 'Trebuchet MS',
                     fontStyle: 'italic',
                     fontSize: 'small',
-                }}>Want to answer the Riddle? <a href="https://forms.gle/CgCLZGmSPFrEUbUP9" target={'_blank'}>
+                }}>Want to answer the Riddle? <a href="" target={'_blank'}>
                     Fill this form.</a>
                 </CardText>
             </CardFooter>
@@ -366,7 +358,7 @@ function UpcomingEvents() {
                     fontStyle: 'italic',
                     fontSize: 'small',
                     fontWeight: 'bold'
-                }}>{moment('2021-07-15').format("MMM Do YY")} : Launch of Nilgiri House Website
+                }}>{moment('2021-08-16').format("MMM Do YY")} : Jamming Sesh & IITM Meme Marathon
                 </CardText>
                 <div style={{ display: "flex" }}>
                     <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
@@ -382,14 +374,127 @@ function UpcomingEvents() {
 
 function Home(props) {
     const size = useWindowSize();
+    const items = [
+        {
+            id: 1,
+            src: 'https://drive.google.com/uc?export=download&id=1mx0C9OMD3dXTA-EFuJsJKxG_6aBcMb6Z',
+            altText: 'JAM Sesh',
+
+        },
+        {
+            id: 2,
+            src: 'https://drive.google.com/uc?export=download&id=1pU0irR8JV9EaBKNuX23NK2qOE_A9VEEP',
+            altText: 'IITM Meme Event',
+
+        },
+    ];
+
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [animating, setAnimating] = useState(false);
+
+    const next = () => {
+        if (animating) return;
+        const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+        setActiveIndex(nextIndex);
+    }
+
+    const previous = () => {
+        if (animating) return;
+        const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+        setActiveIndex(nextIndex);
+    }
+
+    const slides = items.map((item) => {
+        return (
+            <CarouselItem
+                onExiting={() => setAnimating(true)}
+                onExited={() => setAnimating(false)}
+                key={item.src}
+            >
+                <img width={'300 px'} height={'500 px'} src={item.src} alt={item.altText} />
+            </CarouselItem>
+        );
+    });
+
     return(
         <>
             <Jumbotron className='col-md-12 d-none d-sm-block'>
                 <img src={home} width={size.width  - 17} height="500" />
             </Jumbotron>
             <div className='container-fluid mt-2 overflow-hidden'>
-                <div className='row mb-3'>
+                <div className={'row'}>
                     <div className={'col-md-9'}>
+                        <Card body outline className={'border-0'}>
+                            <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
+                                <CardTitle tag="h5" style={{
+                                    fontFamily : 'Trebuchet MS',
+                                    fontSize: 'x-large',
+                                    fontWeight: 'bold'
+                                }}>Let's Have Some Fun!!!</CardTitle>
+                            </CardHeader>
+                            <div className={'row'}>
+                                <div className={'col-md-4'}>
+                                    <Carousel
+                                        activeIndex={activeIndex}
+                                        next={next}
+                                        previous={previous}
+                                    >
+                                        {slides}
+                                        <CarouselControl direction="prev" directionText=" " onClickHandler={previous} />
+                                        <CarouselControl direction="next" directionText=" " onClickHandler={next} />
+                                    </Carousel>
+
+                                </div>
+                                <div className={'col-md-7'}>
+                                    <div style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', padding: '10 px',
+                                        fontSize: 'large'}}>
+                                        <p>
+                                            Hi fam!</p><p>
+                                            Nilgiri invites the extended IITM peeps to our first informal get-together!
+                                            </p><p>
+                                            Call it an event, call it what you may but we guarantee you 2 things.
+                                            Music and Fun!</p> <p>
+
+                                            1. Jamming Sesh- Either pre-register or spot register to get a chance to sing for the family,
+                                        we might also ask  everyone to turn on their mics and sing along!
+                                        <CardSubtitle className="mb-2 text-muted" style={{
+                                            justifyContent: 'center',
+                                            fontFamily : 'Trebuchet MS',
+                                            fontStyle: 'italic',
+                                            fontSize: 'large',
+                                        }}>Want to Participate? Click here to Register!!!<a
+                                            href={'https://forms.gle/Hh9HjpyHqKmMAExP8'} target={'_blank'}>Fill this form</a></CardSubtitle>
+                                    </p><p>
+                                            2. IITM Meme Marathon- We think wesan safely say we have some Meme Kings and Queens that's been putting out quality content on social media as well as on our groups ever since the beginning of our course but maybe it's time we give them a stage to entertain!
+                                            Bring your memes and your wit to have a fun evening!
+                                            <CardSubtitle className="mb-2 text-muted" style={{
+                                                justifyContent: 'center',
+                                                fontFamily : 'Trebuchet MS',
+                                                fontStyle: 'italic',
+                                                fontSize: 'large',
+                                            }}>Want to Participate? Click here to Register!!!<a
+                                                href={'https://forms.gle/K7z5NYWThwizMy1U7'} target={'_blank'}>Fill this form</a></CardSubtitle>
+
+                                        </p>
+                                        <p>
+                                            Event Date: Tommorow ({moment('2021-08-16').format("MMM Do YY")}) at 7pm
+                                        </p>
+                                        <p>
+                                            Venue: Google Meet -- <a
+                                            href={'https://meet.google.com/tkv-btaj-bja'} target={'_blank'}>(Click Here) </a>to join the Meet
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+                    </div>
+                    <div className={'col-md-3'}>
+                        <UpcomingEvents />
+                        <RiddleSegment />
+                    </div>
+                </div>
+                <div className='row mb-3'>
+                    <div className={'col-md-12'}>
                         <div className={'row'}>
                             <div className={'col-md-4'}>
                                 <BirthdaySegment />
@@ -429,10 +534,6 @@ function Home(props) {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={'col-md-3'}>
-                        <UpcomingEvents />
-                        <RiddleSegment />
                     </div>
                 </div>
                 <div className={'row'}>
