@@ -462,8 +462,8 @@ function Home(props) {
                                             fontFamily : 'Trebuchet MS',
                                             fontStyle: 'italic',
                                             fontSize: 'large',
-                                        }}>Want to Participate? Click here to Register!!!<a
-                                            href={'https://forms.gle/Hh9HjpyHqKmMAExP8'} target={'_blank'}>Fill this form</a></CardSubtitle>
+                                        }}>Want to Participate? <a
+                                            href={'https://forms.gle/Hh9HjpyHqKmMAExP8'} target={'_blank'}>Click here</a> to Register!!!</CardSubtitle>
                                     </p><p>
                                             2. IITM Meme Marathon- We think wesan safely say we have some Meme Kings and Queens that's been putting out quality content on social media as well as on our groups ever since the beginning of our course but maybe it's time we give them a stage to entertain!
                                             Bring your memes and your wit to have a fun evening!
@@ -472,8 +472,8 @@ function Home(props) {
                                                 fontFamily : 'Trebuchet MS',
                                                 fontStyle: 'italic',
                                                 fontSize: 'large',
-                                            }}>Want to Participate? Click here to Register!!!<a
-                                                href={'https://forms.gle/K7z5NYWThwizMy1U7'} target={'_blank'}>Fill this form</a></CardSubtitle>
+                                            }}>Want to Participate?<a
+                                                href={'https://forms.gle/K7z5NYWThwizMy1U7'} target={'_blank'}>Click here</a> to Register!!!</CardSubtitle>
 
                                         </p>
                                         <p>
