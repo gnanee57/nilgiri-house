@@ -1,13 +1,10 @@
-import React, {useState} from "react";
-import home from '../home.jpg';
-import birthdayPic from './birthday.png';
+import React from "react";
+import home from '../assests/jumbotron/nilgiri_home.jpg';
+import birthdayPic from '../assests/birthday.png';
 import {BIRTHDAYCONTENT} from "../shared/birthdayContent";
 import Divider from '@material-ui/core/Divider';
 import useWindowSize from "./useWindowSize";
-import { Card, CardBody, CardFooter, CardHeader, CardImg, CardSubtitle, CardText, CardTitle, Jumbotron, Carousel,
-    CarouselItem,
-    CarouselControl,
-    CarouselIndicators,} from "reactstrap";
+import { Card, CardBody, CardFooter, CardHeader, CardImg, CardSubtitle, CardText, CardTitle, Jumbotron, } from "reactstrap";
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -23,6 +20,7 @@ import {Grid} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import moment from "moment";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -310,25 +308,22 @@ function FeaturedAnnouncements() {
             <CardBody>
                 <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
                     fontSize: 'medium', fontWeight: 'bold'}}>
-                    {moment('2021-07-15').format("MMM Do YY")} : The Expression of Interest(EOI) Form
-                    for forming official clubs of Nilgiri House will be released tomorrow.
-                    ({moment('2021-07-16').format("MMM Do YY")})
+                    {moment('2021-09-30').format("MMM Do YY")} : The Expression of Interest(EOI) Form
+                    for forming official clubs of Nilgiri House will be released within a week.
                 </CardText>
                 <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
                     fontSize: 'medium', fontWeight: 'bold'}}>
-                    {moment('2021-07-14').format("MMM Do YY")} : As discussed in House council meetings, All
-                    the house members have to opt for an active, passive or absentee membership that suits their needs.
-                    So please fill this <a href={'https://forms.gle/xALs8NTencD12kqd6'} target={'_blank'}> G Form </a>
-                    given to opt your membership.
+                    {moment('2021-09-29').format("MMM Do YY")} : We are pleased to inform you that our Nilgiri house is
+                    now officially on Instagram and Telegram. We will keep updating our instagram page with house updates, funny memes and club
+                    activities. Do give us a follow to keep yourself updated and make our family more stronger.
+                    So please <a href={"https://www.instagram.com/nilgirihouse_iitm"} target={'_blank'}> follow </a> our Instagram page
+                    and <a href={"https://t.me/joinchat/0Bkmw5zCYhY1MThl"} target={'_blank'}> join </a> our telegram group.
                 </CardText>
                 <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
                     fontSize: 'medium', fontWeight: 'bold'}}>
-                    {moment('2021-07-13').format("MMM Do YY")} : Please write an essay on the advantages and
-                    disadvantages of learning English remotely as a part of the course. You may write about the English
-                    course content and features that you like and dislike the most. The maximum word limit is 400 words
-                    or a one-word page. The essays will be evaluated randomly and given feedbacks.
-                    Use this <a href={'https://forms.gle/XVaUmTCS7vHny9hw6'} target={'_blank'}> G Form </a> to submit
-                    your essay. Deadline: 16th July (11.00 pm)
+                    {moment('2021-09-27').format("MMM Do YY")} : Quiz & End Tem Syllabus - SEPTEMBER TERM(FOUNDATIONAL LEVEL)
+                    click <a href={'https://docs.google.com/document/u/2/d/e/2PACX-1vSbylA6h7TpwechTn6k50v6yalhSwSTAhtkSzUnGfFAOLMSHebyMnoHwGS_uzHEyOpZ33wgcTqjOMNV/pub#h.75spqegi2p7s'} target={'_blank'}> here </a>
+                    to refer to the table for the syllabus of quiz & end-term exam.
                 </CardText>
                 <div style={{ display: "flex" }}>
                     <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
@@ -358,7 +353,7 @@ function UpcomingEvents() {
                     fontStyle: 'italic',
                     fontSize: 'small',
                     fontWeight: 'bold'
-                }}>{moment('2021-08-16').format("MMM Do YY")} : Jamming Sesh & IITM Meme Marathon
+                }}>EOD : Nilgiri House :: Painting Competition
                 </CardText>
                 <div style={{ display: "flex" }}>
                     <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
@@ -374,53 +369,6 @@ function UpcomingEvents() {
 
 function Home(props) {
     const size = useWindowSize();
-    const items = [
-        {
-            id: 1,
-            src: 'https://drive.google.com/uc?export=download&id=1mx0C9OMD3dXTA-EFuJsJKxG_6aBcMb6Z',
-            altText: 'JAM Sesh',
-
-        },
-        {
-            id: 2,
-            src: 'https://drive.google.com/uc?export=download&id=11jDE1seOidJ_-eIwS-00DAV7R7jHHVPi',
-            altText: 'IITM Meme Event',
-
-        },
-        {
-            id: 3,
-            src: 'https://drive.google.com/uc?export=download&id=1pU0irR8JV9EaBKNuX23NK2qOE_A9VEEP',
-            altText: 'IITM Meme Event',
-
-        },
-    ];
-
-    const [activeIndex, setActiveIndex] = useState(1);
-    const [animating, setAnimating] = useState(false);
-
-    const next = () => {
-        if (animating) return;
-        const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-        setActiveIndex(nextIndex);
-    }
-
-    const previous = () => {
-        if (animating) return;
-        const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-        setActiveIndex(nextIndex);
-    }
-
-    const slides = items.map((item) => {
-        return (
-            <CarouselItem
-                onExiting={() => setAnimating(true)}
-                onExited={() => setAnimating(false)}
-                key={item.src}
-            >
-                <img width={'300 px'} height={'500 px'} src={item.src} alt={item.altText} />
-            </CarouselItem>
-        );
-    });
 
     return(
         <>
@@ -428,90 +376,25 @@ function Home(props) {
                 <img src={home} width={size.width  - 17} height="500" />
             </Jumbotron>
             <div className='container-fluid mt-2 overflow-hidden'>
-                <div className={'row'}>
-                    <div className={'col-md-9'}>
-                        <Card body outline className={'border-0'}>
-                            <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
-                                <CardTitle tag="h5" style={{
-                                    fontFamily : 'Trebuchet MS',
-                                    fontSize: 'x-large',
-                                    fontWeight: 'bold'
-                                }}>Let's Have Some Fun!!!</CardTitle>
-                            </CardHeader>
-                            <div className={'row'}>
-                                <div className={'col-md-4'}>
-                                    <div><p></p></div>
-                                    <Carousel
-                                        activeIndex={activeIndex}
-                                        next={next}
-                                        previous={previous}
-                                    >
-                                        {slides}
-                                        <CarouselControl direction="prev" directionText=" " onClickHandler={previous} />
-                                        <CarouselControl direction="next" directionText=" " onClickHandler={next} />
-                                    </Carousel>
-
-                                </div>
-                                <div className={'col-md-7'}>
-                                    <div style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', padding: '10 px',
-                                        fontSize: 'large'}}>
-                                        <p>
-                                            Hi fam!</p><p>
-                                            Nilgiri invites the extended IITM peeps to our first informal get-together!
-                                            </p><p>
-                                            Call it an event, call it what you may but we guarantee you 2 things.
-                                            Music and Fun!</p> <p>
-
-                                            1. Jamming Sesh- Either pre-register or spot register to get a chance to sing for the family,
-                                        we might also ask  everyone to turn on their mics and sing along!
-                                        <CardSubtitle className="mb-2 text-muted" style={{
-                                            justifyContent: 'center',
-                                            fontFamily : 'Trebuchet MS',
-                                            fontStyle: 'italic',
-                                            fontSize: 'large',
-                                        }}>Want to Participate? <a
-                                            href={'https://forms.gle/Hh9HjpyHqKmMAExP8'} target={'_blank'}>Click here</a> to Register!!!</CardSubtitle>
-                                    </p><p>
-                                            2. IITM Meme Marathon- We think wesan safely say we have some Meme Kings and Queens that's been putting out quality content on social media as well as on our groups ever since the beginning of our course but maybe it's time we give them a stage to entertain!
-                                            Bring your memes and your wit to have a fun evening!
-                                            <CardSubtitle className="mb-2 text-muted" style={{
-                                                justifyContent: 'center',
-                                                fontFamily : 'Trebuchet MS',
-                                                fontStyle: 'italic',
-                                                fontSize: 'large',
-                                            }}>Want to Participate? <a
-                                                href={'https://forms.gle/K7z5NYWThwizMy1U7'} target={'_blank'}>Click here</a> to Register!!!</CardSubtitle>
-
-                                        </p>
-                                        <p>
-                                            Event Date: Tommorow ({moment('2021-08-16').format("MMM Do YY")}) at 7pm
-                                        </p>
-                                        <p>
-                                            Venue: Google Meet -- <a
-                                            href={'https://meet.google.com/tkv-btaj-bja'} target={'_blank'}>(Click Here) </a>to join the Meet
-                                        </p>
-                                    </div>
-                                </div>
+                <div className={'row mb-3'}>
+                    <div className={'col-md-12'}>
+                        <div className={'row'}>
+                            <div className={'col-md-3'}>
+                                <BirthdaySegment />
                             </div>
-                        </Card>
-                    </div>
-                    <div className={'col-md-3'}>
-                        <UpcomingEvents />
-                        <RiddleSegment />
+                            <div className={'col-md-6'}>
+                                <FeaturedAnnouncements />
+                            </div>
+                            <div className={'col-md-3'}>
+                                <UpcomingEvents />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className='row mb-3'>
                     <div className={'col-md-12'}>
                         <div className={'row'}>
-                            <div className={'col-md-4'}>
-                                <BirthdaySegment />
-                            </div>
-                            <div className={'col-md-8'}>
-                                <FeaturedAnnouncements />
-                            </div>
-                        </div>
-                        <div className={'row'}>
-                            <div className='col-md-12 d-none d-lg-block '>
+                            <div className='col-md-9 d-none d-lg-block '>
                                 <Card body outline className={'border-0'}>
                                     <CardHeader style={{backgroundColor : '#e6e5ff'}}>
                                         <CardTitle tag="h5" style={{
@@ -539,6 +422,9 @@ function Home(props) {
                                         </Link>
                                     </Button>
                                 </div>
+                            </div>
+                            <div className={'col-md-3'}>
+                                <RiddleSegment />
                             </div>
                         </div>
                     </div>

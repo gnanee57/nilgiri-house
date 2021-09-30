@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, DropdownToggle,
     UncontrolledDropdown, DropdownMenu, DropdownItem } from 'reactstrap';
+import logo from "../assests/nilgiri_transparent.png";
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import InfoIcon from '@material-ui/icons/Info';
@@ -24,7 +25,7 @@ function Header() {
         <div>
             <Navbar dark expand="md">
                 <NavbarBrand href="/">
-                    <img src="./assests/nilgiri_transparent.png" height="40" width="50"
+                    <img src={logo} height="40" width="50"
                          alt="Nilgiri House" />
                     Nilgiri House
                 </NavbarBrand>

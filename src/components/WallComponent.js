@@ -10,13 +10,11 @@ import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import ReactPlayer from 'react-player';
 import {Description, BrushSharp, DevicesOther, MusicNote, PhotoCamera} from "@material-ui/icons";
-import wall from "../nilgiri_gallery.jpg";
+import wall from "../assests/jumbotron/nilgiri_gallery.jpg";
 import {Jumbotron} from "reactstrap";
 import useWindowSize from "./useWindowSize";
 

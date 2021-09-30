@@ -1,4 +1,4 @@
-import React, {createRef, useRef, useState} from 'react'
+import React, {useRef, useState} from 'react'
 import FullCalendar from '@fullcalendar/react'
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import '@fullcalendar/core';
@@ -7,9 +7,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import listPlugin from '@fullcalendar/list';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import {Card, CardBody, CardFooter, CardHeader, CardSubtitle, CardText, CardTitle, Jumbotron} from "reactstrap";
-import eventBanner from "../nilgiri_events.jpg";
+import eventBanner from "../assests/jumbotron/nilgiri_events.jpg";
 import useWindowSize from "./useWindowSize";
 import moment from "moment";
 import {CardActions} from "@material-ui/core";

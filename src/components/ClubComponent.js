@@ -1,7 +1,7 @@
 import React from "react";
 import useWindowSize from "./useWindowSize";
 import {Card, CardBody, CardHeader, CardText, CardTitle, Jumbotron} from "reactstrap";
-import club from "../images/clubs.jpg";
+import club from "../assests/jumbotron/clubs.jpg";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';

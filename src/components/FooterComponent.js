@@ -15,8 +15,8 @@ function FooterPage(){
             <div className="text-center">
                 <ul className="list-unstyled list-inline">
                     <li className="list-inline-item"><a className="btn-floating btn-sm btn-fb mx-1"><FacebookIcon /></a></li>
-                    <li className="list-inline-item"><a className="btn-floating btn-sm btn-gplus mx-1"><InstagramIcon /></a></li>
-                    <li className="list-inline-item"><a className="btn-floating btn-sm btn-li mx-1"><TelegramIcon /></a></li>
+                    <li className="list-inline-item"><a href={"https://www.instagram.com/nilgirihouse_iitm"} target={"_blank"} className="btn-floating btn-sm btn-gplus mx-1"><InstagramIcon /></a></li>
+                    <li className="list-inline-item"><a href={"https://t.me/joinchat/0Bkmw5zCYhY1MThl"} target={"_blank"} className="btn-floating btn-sm btn-li mx-1"><TelegramIcon /></a></li>
                     <li className="list-inline-item"><a className="btn-floating btn-sm btn-li mx-1"><WhatsAppIcon /></a></li>
                 </ul>
             </div>
@@ -31,8 +31,8 @@ function FooterPage(){
                     <Col md="2">
                         <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Quick Links</h5>
                         <ul className="list-unstyled">
-                            <li><Link to={'/home'}>Home</Link></li>
                             <li><Link to={'/events/eventsCalendar'}>Events</Link></li>
+                            <li><a href="https://onlinedegree.iitm.ac.in/student_life.html" target={"_blank"}>IITM :: Student Life</a></li>
                             <li><a href={'https://sites.google.com/student.onlinedegree.iitm.ac.in/nilgiri-house-academia'}
                                    target={"_blank"}>Academia</a></li>
                             <li><a href={'https://sites.google.com/student.onlinedegree.iitm.ac.in/treehouse'}

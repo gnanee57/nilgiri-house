@@ -1,8 +1,8 @@
 import React from "react";
 import useWindowSize from "./useWindowSize";
 import {Card, CardBody, CardHeader, CardSubtitle, CardText, CardTitle, Jumbotron} from "reactstrap";
-import aboutBanner from "../nilgiri_about.jpg";
-import logo from "./nilgiri_transparent.png";
+import aboutBanner from "../assests/jumbotron/nilgiri_about.jpg";
+import logo from "../assests/nilgiri_transparent.png";
 import { makeStyles } from '@material-ui/core/styles';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';

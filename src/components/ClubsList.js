@@ -1,7 +1,7 @@
 import React from "react";
 import useWindowSize from "./useWindowSize";
 import {Jumbotron} from "reactstrap";
-import clubList from "../images/listClubs.png";
+import clubList from "../assests/jumbotron/listClubs.png";
 
 function ClubsList() {
     const size = useWindowSize();

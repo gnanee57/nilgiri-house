@@ -4,9 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker,} from '@material-ui/pickers';
 import {Grid, MenuItem,} from "@material-ui/core";
-import * as PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
-import register from "../nilgiri_register.jpg";
+import register from "../assests/jumbotron/nilgiri_register.jpg";
 import {Jumbotron} from "reactstrap";
 import useWindowSize from "./useWindowSize";
 
