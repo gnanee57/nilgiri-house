@@ -22,7 +22,12 @@ function Announcements() {
                 <CardBody>
                     <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
                         fontSize: 'medium', fontWeight: 'bold'}}>
-                        {moment('2021-10-01').format("MMM Do YY")} : The Expression of Interest(EOI) Form
+                        {moment('2021-10-01').format("MMM Do YY")} : A new segment is added to know your house
+                        & Group Details in the Nilgiri House Website. Please checkout in the homepage.
+                    </CardText>
+                    <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                        fontSize: 'medium', fontWeight: 'bold'}}>
+                        {moment('2021-09-30').format("MMM Do YY")} : The Expression of Interest(EOI) Form
                         for forming official clubs of Nilgiri House will be released within a week.
                     </CardText>
                     <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',

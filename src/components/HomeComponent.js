@@ -1,10 +1,22 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import home from '../assests/jumbotron/nilgiri_home.jpg';
 import birthdayPic from '../assests/birthday.png';
 import {BIRTHDAYCONTENT} from "../shared/birthdayContent";
+import {HOUSEDETAILS} from "../shared/houseDetails";
 import Divider from '@material-ui/core/Divider';
 import useWindowSize from "./useWindowSize";
-import { Card, CardBody, CardFooter, CardHeader, CardImg, CardSubtitle, CardText, CardTitle, Jumbotron, } from "reactstrap";
+import {
+    Card,
+    CardBody,
+    CardFooter,
+    CardHeader,
+    CardImg,
+    CardSubtitle,
+    CardText,
+    CardTitle,
+    Form, FormGroup,
+    Jumbotron, Label,
+} from "reactstrap";
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -20,6 +32,7 @@ import {Grid} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import moment from "moment";
+import TextField from "@material-ui/core/TextField";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
     },
     tabs: {
         borderRight: `1px solid ${theme.palette.divider}`,
+    },
+    textField: {
+        width: 200,
     },
 }));
 function FeaturedVideoContent(props) {
@@ -308,6 +324,11 @@ function FeaturedAnnouncements() {
             <CardBody>
                 <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
                     fontSize: 'medium', fontWeight: 'bold'}}>
+                    {moment('2021-10-01').format("MMM Do YY")} : A new segment is added to know your house
+                    & Group Details in the Nilgiri House Website. Please checkout in the homepage.
+                </CardText>
+                <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                    fontSize: 'medium', fontWeight: 'bold'}}>
                     {moment('2021-09-30').format("MMM Do YY")} : The Expression of Interest(EOI) Form
                     for forming official clubs of Nilgiri House will be released within a week.
                 </CardText>
@@ -353,6 +374,14 @@ function UpcomingEvents() {
                     fontStyle: 'italic',
                     fontSize: 'small',
                     fontWeight: 'bold'
+                }}>{moment('2021-10-02').format("MMM Do YY")} : Nilgiri House :: Formal Welcome & Q/A Session for joined house members in September 2021.
+                </CardText>
+                <CardText style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                    fontStyle: 'italic',
+                    fontSize: 'small',
+                    fontWeight: 'bold'
                 }}>EOD : Nilgiri House :: Painting Competition
                 </CardText>
                 <div style={{ display: "flex" }}>
@@ -362,6 +391,126 @@ function UpcomingEvents() {
                         </Link>
                     </Button>
                 </div>
+            </CardBody>
+        </Card>
+    );
+}
+
+
+function HouseDetails() {
+    const [rollNum, setRollNum] = useState('');
+    const [rollNo, setRollNo] = useState('');
+    const [groupId, setGroupId] = useState('');
+    const [house, setHouse] = useState('');
+    const [termAdded, setTermAdded] = useState('');
+    const [detailsFetched, setDetailsFetched] = useState(false);
+
+    const resetForm = () => {
+        setRollNum('');
+    }
+
+    const handleSearch = async e => {
+        e.preventDefault();
+        let student = HOUSEDETAILS.filter(student =>
+            student.studentId === rollNo.toLowerCase() + '@student.onlinedegree.iitm.ac.in'
+        );
+        console.log(student);
+
+        if(student.length) {
+            setRollNo(rollNum);
+            setGroupId(student[0].groupId);
+            setHouse(student[0].house);
+            setTermAdded(student[0].termAdded);
+            setDetailsFetched(true);
+        }
+        resetForm();
+    }
+
+
+    const StudentDetails = () => {
+        if(detailsFetched && rollNo.length === 10) {
+            return (
+                <CardText style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                    fontStyle: 'italic',
+                    fontSize: 'medium',
+                    fontWeight: 'bold'
+                }}>
+                    Roll No : {rollNo} <br/>
+                    Group Id: {groupId} <br/>
+                    House Name: {house} <br/>
+                    Added in : {moment(termAdded).format('MMMM YYYY')}
+                </CardText>
+            );
+        }
+        else if(!detailsFetched && rollNo.length === 10) {
+            return (
+                <CardText style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                    fontStyle: 'italic',
+                    fontSize: 'small',
+                    fontWeight: 'bold'
+                }}>
+                    Click on search to view your House & Group
+                </CardText>
+            );
+        }
+        else {
+            return (
+                <CardText style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                    fontStyle: 'italic',
+                    fontSize: 'small',
+                    fontWeight: 'bold'
+                }}>
+                    Enter Valid Roll No. 2XfX00XXXX
+                </CardText>
+            );
+        }
+    }
+
+    return (
+        <Card body outline className={'border-0'} >
+            <CardHeader style={{backgroundColor : '#e6e5ff'}}>
+                <CardTitle tag="h5" style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                }}>Know your House & Group</CardTitle>
+            </CardHeader>
+            <CardBody>
+                <form  noValidate autoComplete="off" onSubmit={handleSearch}>
+                    <div  className="col-10">
+                        <TextField
+                            required
+                            fullWidth
+                            name="rollNum"
+                            label="Roll No:"
+                            placeholder="Enter your Roll No:"
+                            value={rollNum}
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            onChange={(e) => {
+                                setRollNum(e.target.value);
+                                setRollNo(e.target.value);
+                                setDetailsFetched(false);
+                            }}
+                        />
+                    </div>
+                    <div className="row mt-2">
+                        <div className={"col-md-5"}>
+                            <Button  type={"submit"} variant="contained" color="primary">
+                                Search
+                            </Button>
+                        </div>
+                    </div>
+                </form>
+                <br/>
+                <StudentDetails />
             </CardBody>
         </Card>
     );
@@ -379,14 +528,15 @@ function Home(props) {
                 <div className={'row mb-3'}>
                     <div className={'col-md-12'}>
                         <div className={'row'}>
-                            <div className={'col-md-3'}>
-                                <BirthdaySegment />
+                            <div className={'col-md-3 mb-0'}>
+                                <HouseDetails />
                             </div>
                             <div className={'col-md-6'}>
                                 <FeaturedAnnouncements />
                             </div>
                             <div className={'col-md-3'}>
                                 <UpcomingEvents />
+                                <RiddleSegment />
                             </div>
                         </div>
                     </div>
@@ -394,6 +544,9 @@ function Home(props) {
                 <div className='row mb-3'>
                     <div className={'col-md-12'}>
                         <div className={'row'}>
+                            <div className={'col-md-3'}>
+                                <BirthdaySegment />
+                            </div>
                             <div className='col-md-9 d-none d-lg-block '>
                                 <Card body outline className={'border-0'}>
                                     <CardHeader style={{backgroundColor : '#e6e5ff'}}>
@@ -423,9 +576,8 @@ function Home(props) {
                                     </Button>
                                 </div>
                             </div>
-                            <div className={'col-md-3'}>
-                                <RiddleSegment />
-                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -489,6 +641,7 @@ function Home(props) {
                                         height="315px"
                                     />
                                 </div>
+
                             </div>
                         </Card>
                     </div>
