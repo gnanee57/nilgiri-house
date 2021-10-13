@@ -613,7 +613,7 @@ function Home(props) {
     }
 
     return(
-        <div>
+        <React.Fragment>
             <Jumbotron className='col-md-12 d-none d-sm-block'>
                 <img src={home} width={size.width  - 17} height="500" />
             </Jumbotron>
@@ -698,7 +698,7 @@ function Home(props) {
                                 <Divider />
                                 <FeaturedTabs featuredContent={props.featuredContent}/>
                                 <div style={{ display: "flex" }}>
-                                    <Button variant="outlined" color="primary" style={{ marginLeft: "1200px" }}>
+                                    <Button variant="outlined" color="primary" style={{ marginLeft: "880px" }}>
                                         <Link to={'/wall'}>
                                             view more
                                         </Link>
@@ -773,8 +773,7 @@ function Home(props) {
                         </Card>
                     </div>
                 </div>
-            </div>
-
+            </React.Fragment>
     );
 }
 
