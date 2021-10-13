@@ -40,7 +40,7 @@ function HouseCouncil() {
     const size = useWindowSize();
 
     return (
-        <>
+        <div>
             <Jumbotron className={'col-md-12 d-none d-sm-block'}>
                 <img src={houseCouncil} width={size.width  - 17} height="500" />
             </Jumbotron>
@@ -428,7 +428,7 @@ function HouseCouncil() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

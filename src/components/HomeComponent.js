@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from "react";
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+import classnames from 'classnames';
 import home from '../assests/jumbotron/nilgiri_home.jpg';
 import birthdayPic from '../assests/birthday.png';
+import studentOfYear from '../assests/announcements/student_year.png';
+import quizPoster from '../assests/announcements/quiz_students_day.jpeg';
 import {BIRTHDAYCONTENT} from "../shared/birthdayContent";
 import {HOUSEDETAILS} from "../shared/houseDetails";
 import Divider from '@material-ui/core/Divider';
@@ -203,7 +207,7 @@ function BirthdaySegment() {
         console.log(props)
         if (props.item.length != 0) {
             return (
-                <>
+                <div>
                     <CardImg height={"50%"} src={props.item[0].linkUrl} alt="Card image cap"/>
                     <CardBody>
                         <CardText style={{
@@ -216,15 +220,15 @@ function BirthdaySegment() {
                             Wish you many more happy returns of the Day "{props.item[0].name}". May all your dreams come true.
                         </CardText>
                     </CardBody>
-                </>
+                </div>
             );
         }
         else {
             return (
-                <>
+                <div>
                     <CardImg src={birthdayPic} alt="Card image cap"/>
 
-                </>
+                </div>
             );
         }
     };
@@ -368,6 +372,14 @@ function UpcomingEvents() {
                 }}>Upcoming Events</CardTitle>
             </CardHeader>
             <CardBody>
+                <CardText style={{
+                    justifyContent: 'center',
+                    fontFamily : 'Trebuchet MS',
+                    fontStyle: 'italic',
+                    fontSize: 'small',
+                    fontWeight: 'bold'
+                }}>{moment('2021-10-15').format("MMM Do YY")} : Nilgiri House :: Student of the Year Contest.
+                </CardText>
                 <CardText style={{
                     justifyContent: 'center',
                     fontFamily : 'Trebuchet MS',
@@ -519,8 +531,89 @@ function HouseDetails() {
 function Home(props) {
     const size = useWindowSize();
 
+    const QuizTabs = (props) => {
+        const [activeTab, setActiveTab] = useState('1');
+
+        const toggle = tab => {
+            if(activeTab !== tab) setActiveTab(tab);
+        }
+        return (
+            <div>
+                <Nav tabs>
+                    <NavItem>
+                        <NavLink
+                            style={{
+                                backgroundColor: '#fff'
+                            }}
+                            className={classnames({ active: activeTab === '1'})}
+                            onClick={() => { toggle('1'); }}
+                        >
+                            About
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink
+                            style={{
+                                backgroundColor: '#fff'
+                            }}
+                            className={classnames({ active: activeTab === '2' })}
+                            onClick={() => { toggle('2'); }}
+                        >
+                            Rules
+                        </NavLink>
+                    </NavItem>
+                </Nav>
+                <TabContent activeTab={activeTab}>
+                    <TabPane tabId="1">
+                        <Row>
+                            <Col sm="12">
+                                <CardText style={{
+                                    backgroundColor: '#fff', justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                                    fontSize: 'medium', fontWeight: 'bold'}}>
+                                    Nilgiri House brings you a fun-event on the auspicious occasion of the
+                                    National Students' Day, on {moment('2021-10-15').format("MMM Do YY")}
+                                    in collaboration with the Nilgiri Quiz Club - <br/><br/>
+                                    Student of the Year, a General Quiz with the underlying theme of How attentive
+                                    an IITM B.Sc degree student you are!<br/><br/>
+                                    Sounds puzzling?<br/>
+                                    Don't worry. We won't ask you do any complex integration or deduce any
+                                    conditional probability.<br/><br/>
+                                    It will be like any other General Quiz , but the answers (say some proper nouns or
+                                    some terminologies orsome funda behind some particular invention or usage )
+                                    are somehow related to this B.Sc degree course contents.<br/><br/>
+                                    If you were attentive during the lectures or solving questions, you can easily take a guess.
+                                    And if you haven't attended lectures etc that much precisely, you can still
+                                    crack the answers given the work-outable hints in the question.
+                                </CardText>
+                            </Col>
+                        </Row>
+                    </TabPane>
+                    <TabPane tabId="2">
+                        <Row>
+                            <Col sm="12" style={{
+                                backgroundColor: '#fff'}}>
+                                <CardText style={{
+                                    backgroundColor: '#fff', justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                                    fontSize: 'medium', fontWeight: 'bold'}}>
+                                    Rules:<br/>
+                                    <ul>
+                                        <li>It will be a thoroughly General Quiz.</li>
+                                        <li>Max 2 members per team,you can also take part as lonewolf. (however you are always suggested to take part in teams)</li>
+                                        <li>A preliminary round to be followed by a Final.</li>
+                                        <li>Prelims will be held on Google Form.</li>
+                                        <li>8 teams to qualify for the Finals which will be held via Google Meet.</li>
+                                    </ul>
+                                </CardText>
+                            </Col>
+                        </Row>
+                    </TabPane>
+                </TabContent>
+            </div>
+        );
+    }
+
     return(
-        <>
+        <div>
             <Jumbotron className='col-md-12 d-none d-sm-block'>
                 <img src={home} width={size.width  - 17} height="500" />
             </Jumbotron>
@@ -530,13 +623,37 @@ function Home(props) {
                         <div className={'row'}>
                             <div className={'col-md-3 mb-0'}>
                                 <HouseDetails />
-                            </div>
-                            <div className={'col-md-6'}>
-                                <FeaturedAnnouncements />
-                            </div>
-                            <div className={'col-md-3'}>
                                 <UpcomingEvents />
-                                <RiddleSegment />
+                            </div>
+                            <div className={'col-md-9 mb-0'}>
+                                <Card body outline className={'border-0'} >
+                                    <CardHeader style={{backgroundColor : '#e6e5ff'}}>
+                                        <CardTitle tag="h5" style={{
+                                            justifyContent: 'center',
+                                            fontFamily : 'Trebuchet MS',
+                                        }}>STUDENT OF THE YEAR CONTEST</CardTitle>
+                                        <CardSubtitle className="mb-2 text-muted" style={{
+                                            justifyContent: 'center',
+                                            fontFamily : 'Trebuchet MS',
+                                            fontStyle: 'italic',
+                                            fontSize: 'small',
+                                        }}>Event Date: {moment('2021-10-15T04:00:00+05:30').format("dddd, MMMM Do YYYY, h")}pm  <br/>
+                                            Venue: Google Meet <br/>
+                                            Want to Participate? <a
+                                            href={'https://forms.gle/7oFj7dMSzbQvWXq1A'} target={'_blank'}>Fill this form</a></CardSubtitle>
+                                    </CardHeader>
+                                    <CardBody>
+                                        <div className={'row'}>
+                                            <div className={'col-md-8'}>
+                                                <QuizTabs />
+                                            </div>
+                                            <div className={'col-md-4'}>
+                                                <img src={quizPoster} width={'300px'} height={'450px'}/>
+                                            </div>
+                                        </div>
+                                    </CardBody>
+                                </Card>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -544,10 +661,22 @@ function Home(props) {
                 <div className='row mb-3'>
                     <div className={'col-md-12'}>
                         <div className={'row'}>
+                            <div className={'col-md-9'}>
+                                <FeaturedAnnouncements />
+                            </div>
                             <div className={'col-md-3'}>
                                 <BirthdaySegment />
                             </div>
-                            <div className='col-md-9 d-none d-lg-block '>
+                        </div>
+                    </div>
+                </div>
+                <div className='row mb-3'>
+                    <div className={'col-md-12 d-none d-lg-block'}>
+                        <div className={'row'}>
+                            <div className={'col-md-3 mb-0'}>
+                                <RiddleSegment />
+                            </div>
+                            <div className={'col-md-9 d-none d-lg-block'}>
                                 <Card body outline className={'border-0'}>
                                     <CardHeader style={{backgroundColor : '#e6e5ff'}}>
                                         <CardTitle tag="h5" style={{
@@ -569,15 +698,13 @@ function Home(props) {
                                 <Divider />
                                 <FeaturedTabs featuredContent={props.featuredContent}/>
                                 <div style={{ display: "flex" }}>
-                                    <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
+                                    <Button variant="outlined" color="primary" style={{ marginLeft: "1200px" }}>
                                         <Link to={'/wall'}>
                                             view more
                                         </Link>
                                     </Button>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -647,7 +774,6 @@ function Home(props) {
                     </div>
                 </div>
             </div>
-        </>
 
     );
 }

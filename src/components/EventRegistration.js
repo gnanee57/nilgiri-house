@@ -94,7 +94,7 @@ export default function EventRegistration() {
     const classes = useStyles();
     const size = useWindowSize();
     return (
-        <>
+        <div>
             <Jumbotron className={'col-md-12 d-none d-sm-block'}>
                 <img src={register} width={size.width  - 17} height="500" />
             </Jumbotron>
@@ -371,6 +371,6 @@ export default function EventRegistration() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

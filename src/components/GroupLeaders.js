@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 export default function GroupLeaders() {
     const classes = useStyles();
     return(
-        <>
+        <div>
             <div className={"row d-none d-lg-block"}>
                 <div className={"col-lg-12"}>
                     <CardGroup>
@@ -757,7 +757,7 @@ export default function GroupLeaders() {
                     </Card>
                 </div>
             </div>
-        </>
+        </div>
 
     );
 }

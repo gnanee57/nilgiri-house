@@ -18,7 +18,7 @@ function Club() {
     const size = useWindowSize();
 
     return (
-        <>
+        <div>
             <Jumbotron className={'col-md-12 d-none d-sm-block'}>
                 <img src={club} width={size.width  - 17} height="500" />
             </Jumbotron>
@@ -183,7 +183,7 @@ function Club() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
