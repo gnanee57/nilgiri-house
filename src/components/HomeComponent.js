@@ -654,7 +654,6 @@ function Home(props) {
                                     </CardBody>
                                 </Card>
                             </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -670,8 +669,8 @@ function Home(props) {
                         </div>
                     </div>
                 </div>
-                <div className='row mb-3'>
-                    <div className={'col-md-12 d-none d-lg-block'}>
+                <div className='row'>
+                    <div className={'col-md-12'}>
                         <div className={'row'}>
                             <div className={'col-md-3 mb-0'}>
                                 <RiddleSegment />
@@ -698,7 +697,7 @@ function Home(props) {
                                 <Divider />
                                 <FeaturedTabs featuredContent={props.featuredContent}/>
                                 <div style={{ display: "flex" }}>
-                                    <Button variant="outlined" color="primary" style={{ marginLeft: "880px" }}>
+                                    <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
                                         <Link to={'/wall'}>
                                             view more
                                         </Link>
@@ -773,7 +772,8 @@ function Home(props) {
                         </Card>
                     </div>
                 </div>
-            </React.Fragment>
+            </div>
+        </React.Fragment>
     );
 }
 
