@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "antd/dist/antd.css";
 import {Menu} from 'antd';
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import InfoIcon from "@material-ui/icons/Info";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
@@ -11,16 +11,9 @@ import HomeIcon from "@material-ui/icons/Home";
 
 const { SubMenu } = Menu;
 
+function Navbar() {
 
-
-export default function Navbar() {
-
-    const [current,setCurrent]  = useState('home');
-
-    const handleClick = e => {
-        console.log('click ', e);
-        setCurrent(e.key);
-    };
+    const [current,setCurrent] = useState('/home');
 
     const centerStyle = {
         position: 'relative',
@@ -28,17 +21,24 @@ export default function Navbar() {
         justifyContent: 'center',
     }
 
+    const handleClick: React.FC = (e) => {
+        setCurrent(window.location.pathname);
+    }
+
     return(
-            <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal" style={centerStyle}>
-                <Menu.Item key="home" icon={<HomeIcon fontSize="small" />}>Home
+            <Menu onClick={handleClick}
+                selectedKeys={[current]}
+                mode="horizontal"
+                style={centerStyle}>
+                <Menu.Item key="/home" icon={<HomeIcon fontSize="small" />}>Home
                     <Link to={"/home"}></Link>
                 </Menu.Item>
-                <SubMenu key="clubs" icon={<GroupWorkIcon fontSize="small" />} title="Clubs">
+                <SubMenu key="/clubs" icon={<GroupWorkIcon fontSize="small" />} title="Clubs">
                     <Menu.ItemGroup>
-                        <Menu.Item key="clubsRules">Clubs :: Rules
+                        <Menu.Item key="/clubs">Clubs :: Rules
                             <Link to={"/clubs"}></Link>
                         </Menu.Item>
-                        <Menu.Item key="clubsList">List of Clubs
+                        <Menu.Item key="/clubs/clubsList">List of Clubs
                             <Link to={"/clubs/clubsList"}></Link>
                         </Menu.Item>
                         <Menu.Item key="clubRegister">New Club Registration
@@ -46,23 +46,23 @@ export default function Navbar() {
                         </Menu.Item>
                     </Menu.ItemGroup>
                 </SubMenu>
-                <SubMenu key="events" icon={<EventIcon fontSize="small" />} title="Events">
+                <SubMenu key="/events/eventsCalendar" icon={<EventIcon fontSize="small" />} title="Events">
                     <Menu.ItemGroup>
-                        <Menu.Item key="eventsCalendar">Events :: Calendar
+                        <Menu.Item key="/events/eventsCalendar">Events :: Calendar
                             <Link to={"/events/eventsCalendar"}></Link>
                         </Menu.Item>
-                        <Menu.Item key="eventRegistration">Event Registration
+                        <Menu.Item key="/events/eventRegistration">Event Registration
                             <Link to={"/events/eventRegistration"}></Link>
                         </Menu.Item>
                     </Menu.ItemGroup>
                 </SubMenu>
-                <Menu.Item key="wall" icon={<PhotoLibraryIcon fontSize="small" />}>Wall
+                <Menu.Item key="/wall" icon={<PhotoLibraryIcon fontSize="small" />}>Wall
                     <Link to={"/wall"}></Link>
                 </Menu.Item>
-                <Menu.Item key="houseCouncil" icon={<AccountBalanceIcon fontSize="small" />}>House Council
+                <Menu.Item key="/houseCouncil" icon={<AccountBalanceIcon fontSize="small" />}>House Council
                     <Link to={"/houseCouncil"}></Link>
                 </Menu.Item>
-                <Menu.Item key="about" icon={<InfoIcon fontSize="small" />}>About us
+                <Menu.Item key="/about" icon={<InfoIcon fontSize="small" />}>About us
                     <Link to={"/about"}></Link>
                 </Menu.Item>
                 <Menu.Item key="iitmHome">
@@ -74,3 +74,5 @@ export default function Navbar() {
 
     );
 }
+
+export default withRouter(Navbar);

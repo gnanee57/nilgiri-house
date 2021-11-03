@@ -19,8 +19,8 @@ function FooterPage(){
                     <li className="list-inline-item"><a href={"https://t.me/joinchat/0Bkmw5zCYhY1MThl"} target={"_blank"} className="btn-floating btn-sm btn-li mx-1"><TelegramIcon /></a></li>
                     <li className="list-inline-item"><a className="btn-floating btn-sm btn-li mx-1"><WhatsAppIcon /></a></li>
                 </ul>
-            </div>*/}
-            <hr/>
+            </div>
+            <hr/>*/}
 
             <Container className="text-left">
                 <Row>

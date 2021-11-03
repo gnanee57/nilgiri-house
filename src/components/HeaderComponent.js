@@ -1,6 +1,5 @@
 import * as React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Navbar from "./Navbar";
 import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -144,7 +143,6 @@ export default function Header() {
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
-            <Navbar />
         </Box>
     );
 }

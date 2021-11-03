@@ -77,7 +77,6 @@ function Events() {
         );
     }
 
-    const classes = useStyles();
 
     const EventAttachment = (props) => {
         if(props.event.event._def.extendedProps.attachments[0] != null) {

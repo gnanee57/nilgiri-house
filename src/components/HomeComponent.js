@@ -623,58 +623,28 @@ function Home(props) {
                         <div className={'row'}>
                             <div className={'col-md-3 mb-0'}>
                                 <HouseDetails />
-                                <UpcomingEvents />
                             </div>
-                            <div className={'col-md-9 mb-0'}>
-                                <Card body outline className={'border-0'} >
-                                    <CardHeader style={{backgroundColor : '#e6e5ff'}}>
-                                        <CardTitle tag="h5" style={{
-                                            justifyContent: 'center',
-                                            fontFamily : 'Trebuchet MS',
-                                        }}>STUDENT OF THE YEAR CONTEST</CardTitle>
-                                        <CardSubtitle className="mb-2 text-muted" style={{
-                                            justifyContent: 'center',
-                                            fontFamily : 'Trebuchet MS',
-                                            fontStyle: 'italic',
-                                            fontSize: 'small',
-                                        }}>Event Date: {moment('2021-10-15T04:00:00+05:30').format("dddd, MMMM Do YYYY, h")}pm  <br/>
-                                            Venue: Google Meet <br/>
-                                            Want to Participate? <a
-                                            href={'https://forms.gle/7oFj7dMSzbQvWXq1A'} target={'_blank'}>Fill this form</a></CardSubtitle>
-                                    </CardHeader>
-                                    <CardBody>
-                                        <div className={'row'}>
-                                            <div className={'col-md-8'}>
-                                                <QuizTabs />
-                                            </div>
-                                            <div className={'col-md-4'}>
-                                                <img src={quizPoster} width={'300px'} height={'450px'}/>
-                                            </div>
-                                        </div>
-                                    </CardBody>
-                                </Card>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className='row mb-3'>
-                    <div className={'col-md-12'}>
-                        <div className={'row'}>
-                            <div className={'col-md-9'}>
+                            <div className={'col-md-6'}>
                                 <FeaturedAnnouncements />
                             </div>
-                            <div className={'col-md-3'}>
-                                <BirthdaySegment />
+                            <div className={'col-md-3 mb-0'}>
+                                <UpcomingEvents />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className='row'>
+                {/*<div className='row mb-3'>
                     <div className={'col-md-12'}>
                         <div className={'row'}>
                             <div className={'col-md-3 mb-0'}>
                                 <RiddleSegment />
                             </div>
+                        </div>
+                    </div>
+                </div>*/}
+                <div className='row'>
+                    <div className={'col-md-12'}>
+                        <div className={'row'}>
                             <div className={'col-md-9 d-none d-lg-block'}>
                                 <Card body outline className={'border-0'}>
                                     <CardHeader style={{backgroundColor : '#e6e5ff'}}>
@@ -704,7 +674,41 @@ function Home(props) {
                                     </Button>
                                 </div>
                             </div>
+                            <div className={'col-md-3'}>
+                                <BirthdaySegment />
+                            </div>
                         </div>
+                    </div>
+                </div>
+                <div className={'row'}>
+                    <div className={'col-md-12 mb-0'}>
+                        <Card body outline className={'border-0'} >
+                            <CardHeader style={{backgroundColor : '#e6e5ff'}}>
+                                <CardTitle tag="h5" style={{
+                                    justifyContent: 'center',
+                                    fontFamily : 'Trebuchet MS',
+                                }}>STUDENT OF THE YEAR CONTEST</CardTitle>
+                                <CardSubtitle className="mb-2 text-muted" style={{
+                                    justifyContent: 'center',
+                                    fontFamily : 'Trebuchet MS',
+                                    fontStyle: 'italic',
+                                    fontSize: 'small',
+                                }}>Event Date: {moment('2021-10-15T04:00:00+05:30').format("dddd, MMMM Do YYYY, h")}pm  <br/>
+                                    Venue: Google Meet <br/>
+                                    Want to Participate? <a
+                                        href={'https://forms.gle/7oFj7dMSzbQvWXq1A'} target={'_blank'}>Fill this form</a></CardSubtitle>
+                            </CardHeader>
+                            <CardBody>
+                                <div className={'row'}>
+                                    <div className={'col-md-8'}>
+                                        <QuizTabs />
+                                    </div>
+                                    <div className={'col-md-4'}>
+                                        <img src={quizPoster} width={'300px'} height={'450px'}/>
+                                    </div>
+                                </div>
+                            </CardBody>
+                        </Card>
                     </div>
                 </div>
                 <div className={'row'}>

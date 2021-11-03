@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import {Switch, Route, Redirect, useLocation} from "react-router-dom";
 import Header from "./HeaderComponent";
+import Navbar from "./Navbar";
 import Home from "./HomeComponent";
 import About from "./AboutComponent";
 import Club from "./ClubComponent"
@@ -16,11 +17,13 @@ import EventRegistration from "./EventRegistration";
 
 function Main() {
 
+
     const [galleryContent] = useState(GALLERYCONTENT);
 
     return (
         <div>
             <Header />
+            <Navbar />
             <Switch>
                 <Route
                     path="/home"
