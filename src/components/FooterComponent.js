@@ -12,24 +12,24 @@ import MailOutlineIcon from '@material-ui/icons/MailOutline';
 function FooterPage(){
     return (
         <Footer color="primary-color" className="page-footer font-small pt-4 mt-4">
-            <div className="text-center">
+            {/*<div className="text-center">
                 <ul className="list-unstyled list-inline">
                     <li className="list-inline-item"><a className="btn-floating btn-sm btn-fb mx-1"><FacebookIcon /></a></li>
                     <li className="list-inline-item"><a href={"https://www.instagram.com/nilgirihouse_iitm"} target={"_blank"} className="btn-floating btn-sm btn-gplus mx-1"><InstagramIcon /></a></li>
                     <li className="list-inline-item"><a href={"https://t.me/joinchat/0Bkmw5zCYhY1MThl"} target={"_blank"} className="btn-floating btn-sm btn-li mx-1"><TelegramIcon /></a></li>
                     <li className="list-inline-item"><a className="btn-floating btn-sm btn-li mx-1"><WhatsAppIcon /></a></li>
                 </ul>
-            </div>
+            </div>*/}
             <hr/>
 
             <Container className="text-left">
                 <Row>
                     <Col md="6">
-                        <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Subscribe to our NewsLetter</h5>
+                        <h5 style={{color: "white"}} className="text-uppercase mb-4 mt-3 font-weight-bold">Subscribe to our NewsLetter</h5>
                     </Col>
                     <hr className="clearfix w-100 d-md-none" />
                     <Col md="2">
-                        <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Quick Links</h5>
+                        <h5 style={{color: "white"}}  className="text-uppercase mb-4 mt-3 font-weight-bold">Quick Links</h5>
                         <ul className="list-unstyled">
                             <li><Link to={'/events/eventsCalendar'}>Events</Link></li>
                             <li><a href="https://onlinedegree.iitm.ac.in/student_life.html" target={"_blank"}>IITM :: Student Life</a></li>
@@ -41,17 +41,17 @@ function FooterPage(){
                     </Col>
                     <hr className="clearfix w-100 d-md-none" />
                     <Col md="2">
-                        <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Forms</h5>
+                        <h5 style={{color: "white"}}  className="text-uppercase mb-4 mt-3 font-weight-bold">Forms</h5>
                         <ul className="list-unstyled">
-                            <li><a href="#!">New Club Registration</a></li>
+                            <li><a href="#">New Club Registration</a></li>
                             <li><Link to={"/events/eventRegistration"}>Event Registration</Link></li>
-                            <li><a href="#!">Grievance Form</a></li>
-                            <li><a href="#!">Suggestion Form</a></li>
+                            <li><a href="#">Grievance Form</a></li>
+                            <li><a href="#">Suggestion Form</a></li>
                         </ul>
                     </Col>
                     <hr className="clearfix w-100 d-md-none" />
                     <Col md="2">
-                        <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Contact Us</h5>
+                        <h5 style={{color: "white"}} className="text-uppercase mb-4 mt-3 font-weight-bold">Contact Us</h5>
                         <ul className="list-unstyled">
                             <li><a href="mailto:nilgiri-ds@student.onlinedegree.iitm.ac.in">
                                 <MailOutlineIcon fontSize={'small'} style={{marginRight: '4px'}}/>Mail us</a></li>

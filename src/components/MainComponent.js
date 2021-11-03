@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import Header from "./HeaderComponent";
 import Home from "./HomeComponent";
 import About from "./AboutComponent";
 import Club from "./ClubComponent"
@@ -9,16 +10,13 @@ import Wall from "./WallComponent";
 import { GALLERYCONTENT } from "../shared/galleryContent";
 import HouseCouncil from "./HouseCouncil";
 import Announcements from "./Announcements";
-import Header from "./HeaderComponent";
 import FooterPage from "./FooterComponent";
 import EventRegistration from "./EventRegistration";
 
 
-function Main(props) {
-
+function Main() {
 
     const [galleryContent] = useState(GALLERYCONTENT);
-
 
     return (
         <div>

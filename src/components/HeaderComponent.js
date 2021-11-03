@@ -1,104 +1,150 @@
-import React, { useState } from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, DropdownToggle,
-    UncontrolledDropdown, DropdownMenu, DropdownItem } from 'reactstrap';
+import * as React from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Navbar from "./Navbar";
+import Box from '@material-ui/core/Box';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import TelegramIcon from '@material-ui/icons/Telegram';
+import MoreIcon from '@material-ui/icons/MoreVert';
 import logo from "../assests/nilgiri_transparent.png";
-import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import InfoIcon from '@material-ui/icons/Info';
-import GroupWorkIcon from '@material-ui/icons/GroupWork';
-import HomeIcon from '@material-ui/icons/Home';
-import EventIcon from '@material-ui/icons/Event';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import {NavLink, useHistory} from "react-router-dom";
-import useWindowSize from "./useWindowSize";
+import {Link} from "react-router-dom";
+import {YouTube} from "@material-ui/icons";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 
-function Header() {
 
-    const size = useWindowSize();
-    const [isOpen, setIsOpen] = useState(false);
-    const toggle = () => setIsOpen(!isOpen);
-    let [isClubShown, setClubShown] = useState(false);
-    const [isEventShown, setEventShown] = useState(false);
+export default function Header() {
 
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    const handleMobileMenuClose = () => {
+        setMobileMoreAnchorEl(null);
+    };
+
+    const handleMobileMenuOpen = (event) => {
+        setMobileMoreAnchorEl(event.currentTarget);
+    };
+
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const renderMobileMenu = (
+        <Menu
+            anchorEl={mobileMoreAnchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={mobileMenuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isMobileMenuOpen}
+            onClose={handleMobileMenuClose}
+        >
+            <MenuItem onClick={()=> window.open("https://www.instagram.com/nilgirihouse_iitm", "_blank")}>
+                <IconButton size="large" aria-label="" color="inherit">
+                    <InstagramIcon />
+                </IconButton>
+                <p>Intagram</p>
+            </MenuItem>
+            <MenuItem  onClick={()=> window.open("https://t.me/joinchat/0Bkmw5zCYhY1MThl", "_blank")}>
+                <IconButton size="large" color="inherit">
+                    <TelegramIcon />
+                </IconButton>
+                <p>Telegram</p>
+            </MenuItem>
+            <MenuItem onClick={()=> window.open("#", "_blank")}>
+                <IconButton size="large" aria-label="" color="inherit">
+                        <WhatsAppIcon />
+                </IconButton>
+                <p>WhatsApp</p>
+            </MenuItem>
+            <MenuItem onClick={()=> window.open("#", "_blank")} >
+                <IconButton size="large" aria-label="" color="inherit">
+                    <YouTube />
+                </IconButton>
+                <p>Youtube</p>
+            </MenuItem>
+        </Menu>
+    );
 
     return (
-        <div>
-            <Navbar dark expand="md">
-                <NavbarBrand href="/">
-                    <img src={logo} height="40" width="50"
-                         alt="Nilgiri House" />
-                    Nilgiri House
-                </NavbarBrand>
-                <NavbarToggler onClick={toggle} />
-                <Collapse isOpen={isOpen} className="justify-content-end" navbar>
-                    <Nav navbar>
-                        <NavItem onClick={() => { if(size.width < 768) toggle()}}>
-                            <NavLink className="nav-link" to="/home">
-                                <span><HomeIcon fontSize="small" /></span> Home
-                            </NavLink>
-                        </NavItem>
-                        <NavItem onClick={() => { if(size.width < 768) toggle()}} onMouseEnter={() => setClubShown(true)}
-                                 onMouseLeave={() => setClubShown(false)}
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static" style={{ background: '#0900ff' }} color={"transparent"}>
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="open drawer"
+                        sx={{ mr: 2 }}
+                    ><Link to="/home">
+                        <img src={logo} height="40" width="50"
+                             alt="Nilgiri House" />
+                    </Link>
+                    </IconButton>
+                    <Typography
+                        noWrap
+                        component="div"
+                        sx={{ display: { xs: 'none', sm: 'block' } }}
+                        style={{
+                            color : 'white',
+                            fontFamily : 'Trebuchet MS',
+                            fontSize: "x-large",
+                            fontWeight: 'bold'
+                        }}
+                    >
+                        Nilgiri House
+                    </Typography>
+                    <Box sx={{ flexGrow: 1 }} />
+                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        <IconButton size="large"
+                                    onClick={()=> window.open(
+                                        "https://www.instagram.com/nilgirihouse_iitm",
+                                        "_blank")}>
+                           <InstagramIcon style={{fill: "white" }}/>
+                        </IconButton>
+                        <IconButton size="large"
+                                    onClick={()=> window.open(
+                                        "https://t.me/joinchat/0Bkmw5zCYhY1MThl",
+                                        "_blank")}>
+                            <TelegramIcon style={{fill: "white" }} />
+                        </IconButton>
+                        <IconButton size="large"
+                                    onClick={()=> window.open(
+                                        "#",
+                                        "_blank")}>
+                            <WhatsAppIcon style={{fill: "white" }}/>
+                        </IconButton>
+                        <IconButton size="large"
+                                    onClick={()=> window.open(
+                                        "#",
+                                        "_blank")}>
+                            <YouTube style={{fill: "white" }}/>
+                        </IconButton>
+                    </Box>
+                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="show more"
+                            aria-controls={mobileMenuId}
+                            aria-haspopup="true"
+                            onClick={handleMobileMenuOpen}
+                            color="inherit"
                         >
-                            <NavLink className="nav-link" to="/clubs">
-                                <span><GroupWorkIcon fontSize="small" /></span> Clubs
-                            </NavLink>
-                        </NavItem>
-                        <UncontrolledDropdown
-                            onMouseEnter={() => setClubShown(true)}
-                            onMouseLeave={() => setClubShown(false)}
-                            nav inNavbar>
-                            <DropdownToggle nav noCaret>
-                                    <span><KeyboardArrowDownIcon /></span>
-                            </DropdownToggle>
-                            {isClubShown && <DropdownMenu>
-                                <NavLink onClick={() => { if(size.width < 768) toggle()}} className="dropdown-item justify-content-center"  to={"/clubs/clubsList"}>
-                                    List of Clubs </NavLink>
-                                <DropdownItem divider />
-                                <a onClick={() => { if(size.width < 768) toggle()}} className="dropdown-item"  href="#">New Club Registration</a>
-                            </DropdownMenu>}
-                        </UncontrolledDropdown>
-                        <NavItem onClick={toggle}onClick={() => { if(size.width < 768) toggle()}} onMouseEnter={() => setEventShown(true)}
-                                 onMouseLeave={() => setEventShown(false)}
-                        >
-                            <NavLink className="nav-link" to="/events/eventsCalendar">
-                                <span><EventIcon fontSize="small" /></span> Events
-                            </NavLink>
-                        </NavItem>
-                        <UncontrolledDropdown
-                            onMouseEnter={() => setEventShown(true)}
-                            onMouseLeave={() => setEventShown(false)}
-                            nav inNavbar>
-                            <DropdownToggle nav noCaret>
-                                <span><KeyboardArrowDownIcon /></span>
-                            </DropdownToggle>
-                            {isEventShown && <DropdownMenu>
-                                <NavLink onClick={() => { if(size.width < 768) toggle()}} className="dropdown-item"  to={"/events/eventRegistration"}>Event Registration</NavLink>
-                            </DropdownMenu>}
-                        </UncontrolledDropdown>
-                        <NavItem onClick={() => { if(size.width < 768) toggle()}}>
-                            <NavLink className="nav-link" to="/wall">
-                                <span><PhotoLibraryIcon fontSize="small" /></span> Wall
-                            </NavLink>
-                        </NavItem>
-                        <NavItem onClick={() => { if(size.width < 768) toggle()}}>
-                            <NavLink className="nav-link" to="/houseCouncil">
-                                <span><AccountBalanceIcon fontSize="small" /></span> House Council
-                            </NavLink>
-                        </NavItem>
-                        <NavItem onClick={() => { if(size.width < 768) toggle()}}>
-                            <NavLink className="nav-link" to="/about">
-                                <span><InfoIcon fontSize="small" /></span> About us
-                            </NavLink>
-                        </NavItem>
-                        <NavItem onClick={() => { if(size.width < 768) toggle()}}>
-                            <a className="nav-link" as="a" href="https://onlinedegree.iitm.ac.in/" target="_blank">IITM HOME</a>
-                        </NavItem>
-                    </Nav>
-                </Collapse>
-            </Navbar>
-        </div>
+                            <MoreIcon style={{fill: "white" }} />
+                        </IconButton>
+                    </Box>
+                </Toolbar>
+            </AppBar>
+            {renderMobileMenu}
+            <Navbar />
+        </Box>
     );
 }
-
-export default Header;
