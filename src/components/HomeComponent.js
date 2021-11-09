@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from "react";
-import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
-import classnames from 'classnames';
+import React, {useState} from "react";
+/*import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+import classnames from 'classnames';*/
 import home from '../assests/jumbotron/nilgiri_home.jpg';
 import birthdayPic from '../assests/birthday.png';
-import studentOfYear from '../assests/announcements/student_year.png';
-import quizPoster from '../assests/announcements/quiz_students_day.jpeg';
+import logo from "../assests/nilgiri_transparent.png";
 import {BIRTHDAYCONTENT} from "../shared/birthdayContent";
 import {HOUSEDETAILS} from "../shared/houseDetails";
 import Divider from '@material-ui/core/Divider';
@@ -18,8 +17,7 @@ import {
     CardSubtitle,
     CardText,
     CardTitle,
-    Form, FormGroup,
-    Jumbotron, Label,
+    Jumbotron
 } from "reactstrap";
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -30,13 +28,22 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import ReactPlayer from "react-player";
 import CardContent from "@material-ui/core/CardContent";
 import {Grid} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import moment from "moment";
 import TextField from "@material-ui/core/TextField";
+import {
+    ControlBar,
+    CurrentTimeDisplay,
+    ForwardControl,
+    PlaybackRateMenuButton,
+    Player,
+    ReplayControl,
+    TimeDivider, VolumeMenuButton
+} from "video-react";
+import ReactPlayer from "react-player";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,7 +77,6 @@ function FeaturedVideoContent(props) {
     const content = props.content.map(content => {
         if (content.tabId === 1) {
             return (
-
                 <GridListTile>
                     <ReactPlayer
                         url={content.link}
@@ -87,29 +93,23 @@ function FeaturedVideoContent(props) {
             );
         }
     });
-        return (
-            <div className="container">
-                <div className="rows-col-md-8"/>
-                <Grid
-                    container
-                >
+    return (
+        <div className="container">
+            <div className="rows-col-md-8"/>
+            <Grid container>
+                <GridList className={classes.gridList} cols={2}>
+                    {content}
+                </GridList>
+            </Grid>
+        </div>
 
-                    <GridList className={classes.gridList} cols={2}>
-                        {content}
-                    </GridList>
-                </Grid>
-            </div>
-
-        );
+    );
 }
-
-
 
 function FeaturedImageContent(props) {
     const classes = useStyles();
     const content = props.content.map(content => {
         if (content.tabId === 2 || content.tabId === 3) {
-
             return (
                     <GridListTile>
                         <img src={content.link} height="200px" width="150px"/>
@@ -120,21 +120,18 @@ function FeaturedImageContent(props) {
             );
         }
     });
-            return (
-            <div className="container">
-                <div className="rows-col-md-5"/>
-                <Grid
-                    container
-                >
-                    <GridList className={classes.gridList}  cols={2.5}>
-                        {content}
-                    </GridList>
-                </Grid>
-            </div>
-            );
-
-
-
+    return (
+    <div className="container">
+        <div className="rows-col-md-5"/>
+        <Grid
+            container
+        >
+            <GridList className={classes.gridList}  cols={2.5}>
+                {content}
+            </GridList>
+        </Grid>
+    </div>
+    );
 }
 
 function TabPanel(props) {
@@ -262,7 +259,7 @@ function BirthdaySegment() {
     );
 }
 
-function RiddleSegment() {
+/*function RiddleSegment() {
 
     return (
         <Card body outline className={'border-0'}>
@@ -314,7 +311,7 @@ function RiddleSegment() {
             </CardFooter>
         </Card>
     );
-}
+}*/
 
 function FeaturedAnnouncements() {
     return (
@@ -531,7 +528,7 @@ function HouseDetails() {
 function Home(props) {
     const size = useWindowSize();
 
-    const QuizTabs = (props) => {
+    /*const QuizTabs = (props) => {
         const [activeTab, setActiveTab] = useState('1');
 
         const toggle = tab => {
@@ -610,12 +607,42 @@ function Home(props) {
                 </TabContent>
             </div>
         );
-    }
+    }*/
 
     return(
         <React.Fragment>
-            <Jumbotron className='col-md-12 d-none d-sm-block'>
+            <Jumbotron className='col-md-12 d-none d-xl-block'>
                 <img src={home} width={size.width  - 17} height="500" />
+            </Jumbotron>
+            <Jumbotron className='col-md-12 d-xl-none' style={{
+                backgroundColor: "#c6c4ff"
+            }}>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 col-sm-6 align-self-center mt-2">
+                            <CardTitle tag="h5" style={{
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                color: 'floralwhite',
+                                fontFamily : 'Trebuchet MS',
+                                fontSize: 'xx-large',
+                                fontWeight: 'bold'
+                            }}>Nilgiri Home</CardTitle>
+                            <CardTitle tag="h5" style={{
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                color: 'floralwhite',
+                                fontFamily : 'Trebuchet MS',
+                                fontSize: 'large',
+                                fontWeight: 'bold'
+                            }}>Nearer to the house, Closer to your heart!</CardTitle>
+                        </div>
+                        <div className="col-12 col-sm-3 align-self-center mt-2"/>
+                        <div className="col-12 col-sm-3 align-self-center mt-2">
+                            <img src={logo} className="img-fluid" />
+                        </div>
+                    </div>
+                </div>
             </Jumbotron>
             <div className='container-fluid mt-2 overflow-hidden'>
                 <div className={'row mb-3'}>
@@ -680,7 +707,7 @@ function Home(props) {
                         </div>
                     </div>
                 </div>
-                <div className={'row'}>
+                {/*<div className={'row'}>
                     <div className={'col-md-12 mb-0'}>
                         <Card body outline className={'border-0'} >
                             <CardHeader style={{backgroundColor : '#e6e5ff'}}>
@@ -710,7 +737,7 @@ function Home(props) {
                             </CardBody>
                         </Card>
                     </div>
-                </div>
+                </div>*/}
                 <div className={'row'}>
                     <div className={'col-md-12'}>
                         <Card body outline className={'border-0'}>
@@ -723,55 +750,60 @@ function Home(props) {
                                 }}>Glimpses</CardTitle>
                             </CardHeader>
                             <div className={"row"}>
-                                <div className={'d-block d-sm-block d-md-none'}>
-                                    <ReactPlayer
-                                        url={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
-                                        controls={true}
-                                        width="320px"
-                                        height="250px"
-                                    />
+                                <div className={'col-xl-4 col-lg-6 col-md-6 col-12 mt-4'}>
+                                    <Card className={'border-0'}>
+                                        <Player src={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
+                                                fluid ={false}
+                                                height = {300}
+                                                width = {"auto"}
+                                        >
+                                            <ControlBar>
+                                                <VolumeMenuButton vertical />
+                                                <ReplayControl seconds={10} order={1.1} />
+                                                <ForwardControl seconds={30} order={1.2} />
+                                                <CurrentTimeDisplay order={4.1} />
+                                                <TimeDivider order={4.2} />
+                                                <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
+                                            </ControlBar>
+                                        </Player>
+                                    </Card>
                                 </div>
-                                <div className={'col-md-6 col-lg-4 d-none d-sm-block'}>
-                                    <ReactPlayer
-                                        url={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
-                                        controls={true}
-                                        width="420px"
-                                        height="315px"
-                                    />
+                                <div className={'col-xl-4 col-lg-6 col-md-6 col-12 mt-4'}>
+                                    <Card className={'border-0'}>
+                                        <Player src={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
+                                                fluid ={false}
+                                                height = {300}
+                                                width = {"auto"}
+                                        >
+                                            <ControlBar>
+                                                <VolumeMenuButton vertical />
+                                                <ReplayControl seconds={10} order={1.1} />
+                                                <ForwardControl seconds={30} order={1.2} />
+                                                <CurrentTimeDisplay order={4.1} />
+                                                <TimeDivider order={4.2} />
+                                                <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
+                                            </ControlBar>
+                                        </Player>
+                                    </Card>
                                 </div>
-                                <div className={'d-block d-sm-block d-md-none'}>
-                                    <ReactPlayer
-                                        url={'https://drive.google.com/uc?export=download&id=1EDfAmePz9Kj7aO-u4VnlDBL_H5f4lQ5N'}
-                                        controls={true}
-                                        width="320px"
-                                        height="250px"
-                                    />
+                                <div className={'col-xl-4 col-lg-6 col-md-6 col-12 mt-4'}>
+                                    <Card className={'border-0'}>
+                                        <Player src={'https://drive.google.com/uc?export=download&id=1EDfAmePz9Kj7aO-u4VnlDBL_H5f4lQ5N'}
+                                                fluid ={false}
+                                                height = {300}
+                                                width = {"auto"}
+                                        >
+                                            <ControlBar>
+                                                <VolumeMenuButton vertical />
+                                                <ReplayControl seconds={10} order={1.1} />
+                                                <ForwardControl seconds={30} order={1.2} />
+                                                <CurrentTimeDisplay order={4.1} />
+                                                <TimeDivider order={4.2} />
+                                                <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
+                                            </ControlBar>
+                                        </Player>
+                                    </Card>
                                 </div>
-                                <div className={'col-md-6 col-lg-4 d-none d-sm-block'}>
-                                    <ReactPlayer
-                                        url={'https://drive.google.com/uc?export=download&id=1EDfAmePz9Kj7aO-u4VnlDBL_H5f4lQ5N'}
-                                        controls={true}
-                                        width="420px"
-                                        height="315px"
-                                    />
-                                </div>
-                                <div className={'d-block d-sm-block d-md-none'}>
-                                    <ReactPlayer
-                                        url={'https://drive.google.com/uc?export=download&id=1MxYzRyKC-g-UIPdoQ60mg4BM3vC5tmzi'}
-                                        controls={true}
-                                        width="320px"
-                                        height="250px"
-                                    />
-                                </div>
-                                <div className={'col-lg-4 d-none d-sm-block'}>
-                                    <ReactPlayer
-                                        url={'https://drive.google.com/uc?export=download&id=1MxYzRyKC-g-UIPdoQ60mg4BM3vC5tmzi'}
-                                        controls={true}
-                                        width="420px"
-                                        height="315px"
-                                    />
-                                </div>
-
                             </div>
                         </Card>
                     </div>

@@ -125,8 +125,38 @@ function About() {
 
     return (
         <div>
-            <Jumbotron className={'col-md-12 d-none d-sm-block'}>
+            <Jumbotron className={'col-md-12 d-none d-xl-block'}>
                 <img src={aboutBanner} width={size.width  - 17} height="500" />
+            </Jumbotron>
+            <Jumbotron className='col-md-12 d-xl-none' style={{
+                backgroundColor: "#c6c4ff"
+            }}>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 col-sm-6 align-self-center mt-2">
+                            <CardTitle tag="h5" style={{
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                color: 'floralwhite',
+                                fontFamily : 'Trebuchet MS',
+                                fontSize: 'xx-large',
+                                fontWeight: 'bold'
+                            }}>About Us</CardTitle>
+                            <CardTitle tag="h5" style={{
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                color: 'floralwhite',
+                                fontFamily : 'Trebuchet MS',
+                                fontSize: 'large',
+                                fontWeight: 'bold'
+                            }}>Nilgiris and more... </CardTitle>
+                        </div>
+                        <div className="col-12 col-sm-3 align-self-center mt-2"/>
+                        <div className="col-12 col-sm-3 align-self-center mt-2">
+                            <img src={logo} className="img-fluid" />
+                        </div>
+                    </div>
+                </div>
             </Jumbotron>
             <div className="container-fluid">
                 <div className="row m-4">
@@ -176,7 +206,7 @@ function About() {
                         </Card>
                         <div className={'row'}>
                             <div className={'col-md-5'}>
-                                <img width={"320 px"} height={"320 px"} src={logo} />
+                                <img width={"320 px"} height={"320 px"} src={logo} alt-text = 'logo'/>
                             </div>
                             <div className={'col-md-7'}>
                                 <div style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS',

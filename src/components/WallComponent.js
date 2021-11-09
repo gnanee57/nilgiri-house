@@ -1,22 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import "../../node_modules/video-react/dist/video-react.css"; // import css
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import { Grid } from "@material-ui/core";
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
+import {
+    Card,
+    CardFooter,
+    CardImg,
+    CardSubtitle, CardTitle,
+} from "reactstrap";
 import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ReactPlayer from 'react-player';
+import {
+    Player,
+    ControlBar,
+    ReplayControl,
+    ForwardControl,
+    CurrentTimeDisplay,
+    TimeDivider,
+    PlaybackRateMenuButton,
+    VolumeMenuButton
+} from 'video-react';
 import {Description, BrushSharp, DevicesOther, MusicNote, PhotoCamera} from "@material-ui/icons";
 import wall from "../assests/jumbotron/nilgiri_gallery.jpg";
 import {Jumbotron} from "reactstrap";
 import useWindowSize from "./useWindowSize";
+import logo from "../assests/nilgiri_transparent.png";
+
 
 
 function TabPanel(props) {
@@ -62,67 +75,66 @@ const useStyles = makeStyles((theme) => ({
     scroller: {
         flexGrow: "0"
     },
-    gridList: {
-        width: "500 px",
-        height: "450 px",
-    },
 }));
 
 function RenderContent(props) {
-    const classes = useStyles();
 
     const content = props.galleryContent.map(content => {
 
         if (content.contentType === "video") {
             return (
-                <Grid item xs={12} sm={6} md={4}>
-                    <Card raised ={true}>
-                        <CardActionArea>
-                            <ReactPlayer
-                                url={content.link}
-                                controls={true}
-                                width="420px"
-                                height="315px"
-                            />
-                            <CardContent>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    <span>by: {content.author}</span>
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
+                <div className={'col-xl-4 col-lg-6 col-md-6 col-12 mb-4'}>
+                    <Card className={'border-0'}>
+                        <Player src={content.link}
+                                fluid ={false}
+                                height = {300}
+                                width = {"auto"}
+                        >
+                            <ControlBar>
+                                <VolumeMenuButton vertical />
+                                <ReplayControl seconds={10} order={1.1} />
+                                <ForwardControl seconds={30} order={1.2} />
+                                <CurrentTimeDisplay order={4.1} />
+                                <TimeDivider order={4.2} />
+                                <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
+                            </ControlBar>
+                        </Player>
+                        <CardFooter>
+                            <CardSubtitle className="mb-2 text-muted" style={{
+                                justifyContent: 'center',
+                                fontFamily : 'Trebuchet MS',
+                                fontStyle: 'italic',
+                                fontSize: 'small',
+                            }}>by: {content.author}</CardSubtitle>
+                        </CardFooter>
                     </Card>
-                </Grid>
-
+                </div>
             );
         }
         if (content.contentType === "image") {
             return (
-                <Grid item xs={12} sm={6} md={4}>
-                    <Card raised ={true}>
-                        <CardActionArea>
-                            <GridListTile cols={3} key={content.link}>
-                                <img src={content.link} height="500px" width="440px"/>
-                                <GridListTileBar
-                                    subtitle={<span>by: {content.author} </span>}
-                                />
-                            </GridListTile>
-                        </CardActionArea>
+                <div className={'col-lg-4 col-md-6 col-12 mb-4'}>
+                    <Card className={'border-0'}>
+                        <CardImg height={"400px"} src={content.link} alt={"image by " + content.author} />
+                        <GridListTileBar
+                            subtitle={<span>by: {content.author} </span>}
+                        />
                     </Card>
-                </Grid>
-
+                </div>
             );
         }
-
     });
 
     return (
-        <Grid
-            container
-            spacing={4}
-            justify="center"
-        >
-            {content}
-        </Grid>
+        <div className='container-fluid mt-2 overflow-hidden'>
+            <div className={'row '}>
+                <div className={'col-md-12'}>
+                    <div className={'row'}>
+                    {content}
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 
@@ -137,8 +149,38 @@ function Wall(props) {
     };
     return (
         <div className={classes.root}>
-            <Jumbotron className={'col-md-12 d-none d-sm-block'}>
+            <Jumbotron className={'col-md-12 d-none d-xl-block'}>
                 <img src={wall} width={size.width - 17} height="500" />
+            </Jumbotron>
+            <Jumbotron className='col-md-12 d-xl-none' style={{
+                backgroundColor: "#c6c4ff"
+            }}>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 col-sm-6 align-self-center mt-2">
+                            <CardTitle tag="h5" style={{
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                color: 'floralwhite',
+                                fontFamily : 'Trebuchet MS',
+                                fontSize: 'xx-large',
+                                fontWeight: 'bold'
+                            }}>Nilgiri Wall</CardTitle>
+                            <CardTitle tag="h5" style={{
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                color: 'floralwhite',
+                                fontFamily : 'Trebuchet MS',
+                                fontSize: 'large',
+                                fontWeight: 'bold'
+                            }}> A place full of talents... </CardTitle>
+                        </div>
+                        <div className="col-12 col-sm-3 align-self-center mt-2"/>
+                        <div className="col-12 col-sm-3 align-self-center mt-2">
+                            <img src={logo} className="img-fluid" />
+                        </div>
+                    </div>
+                </div>
             </Jumbotron>
             <AppBar position="static" color="default">
                 <Tabs

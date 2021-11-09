@@ -6,8 +6,9 @@ import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker,} from 
 import {Grid, MenuItem,} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import register from "../assests/jumbotron/nilgiri_register.jpg";
-import {Jumbotron} from "reactstrap";
+import {CardTitle, Jumbotron} from "reactstrap";
 import useWindowSize from "./useWindowSize";
+import logo from "../assests/nilgiri_transparent.png";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -95,15 +96,45 @@ export default function EventRegistration() {
     const size = useWindowSize();
     return (
         <div>
-            <Jumbotron className={'col-md-12 d-none d-sm-block'}>
+            <Jumbotron className={'col-md-12 d-none d-xl-block'}>
                 <img src={register} width={size.width  - 17} height="500" />
+            </Jumbotron>
+            <Jumbotron className='col-md-12 d-xl-none' style={{
+                backgroundColor: "#c6c4ff"
+            }}>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 col-sm-6 align-self-center mt-2">
+                            <CardTitle tag="h5" style={{
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                color: 'floralwhite',
+                                fontFamily : 'Trebuchet MS',
+                                fontSize: 'xx-large',
+                                fontWeight: 'bold'
+                            }}>Event Registration</CardTitle>
+                            <CardTitle tag="h5" style={{
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                color: 'floralwhite',
+                                fontFamily : 'Trebuchet MS',
+                                fontSize: 'large',
+                                fontWeight: 'bold'
+                            }}> Register your event... </CardTitle>
+                        </div>
+                        <div className="col-12 col-sm-3 align-self-center mt-2"/>
+                        <div className="col-12 col-sm-3 align-self-center mt-2">
+                            <img src={logo} className="img-fluid" />
+                        </div>
+                    </div>
+                </div>
             </Jumbotron>
             <div className="container-fluid">
                 <div className="row m-5">
                     <div className="col-12 col-md-6">
                         <h4 style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
                             textTransform: 'capitalize', fontSize: 'xx-large', fontWeight: 'bold', marginBottom: '25px'}}>
-                            Nilgiri House :: Event Registration
+                            Nilgiri House :: Event Registration Form
                         </h4>
                         <form  noValidate autoComplete="off" onSubmit={handleSubmit} >
                             <div  className="col-10 mb-2">

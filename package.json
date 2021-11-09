@@ -45,6 +45,7 @@
     "spdy-transport": "^3.0.0",
     "use-google-sheets": "^1.2.0",
     "use-google-spreadsheet": "^0.4.2",
+    "video-react": "^0.14.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

@@ -3,14 +3,45 @@ import useWindowSize from "./useWindowSize";
 import {Card, CardBody, CardHeader, CardSubtitle, CardText, CardTitle, Jumbotron} from "reactstrap";
 import announcement from "../assests/jumbotron/announce.jpg";
 import moment from "moment";
+import logo from "../assests/nilgiri_transparent.png";
 
 function Announcements() {
     const size = useWindowSize();
 
     return (
         <div>
-            <Jumbotron className={'col-md-12 d-none d-sm-block'}>
+            <Jumbotron className={'col-md-12 d-none d-xl-block'}>
                 <img src={announcement} width={size.width  - 17} height="500" />
+            </Jumbotron>
+            <Jumbotron className='col-md-12 d-xl-none' style={{
+                backgroundColor: "#c6c4ff"
+            }}>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 col-sm-6 align-self-center mt-2">
+                            <CardTitle tag="h5" style={{
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                color: 'floralwhite',
+                                fontFamily : 'Trebuchet MS',
+                                fontSize: 'xx-large',
+                                fontWeight: 'bold'
+                            }}>Announcements</CardTitle>
+                            <CardTitle tag="h5" style={{
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                color: 'floralwhite',
+                                fontFamily : 'Trebuchet MS',
+                                fontSize: 'large',
+                                fontWeight: 'bold'
+                            }}>Stay Updated... </CardTitle>
+                        </div>
+                        <div className="col-12 col-sm-3 align-self-center mt-2"/>
+                        <div className="col-12 col-sm-3 align-self-center mt-2">
+                            <img src={logo} className="img-fluid" />
+                        </div>
+                    </div>
+                </div>
             </Jumbotron>
             <Card body outline className={'border-0'}>
                 <CardHeader style={{backgroundColor : '#e6e5ff'}}>

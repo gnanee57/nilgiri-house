@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Switch, Route, Redirect, useLocation} from "react-router-dom";
 import Header from "./HeaderComponent";
-import Navbar from "./Navbar";
+import Navbar from "./TopMenu";
 import Home from "./HomeComponent";
 import About from "./AboutComponent";
 import Club from "./ClubComponent"
