@@ -1,13 +1,18 @@
 import React, {useState} from "react";
 /*import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classnames from 'classnames';*/
-import home from '../assests/jumbotron/nilgiri_home.jpg';
+import '../css/css/mdb.min.css';
+import EventIcon from '@material-ui/icons/Event';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
+import { faQuoteRight } from '@fortawesome/free-solid-svg-icons';
+//import home from '../assests/jumbotron/nilgiri_home.jpg';
 import birthdayPic from '../assests/birthday.png';
-import logo from "../assests/nilgiri_transparent.png";
+//import logo from "../assests/nilgiri_transparent.png";
 import {BIRTHDAYCONTENT} from "../shared/birthdayContent";
 import {HOUSEDETAILS} from "../shared/houseDetails";
 import Divider from '@material-ui/core/Divider';
-import useWindowSize from "./useWindowSize";
+//import useWindowSize from "./useWindowSize";
 import {
     Card,
     CardBody,
@@ -16,10 +21,10 @@ import {
     CardImg,
     CardSubtitle,
     CardText,
-    CardTitle,
+    CardTitle, Fade,
     Jumbotron
 } from "reactstrap";
-import { makeStyles } from '@material-ui/core/styles';
+import {lighten, makeStyles} from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -29,7 +34,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import CardContent from "@material-ui/core/CardContent";
-import {Grid} from "@material-ui/core";
+import {Grid } from "@material-ui/core";
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import moment from "moment";
@@ -44,14 +49,15 @@ import {
     TimeDivider, VolumeMenuButton
 } from "video-react";
 import ReactPlayer from "react-player";
+import {BrushSharp, Description, DevicesOther, MusicNote, PhotoCamera} from "@material-ui/icons";
+import AppBar from "@material-ui/core/AppBar";
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles1 = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'nowrap',
         overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
     },
     gridList: {
         flexWrap: 'nowrap',
@@ -72,8 +78,21 @@ const useStyles = makeStyles((theme) => ({
         width: 200,
     },
 }));
+
+const useStyles2 = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+        width: '100%',
+        justifyContent: "center",
+    },
+    scroller: {
+        flexGrow: "0"
+    },
+}));
+
 function FeaturedVideoContent(props) {
-    const classes = useStyles();
+    const classes1 = useStyles1();
+
     const content = props.content.map(content => {
         if (content.tabId === 1) {
             return (
@@ -84,30 +103,35 @@ function FeaturedVideoContent(props) {
                         width="360px"
                         height="180px"
                     />
-                    <CardContent>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            <span>by: {content.author}</span>
-                        </Typography>
-                    </CardContent>
                 </GridListTile>
             );
         }
     });
     return (
         <div className="container">
-            <div className="rows-col-md-8"/>
-            <Grid container>
-                <GridList className={classes.gridList} cols={2}>
-                    {content}
-                </GridList>
-            </Grid>
+            <div className={"d-none d-lg-block"}>
+                <div className="rows-col-md-8"/>
+                <Grid container>
+                    <GridList className={classes1.gridList} cols={2}>
+                        {content}
+                    </GridList>
+                </Grid>
+            </div>
+            <div className={"d-block d-lg-none"}>
+                <div className="rows-col-md-8"/>
+                <Grid container>
+                    <GridList className={classes1.gridList} cols={1}>
+                        {content}
+                    </GridList>
+                </Grid>
+            </div>
         </div>
 
     );
 }
 
 function FeaturedImageContent(props) {
-    const classes = useStyles();
+    const classes1 = useStyles1();
     const content = props.content.map(content => {
         if (content.tabId === 2 || content.tabId === 3) {
             return (
@@ -126,7 +150,7 @@ function FeaturedImageContent(props) {
         <Grid
             container
         >
-            <GridList className={classes.gridList}  cols={2.5}>
+            <GridList className={classes1.gridList}  cols={2.5}>
                 {content}
             </GridList>
         </Grid>
@@ -138,19 +162,38 @@ function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
     return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`vertical-tabpanel-${index}`}
-            aria-labelledby={`vertical-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box p={3}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
+        <React.Fragment>
+            <div className={"d-none d-lg-block"}>
+                <div
+                    role="tabpanel"
+                    hidden={value !== index}
+                    id={`vertical-tabpanel-${index}`}
+                    aria-labelledby={`vertical-tab-${index}`}
+                    {...other}
+                >
+                    {value === index && (
+                        <Box p={3}>
+                            <Typography>{children}</Typography>
+                        </Box>
+                    )}
+                </div>
+            </div>
+            <div className={"d-block d-lg-none"}>
+                <div
+                    role="tabpanel"
+                    hidden={value !== index}
+                    id={`scrollable-auto-tabpanel-${index}`}
+                    aria-labelledby={`scrollable-auto-tab-${index}`}
+                    {...other}
+                >
+                    {value === index && (
+                        <Box p={3}>
+                            <Typography>{children}</Typography>
+                        </Box>
+                    )}
+                </div>
+            </div>
+        </React.Fragment>
     );
 }
 
@@ -168,7 +211,8 @@ function a11yProps(index) {
 }
 
 function FeaturedTabs(props) {
-    const classes = useStyles();
+    const classes1 = useStyles1();
+    const classes2 = useStyles2();
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -176,25 +220,53 @@ function FeaturedTabs(props) {
     };
 
     return (
-        <div className={classes.root}>
-            <Tabs
-                orientation="vertical"
-                variant="scrollable"
-                value={value}
-                onChange={handleChange}
-                aria-label="Vertical tabs example"
-                className={classes.tabs}
-            >
-                <Tab label="Music & Dance" {...a11yProps(0)} />
-                <Tab label="Paintings & Photography" {...a11yProps(1)} />
-            </Tabs>
-            <TabPanel value={value} index={0}>
-                <FeaturedVideoContent content={props.featuredContent.filter(content => content.tabId === 1)} />
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <FeaturedImageContent content={props.featuredContent.filter(content =>  content.tabId === 2 || content.tabId === 3)} />
-            </TabPanel>
-        </div>
+        <React.Fragment>
+            <div className={"d-none d-lg-block"}>
+                <div className={classes1.root}>
+                    <Tabs
+                        orientation="vertical"
+                        variant="scrollable"
+                        value={value}
+                        onChange={handleChange}
+                        className={classes1.tabs}
+                    >
+                        <Tab label="Music & Dance" {...a11yProps(0)} />
+                        <Tab label="Paintings & Photography" {...a11yProps(1)} />
+                    </Tabs>
+                    <TabPanel value={value} index={0}>
+                        <FeaturedVideoContent content={props.featuredContent.filter(content => content.tabId === 1)} />
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                        <FeaturedImageContent content={props.featuredContent.filter(content =>  content.tabId === 2 || content.tabId === 3)} />
+                    </TabPanel>
+                </div>
+            </div>
+            <div className={"d-block d-lg-none"}>
+                <div className={classes2.root}>
+                    <AppBar position="static" color="default" style={{ background: 'transparent', boxShadow: 'none'}}>
+                        <Tabs
+                            classes={{ root: classes2.root, scroller: classes2.scroller }}
+                            value={value}
+                            onChange={handleChange}
+                            indicatorColor="primary"
+                            textColor="primary"
+                            variant={"scrollable"}
+                            scrollButtons={"on"}
+                        >
+                            <Tab label="Music & Dance" {...a11yProps(0)} />
+                            <Tab label="Paintings & Photography" {...a11yProps(1)} />
+                        </Tabs>
+                    </AppBar>
+                    <TabPanel value={value} index={0}>
+                        <FeaturedVideoContent content={props.featuredContent.filter(content => content.tabId === 1)} />
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                        <FeaturedImageContent content={props.featuredContent.filter(content =>  content.tabId === 2 || content.tabId === 3)} />
+                    </TabPanel>
+                </div>
+            </div>
+
+        </React.Fragment>
     );
 }
 
@@ -315,7 +387,43 @@ function BirthdaySegment() {
 
 function FeaturedAnnouncements() {
     return (
-        <Card body outline className={'border-0'}>
+        <section id="announcements" className="mt-2 mb-2">
+            <h2 className="pink-text text-uppercase font-weight-bold mb-2 pt-4 wow fadeIn" data-wow-delay=".2s">
+                Announcements & updates</h2>
+            <hr className="mb-2" />
+            <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                fontSize: 'medium', fontWeight: 'bold'}}>
+                {moment('2021-10-01').format("MMM Do YY")} : A new segment is added to know your house
+                & Group Details in the Nilgiri House Website. Please checkout in the homepage.
+            </CardText>
+            <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                fontSize: 'medium', fontWeight: 'bold'}}>
+                {moment('2021-09-30').format("MMM Do YY")} : The Expression of Interest(EOI) Form
+                for forming official clubs of Nilgiri House will be released within a week.
+            </CardText>
+            <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                fontSize: 'medium', fontWeight: 'bold'}}>
+                {moment('2021-09-29').format("MMM Do YY")} : We are pleased to inform you that our Nilgiri house is
+                now officially on Instagram and Telegram. We will keep updating our instagram page with house updates, funny memes and club
+                activities. Do give us a follow to keep yourself updated and make our family more stronger.
+                So please <a href={"https://www.instagram.com/nilgirihouse_iitm"} target={'_blank'}> follow </a> our Instagram page
+                and <a href={"https://t.me/joinchat/0Bkmw5zCYhY1MThl"} target={'_blank'}> join </a> our telegram group.
+            </CardText>
+            <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                fontSize: 'medium', fontWeight: 'bold'}}>
+                {moment('2021-09-27').format("MMM Do YY")} : Quiz & End Tem Syllabus - SEPTEMBER TERM(FOUNDATIONAL LEVEL)
+                click <a href={'https://docs.google.com/document/u/2/d/e/2PACX-1vSbylA6h7TpwechTn6k50v6yalhSwSTAhtkSzUnGfFAOLMSHebyMnoHwGS_uzHEyOpZ33wgcTqjOMNV/pub#h.75spqegi2p7s'} target={'_blank'}> here </a>
+                to refer to the table for the syllabus of quiz & end-term exam.
+            </CardText>
+            <div className="wow fadeIn" data-wow-delay=".4s" style={{ display: "flex" }}>
+                <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
+                    <Link to={'/announcements'}>
+                        view more
+                    </Link>
+                </Button>
+            </div>
+        </section>
+        /*<Card body outline className={'border-0'}>
             <CardHeader style={{backgroundColor : '#e6e5ff'}}>
                 <CardTitle tag="h5" style={{
                     justifyContent: 'start',
@@ -323,45 +431,99 @@ function FeaturedAnnouncements() {
                 }}>Announcements / Updates</CardTitle>
             </CardHeader>
             <CardBody>
-                <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
-                    fontSize: 'medium', fontWeight: 'bold'}}>
-                    {moment('2021-10-01').format("MMM Do YY")} : A new segment is added to know your house
-                    & Group Details in the Nilgiri House Website. Please checkout in the homepage.
-                </CardText>
-                <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
-                    fontSize: 'medium', fontWeight: 'bold'}}>
-                    {moment('2021-09-30').format("MMM Do YY")} : The Expression of Interest(EOI) Form
-                    for forming official clubs of Nilgiri House will be released within a week.
-                </CardText>
-                <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
-                    fontSize: 'medium', fontWeight: 'bold'}}>
-                    {moment('2021-09-29').format("MMM Do YY")} : We are pleased to inform you that our Nilgiri house is
-                    now officially on Instagram and Telegram. We will keep updating our instagram page with house updates, funny memes and club
-                    activities. Do give us a follow to keep yourself updated and make our family more stronger.
-                    So please <a href={"https://www.instagram.com/nilgirihouse_iitm"} target={'_blank'}> follow </a> our Instagram page
-                    and <a href={"https://t.me/joinchat/0Bkmw5zCYhY1MThl"} target={'_blank'}> join </a> our telegram group.
-                </CardText>
-                <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
-                    fontSize: 'medium', fontWeight: 'bold'}}>
-                    {moment('2021-09-27').format("MMM Do YY")} : Quiz & End Tem Syllabus - SEPTEMBER TERM(FOUNDATIONAL LEVEL)
-                    click <a href={'https://docs.google.com/document/u/2/d/e/2PACX-1vSbylA6h7TpwechTn6k50v6yalhSwSTAhtkSzUnGfFAOLMSHebyMnoHwGS_uzHEyOpZ33wgcTqjOMNV/pub#h.75spqegi2p7s'} target={'_blank'}> here </a>
-                    to refer to the table for the syllabus of quiz & end-term exam.
-                </CardText>
-                <div style={{ display: "flex" }}>
-                    <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
-                        <Link to={'/announcements'}>
-                            view more
-                        </Link>
-                    </Button>
-                </div>
+
             </CardBody>
-        </Card>
+        </Card>*/
     );
 }
 
 function UpcomingEvents() {
     return (
-        <Card body outline className={'border-0'} >
+        <section className="mt-5 mb-5">
+            <h4 className="text-center dark-grey-text mb-5 pt-3 wow fadeIn" data-wow-delay="0.2s" style={{
+                fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                textTransform: 'capitalize', fontSize: 'xx-large', fontWeight: 'bold'}}>
+                Upcoming events
+            </h4>
+            <p className="text-center w-responsive mx-auto my-5 grey-text wow fadeIn" data-wow-delay="0.2s">
+                Have fun and have faith that when you use your heart to navigate through
+                life and use the Universe as a map the magic and miracles in your life will be endless. Pandora
+                opened the box with the new high-heels, put them on and went out to town.</p>
+            <div className="row pt-4">
+                <div className="col-md-4 mb-4">
+                    <div className="row">
+                        <div className="col-1 col-md-2">
+                            <EventIcon fontSize="large"
+                                       className="indigo-text"
+                            />
+                        </div>
+                        <div className="col-10 col-md-9 col-lg-10 float-right">
+                            <h4 className="indigo-text"
+                                style={{
+                                    fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                                    textTransform: 'capitalize', fontSize: 'x-large', fontWeight: 'bold'}}>
+                                TBD
+                            </h4>
+                            <h6 className="mb-3 dark-grey-text">
+                                Treasure Hunt</h6>
+                            <p className="grey-text">If you're too busy to hunt, then you're too busy!
+                                Rise n shine. It's huntin' time!
+                            </p>
+                            {/*<a href="" className="font-small dark-grey-text">
+                                read more
+                            </a>*/}
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-4 mb-4">
+                    <div className="row">
+                        <div className="col-1 col-md-2">
+                            <EventIcon fontSize="large"
+                                       className="indigo-text"
+                            />
+                        </div>
+                        <div className="col-10 col-md-9 col-lg-10 float-right">
+                            <h4 className="indigo-text" style={{
+                                fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                                textTransform: 'capitalize', fontSize: 'x-large', fontWeight: 'bold'}}>
+                                TBD
+                            </h4>
+                            <h6 className="mb-3 dark-grey-text">
+                                Painting Competition</h6>
+                            <p className="grey-text">All you need to paint is a few tools,
+                                a little instruction, and a vision in your mind.</p>
+                            {/*<a href="" className="font-small dark-grey-text">
+                                read more
+                            </a>*/}
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-4 mb-4">
+                    <div className="row">
+                        <div className="col-1 col-md-2">
+                            <EventIcon fontSize="large"
+                                       className="indigo-text"
+                            />
+                        </div>
+                        <div className="col-10 col-md-9 col-lg-10 float-right">
+                            <h4 className="indigo-text" style={{
+                                fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                                textTransform: 'capitalize', fontSize: 'x-large', fontWeight: 'bold'}}>
+                                {moment('2021-11-14').format("MMM Do YY")}
+                            </h4>
+                            <h6 className="mb-3 dark-grey-text">
+                                Slay the King</h6>
+                            <p className="grey-text">One doesn't have to play well,
+                                it's enough to play better than your opponent</p>
+                            {/*<a href="" className="font-small dark-grey-text">
+                                read more
+                            </a>*/}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        /*<Card body outline className={'border-0'} >
             <CardHeader style={{backgroundColor : '#e6e5ff'}}>
                 <CardTitle tag="h5" style={{
                     justifyContent: 'center',
@@ -401,7 +563,45 @@ function UpcomingEvents() {
                     </Button>
                 </div>
             </CardBody>
-        </Card>
+        </Card>*/
+    );
+}
+
+function QuoteStreak() {
+    return (
+        <div className="streak streak-photo streak-md"
+             style={{ backgroundImage: "url('https://mdbootstrap.com/img/Photos/Horizontal/Things/full%20page/img%20%287%29.jpg')"}}>
+            <div className="flex-center mask rgba-indigo-strong">
+                <div className="text-center wow fadeInDownBig" data-wow-delay="0.2s">
+                    <h2 className="h2-responsive mb-5" style={{
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                        color: 'floralwhite',
+                        fontFamily : 'Trebuchet MS',
+                        textTransform: 'capitalize',
+                        fontSize : 'xx-large'
+                    }}>
+                        <FontAwesomeIcon icon={faQuoteLeft} />
+                         Creativity requires the courage to let
+                        go of
+                        certainties
+                        <FontAwesomeIcon icon={faQuoteRight} />
+                    </h2>
+                    <h5 className="text-center wow fadeInUpBig"
+                        data-wow-delay="0.2s"
+                        style={{
+                            justifyContent: 'center',
+                            textAlign: 'center',
+                            color: 'floralwhite',
+                            fontFamily : 'Trebuchet MS',
+                            textTransform: 'capitalize',
+                            fontSize : 'large',
+                            fontStyle : 'italic'
+                        }}
+                    >~ Erich Fromm</h5>
+                </div>
+            </div>
+        </div>
     );
 }
 
@@ -437,22 +637,26 @@ function HouseDetails() {
 
 
     const StudentDetails = () => {
-        if(detailsFetched && rollNo.length === 10) {
+        if (detailsFetched && rollNo.length === 10) {
             return (
                 <CardText style={{
                     justifyContent: 'center',
-                    fontFamily : 'Trebuchet MS',
+                    fontFamily: 'Trebuchet MS',
                     fontStyle: 'italic',
                     fontSize: 'medium',
                     fontWeight: 'bold'
                 }}>
+                    Your House & Group Details are: <br/>
                     Roll No : {rollNo} <br/>
                     Group Id: {groupId} <br/>
                     House Name: {house} <br/>
                     Added in : {moment(termAdded).format('MMMM YYYY')}
                 </CardText>
             );
-        }
+        } else { return (<div></div>) }
+    }
+    const TraceDetails = () => {
+        if (detailsFetched && rollNo.length === 10) { return (<div></div>) }
         else if(!detailsFetched && rollNo.length === 10) {
             return (
                 <CardText style={{
@@ -482,184 +686,198 @@ function HouseDetails() {
     }
 
     return (
-        <Card body outline className={'border-0'} >
-            <CardHeader style={{backgroundColor : '#e6e5ff'}}>
-                <CardTitle tag="h5" style={{
-                    justifyContent: 'center',
-                    fontFamily : 'Trebuchet MS',
-                }}>Know your House & Group</CardTitle>
-            </CardHeader>
-            <CardBody>
-                <form  noValidate autoComplete="off" onSubmit={handleSearch}>
-                    <div  className="col-10">
-                        <TextField
-                            required
-                            fullWidth
-                            name="rollNum"
-                            label="Roll No:"
-                            placeholder="Enter your Roll No:"
-                            value={rollNum}
-                            margin="normal"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            onChange={(e) => {
-                                setRollNum(e.target.value);
-                                setRollNo(e.target.value);
-                                setDetailsFetched(false);
-                            }}
-                        />
-                    </div>
-                    <div className="row mt-2">
-                        <div className={"col-md-5"}>
-                            <Button  type={"submit"} variant="contained" color="primary">
-                                Search
-                            </Button>
+        <section className="mb-2">
+            <div className='container-fluid overflow-hidden grey lighten-4'>
+                <div className='container'>
+                    <div className={'col-md-12'}>
+                        <div className={'row'}>
+                            <h4 className="pink-text text-capitalize text-center font-weight-bold mb-2 pt-4 wow fadeIn"
+                                data-wow-delay=".2s">
+                                Know your House & Group</h4>
+                            <hr className="mb-2" />
+                            <div className={'col-md-4'}>
+                                <form  noValidate autoComplete="off" onSubmit={handleSearch}>
+                                    <div  className="col-6">
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            name="rollNum"
+                                            label="Roll No:"
+                                            placeholder="Enter your Roll No:"
+                                            value={rollNum}
+                                            margin="normal"
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            onChange={(e) => {
+                                                setRollNum(e.target.value);
+                                                setRollNo(e.target.value);
+                                                setDetailsFetched(false);
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="row mt-2">
+                                        <div className={"col-md-5"}>
+                                            <Button  type={"submit"} variant="contained" color="primary">
+                                                Search
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div className="mt-3 mb-3">
+                                    <TraceDetails />
+                                </div>
+                            </div>
+                            <div className={'col-md-4 align-self-center'}>
+                                <StudentDetails />
+                            </div>
+                            <div className={'col-md-4 align-self-center d-none d-md-block'} style={{marginLeft: "auto"}}>
+                                <img src={'https://static.thenounproject.com/png/140350-200.png'} />
+                            </div>
                         </div>
                     </div>
-                </form>
-                <br/>
-                <StudentDetails />
-            </CardBody>
-        </Card>
+                </div>
+            </div>
+        </section>
     );
 }
 
 function Home(props) {
-    const size = useWindowSize();
 
-    /*const QuizTabs = (props) => {
-        const [activeTab, setActiveTab] = useState('1');
-
-        const toggle = tab => {
-            if(activeTab !== tab) setActiveTab(tab);
-        }
-        return (
-            <div>
-                <Nav tabs>
-                    <NavItem>
-                        <NavLink
-                            style={{
-                                backgroundColor: '#fff'
-                            }}
-                            className={classnames({ active: activeTab === '1'})}
-                            onClick={() => { toggle('1'); }}
-                        >
-                            About
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            style={{
-                                backgroundColor: '#fff'
-                            }}
-                            className={classnames({ active: activeTab === '2' })}
-                            onClick={() => { toggle('2'); }}
-                        >
-                            Rules
-                        </NavLink>
-                    </NavItem>
-                </Nav>
-                <TabContent activeTab={activeTab}>
-                    <TabPane tabId="1">
-                        <Row>
-                            <Col sm="12">
-                                <CardText style={{
-                                    backgroundColor: '#fff', justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
-                                    fontSize: 'medium', fontWeight: 'bold'}}>
-                                    Nilgiri House brings you a fun-event on the auspicious occasion of the
-                                    National Students' Day, on {moment('2021-10-15').format("MMM Do YY")}
-                                    in collaboration with the Nilgiri Quiz Club - <br/><br/>
-                                    Student of the Year, a General Quiz with the underlying theme of How attentive
-                                    an IITM B.Sc degree student you are!<br/><br/>
-                                    Sounds puzzling?<br/>
-                                    Don't worry. We won't ask you do any complex integration or deduce any
-                                    conditional probability.<br/><br/>
-                                    It will be like any other General Quiz , but the answers (say some proper nouns or
-                                    some terminologies orsome funda behind some particular invention or usage )
-                                    are somehow related to this B.Sc degree course contents.<br/><br/>
-                                    If you were attentive during the lectures or solving questions, you can easily take a guess.
-                                    And if you haven't attended lectures etc that much precisely, you can still
-                                    crack the answers given the work-outable hints in the question.
-                                </CardText>
-                            </Col>
-                        </Row>
-                    </TabPane>
-                    <TabPane tabId="2">
-                        <Row>
-                            <Col sm="12" style={{
-                                backgroundColor: '#fff'}}>
-                                <CardText style={{
-                                    backgroundColor: '#fff', justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
-                                    fontSize: 'medium', fontWeight: 'bold'}}>
-                                    Rules:<br/>
-                                    <ul>
-                                        <li>It will be a thoroughly General Quiz.</li>
-                                        <li>Max 2 members per team,you can also take part as lonewolf. (however you are always suggested to take part in teams)</li>
-                                        <li>A preliminary round to be followed by a Final.</li>
-                                        <li>Prelims will be held on Google Form.</li>
-                                        <li>8 teams to qualify for the Finals which will be held via Google Meet.</li>
-                                    </ul>
-                                </CardText>
-                            </Col>
-                        </Row>
-                    </TabPane>
-                </TabContent>
-            </div>
-        );
-    }*/
+    /*const [isVideoLoaded, setIsVideoLoaded] = React.useState(false);
+    const onLoadedData = () => {
+        setIsVideoLoaded(true);
+    };*/
 
     return(
         <React.Fragment>
-            <Jumbotron className='col-md-12 d-none d-xl-block'>
-                <img src={home} width={size.width  - 17} height="500" />
-            </Jumbotron>
-            <Jumbotron className='col-md-12 d-xl-none' style={{
-                backgroundColor: "#c6c4ff"
-            }}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 col-sm-6 align-self-center mt-2">
-                            <CardTitle tag="h5" style={{
+            <div className="jumbotron jumbotron-fluid d-none d-md-block">
+                <video preload muted autoPlay loop>
+                    <source src={'https://drive.google.com/uc?export=download&id=1c6znDeRilY72gWT58SzF1sT26xLzSZ9k'}
+                            type="video/mp4"/>
+                </video>
+                    <div className="container text-center">
+                        <div className="col-12">
+                            <div className="wow fadeInDown" data-wow-delay="0.2s">
+                            <h1 style={{
                                 justifyContent: 'center',
                                 textAlign: 'center',
                                 color: 'floralwhite',
                                 fontFamily : 'Trebuchet MS',
-                                fontSize: 'xx-large',
+                                textTransform: 'uppercase',
+                                fontSize : '80px',
                                 fontWeight: 'bold'
-                            }}>Nilgiri Home</CardTitle>
-                            <CardTitle tag="h5" style={{
+                            }}>Nilgiri House <br/>
+                                <hr style={{ height: "5px",
+                                    border:'none'}} />
+                            </h1>
+                            </div>
+                            <div className="wow fadeInUp" data-wow-delay="0.3s">
+                            <p className="lead" style={{
                                 justifyContent: 'center',
                                 textAlign: 'center',
-                                color: 'floralwhite',
+                                color: 'dark-grey',
+                                textTransform: 'capitalize',
+                                fontSize : '30px',
                                 fontFamily : 'Trebuchet MS',
-                                fontSize: 'large',
                                 fontWeight: 'bold'
-                            }}>Nearer to the house, Closer to your heart!</CardTitle>
+                            }}>Nearer to the House, Closer to your heart!</p>
+                            </div>
                         </div>
-                        <div className="col-12 col-sm-3 align-self-center mt-2"/>
-                        <div className="col-12 col-sm-3 align-self-center mt-2">
-                            <img src={logo} className="img-fluid" />
+                    </div>
+            </div>
+            <div className="jumbotron jumbotron-fluid d-none d-sm-block d-md-none">
+                <video preload muted autoPlay loop>
+                    <source src={'https://drive.google.com/uc?export=download&id=1c6znDeRilY72gWT58SzF1sT26xLzSZ9k'}
+                            type="video/mp4"/>
+                </video>
+                <div className="container text-center">
+                    <div className="col-12">
+                        <div className="wow fadeInDown" data-wow-delay="0.2s">
+                        <h1 style={{
+                            justifyContent: 'center',
+                            textAlign: 'center',
+                            color: 'floralwhite',
+                            fontFamily : 'Trebuchet MS',
+                            textTransform: 'uppercase',
+                            fontSize : '50px',
+                            fontWeight: 'bold'
+                        }}>Nilgiri House <br/>
+                            <hr style={{ height: "3px",
+                                border:'none'}} />
+                        </h1>
+                        </div>
+                        <div className="wow fadeInUp" data-wow-delay="0.2s">
+                        <p className="lead" style={{
+                            justifyContent: 'center',
+                            textAlign: 'center',
+                            color: 'dark-grey',
+                            textTransform: 'capitalize',
+                            fontSize : '20px',
+                            fontFamily : 'Trebuchet MS',
+                            fontWeight: 'bold'
+                        }}>Nearer to the House, Closer to your heart!</p>
                         </div>
                     </div>
                 </div>
-            </Jumbotron>
+            </div>
+            <div className="jumbotron jumbotron-fluid d-block d-sm-none">
+                <video preload muted autoPlay loop>
+                    <source src={'https://drive.google.com/uc?export=download&id=1c6znDeRilY72gWT58SzF1sT26xLzSZ9k'}
+                            type="video/mp4"/>
+                </video>
+                <div className="container text-center">
+                    <div className="col-12">
+                        <div className="wow fadeInDown" data-wow-delay="0.2s">
+                        <h1 style={{
+                            justifyContent: 'center',
+                            textAlign: 'center',
+                            color: 'floralwhite',
+                            fontFamily : 'Trebuchet MS',
+                            textTransform: 'uppercase',
+                            fontSize : '30px',
+                            fontWeight: 'bold'
+                        }}>Nilgiri House <br/>
+                            <hr style={{ height: "3px",
+                                border:'none'}} />
+                        </h1>
+                        </div>
+                        <div className="wow fadeInUp" data-wow-delay="0.2s">
+                        <p className="lead" style={{
+                            justifyContent: 'center',
+                            textAlign: 'center',
+                            color: 'dark-grey',
+                            textTransform: 'capitalize',
+                            fontSize : '12px',
+                            fontFamily : 'Trebuchet MS',
+                            fontWeight: 'bold'
+                        }}>Nearer to the House, Closer to your heart!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/*<Jumbotron className='col-md-12 d-none d-xl-block'>
+                <img src={home} width={size.width  - 17} height="500" />
+            </Jumbotron>*/}
             <div className='container-fluid mt-2 overflow-hidden'>
                 <div className={'row mb-3'}>
-                    <div className={'col-md-12'}>
-                        <div className={'row'}>
-                            <div className={'col-md-3 mb-0'}>
-                                <HouseDetails />
-                            </div>
-                            <div className={'col-md-6'}>
-                                <FeaturedAnnouncements />
-                            </div>
-                            <div className={'col-md-3 mb-0'}>
-                                <UpcomingEvents />
-                            </div>
-                        </div>
+                    <div className={'col-md-9'}>
+                        <FeaturedAnnouncements />
+                    </div>
+                    <div className={'col-md-3'}>
+                        <BirthdaySegment />
                     </div>
                 </div>
+            </div>
+            <HouseDetails />
+            <div className={'container'}>
+                <div className={'row mb-3'}>
+                    <div className={'col-md-12'}>
+                        <UpcomingEvents />
+                    </div>
+                </div>
+            </div>
+            <QuoteStreak />
                 {/*<div className='row mb-3'>
                     <div className={'col-md-12'}>
                         <div className={'row'}>
@@ -669,11 +887,18 @@ function Home(props) {
                         </div>
                     </div>
                 </div>*/}
-                <div className='row'>
-                    <div className={'col-md-12'}>
-                        <div className={'row'}>
-                            <div className={'col-md-9 d-none d-lg-block'}>
-                                <Card body outline className={'border-0'}>
+            <div className='container-fluid overflow-hidden grey lighten-4'>
+                <div className={'col-md-12'}>
+                    <section className="mt-3 mb-2">
+                        <h4 className="text-center dark-grey-text pt-3 wow fadeIn" data-wow-delay="0.2s" style={{
+                            fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                            textTransform: 'capitalize', fontSize: 'xx-large', fontWeight: 'bold'}}>
+                            Our Wall
+                        </h4>
+                        <p className="text-center w-responsive mx-auto grey-text wow fadeIn" data-wow-delay="0.2s">
+                            Want your work to be posted on Nilgiri Wall? <a
+                            href={'https://forms.gle/fFftSgDAHcX7DDHp6'} target={'_blank'}>Fill this form</a></p>
+                                {/*<Card body outline className={'border-0'}>
                                     <CardHeader style={{backgroundColor : '#e6e5ff'}}>
                                         <CardTitle tag="h5" style={{
                                             justifyContent: 'start',
@@ -687,26 +912,22 @@ function Home(props) {
                                             fontFamily : 'Trebuchet MS',
                                             fontStyle: 'italic',
                                             fontSize: 'small',
-                                        }}>Want your work to be posted on Nilgiri Wall? <a
-                                            href={'https://forms.gle/fFftSgDAHcX7DDHp6'} target={'_blank'}>Fill this form</a></CardSubtitle>
+                                        }}></CardSubtitle>
                                     </CardHeader>
-                                </Card>
-                                <Divider />
-                                <FeaturedTabs featuredContent={props.featuredContent}/>
-                                <div style={{ display: "flex" }}>
-                                    <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
-                                        <Link to={'/wall'}>
-                                            view more
-                                        </Link>
-                                    </Button>
-                                </div>
-                            </div>
-                            <div className={'col-md-3'}>
-                                <BirthdaySegment />
-                            </div>
+                                </Card>*/}
+                        <Divider />
+                        <FeaturedTabs featuredContent={props.featuredContent}/>
+                        <div style={{ display: "flex" }}>
+                            <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
+                                <Link to={'/wall'}>
+                                    view more
+                                </Link>
+                            </Button>
                         </div>
-                    </div>
+                    </section>
                 </div>
+            </div>
+            <div className='container mt-2 overflow-hidden'>
                 {/*<div className={'row'}>
                     <div className={'col-md-12 mb-0'}>
                         <Card body outline className={'border-0'} >
@@ -740,72 +961,71 @@ function Home(props) {
                 </div>*/}
                 <div className={'row'}>
                     <div className={'col-md-12'}>
-                        <Card body outline className={'border-0'}>
-                            <CardHeader className={'text-center'} style={{backgroundColor : '#e6e5ff'}}>
-                                <CardTitle tag="h5" style={{
-                                    fontFamily : 'Trebuchet MS',
-                                    textTransform: 'uppercase',
-                                    fontSize: 'x-large',
-                                    fontWeight: 'bold'
-                                }}>Glimpses</CardTitle>
-                            </CardHeader>
+                        <section className="mt-5 mb-5">
+                            <h4 className="text-center dark-grey-text mb-5 pt-3 wow fadeIn" data-wow-delay="0.2s" style={{
+                                fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                                textTransform: 'capitalize', fontSize: 'xx-large', fontWeight: 'bold'}}>
+                                Glimpses
+                            </h4>
+                            <Card body outline className={'border-0'}>
                             <div className={"row"}>
-                                <div className={'col-xl-4 col-lg-6 col-md-6 col-12 mt-4'}>
-                                    <Card className={'border-0'}>
-                                        <Player src={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
-                                                fluid ={false}
-                                                height = {300}
-                                                width = {"auto"}
-                                        >
-                                            <ControlBar>
-                                                <VolumeMenuButton vertical />
-                                                <ReplayControl seconds={10} order={1.1} />
-                                                <ForwardControl seconds={30} order={1.2} />
-                                                <CurrentTimeDisplay order={4.1} />
-                                                <TimeDivider order={4.2} />
-                                                <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
-                                            </ControlBar>
-                                        </Player>
-                                    </Card>
-                                </div>
-                                <div className={'col-xl-4 col-lg-6 col-md-6 col-12 mt-4'}>
-                                    <Card className={'border-0'}>
-                                        <Player src={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
-                                                fluid ={false}
-                                                height = {300}
-                                                width = {"auto"}
-                                        >
-                                            <ControlBar>
-                                                <VolumeMenuButton vertical />
-                                                <ReplayControl seconds={10} order={1.1} />
-                                                <ForwardControl seconds={30} order={1.2} />
-                                                <CurrentTimeDisplay order={4.1} />
-                                                <TimeDivider order={4.2} />
-                                                <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
-                                            </ControlBar>
-                                        </Player>
-                                    </Card>
-                                </div>
-                                <div className={'col-xl-4 col-lg-6 col-md-6 col-12 mt-4'}>
-                                    <Card className={'border-0'}>
-                                        <Player src={'https://drive.google.com/uc?export=download&id=1EDfAmePz9Kj7aO-u4VnlDBL_H5f4lQ5N'}
-                                                fluid ={false}
-                                                height = {300}
-                                                width = {"auto"}
-                                        >
-                                            <ControlBar>
-                                                <VolumeMenuButton vertical />
-                                                <ReplayControl seconds={10} order={1.1} />
-                                                <ForwardControl seconds={30} order={1.2} />
-                                                <CurrentTimeDisplay order={4.1} />
-                                                <TimeDivider order={4.2} />
-                                                <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
-                                            </ControlBar>
-                                        </Player>
-                                    </Card>
-                                </div>
+                            <div className={'col-xl-4 col-lg-6 col-12 mt-4'}>
+                                <Card className={'border-0 align-self-center'}>
+                                    <Player src={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
+                                            fluid ={false}
+                                            height = {300}
+                                            width = {350}
+                                    >
+                                        <ControlBar>
+                                            <VolumeMenuButton vertical />
+                                            <ReplayControl seconds={10} order={1.1} />
+                                            <ForwardControl seconds={30} order={1.2} />
+                                            <CurrentTimeDisplay order={4.1} />
+                                            <TimeDivider order={4.2} />
+                                            <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
+                                        </ControlBar>
+                                    </Player>
+                                </Card>
                             </div>
-                        </Card>
+                            <div className={'col-xl-4 col-lg-6 col-12 mt-4'}>
+                                <Card className={'border-0 align-self-center'}>
+                                    <Player src={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
+                                            fluid ={false}
+                                            height = {300}
+                                            width = {350}
+                                    >
+                                        <ControlBar>
+                                            <VolumeMenuButton vertical />
+                                            <ReplayControl seconds={10} order={1.1} />
+                                            <ForwardControl seconds={30} order={1.2} />
+                                            <CurrentTimeDisplay order={4.1} />
+                                            <TimeDivider order={4.2} />
+                                            <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
+                                        </ControlBar>
+                                    </Player>
+                                </Card>
+                            </div>
+                            <div className={'col-xl-4 col-lg-6 col-12 mt-4'}>
+                                <Card className={'border-0 align-self-center'}>
+                                    <Player src={'https://drive.google.com/uc?export=download&id=1EDfAmePz9Kj7aO-u4VnlDBL_H5f4lQ5N'}
+                                            fluid ={false}
+                                            height = {300}
+                                            width = {350}
+                                    >
+                                        <ControlBar>
+                                            <VolumeMenuButton vertical />
+                                            <ReplayControl seconds={10} order={1.1} />
+                                            <ForwardControl seconds={30} order={1.2} />
+                                            <CurrentTimeDisplay order={4.1} />
+                                            <TimeDivider order={4.2} />
+                                            <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
+                                        </ControlBar>
+                                    </Player>
+                                </Card>
+                            </div>
+                            </div>
+                            </Card>
+                        </section>
                     </div>
                 </div>
             </div>

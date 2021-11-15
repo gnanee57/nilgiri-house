@@ -48,27 +48,27 @@ export default function Header() {
         >
             <MenuItem onClick={()=> window.open("https://www.instagram.com/nilgirihouse_iitm", "_blank")}>
                 <IconButton size="large" aria-label="" color="inherit">
-                    <InstagramIcon />
+                    <InstagramIcon /><p>Intagram</p>
                 </IconButton>
-                <p>Intagram</p>
+
             </MenuItem>
             <MenuItem  onClick={()=> window.open("https://t.me/joinchat/0Bkmw5zCYhY1MThl", "_blank")}>
                 <IconButton size="large" color="inherit">
-                    <TelegramIcon />
+                    <TelegramIcon /><p>WhatsApp</p>
                 </IconButton>
                 <p>Telegram</p>
             </MenuItem>
             <MenuItem onClick={()=> window.open("#", "_blank")}>
                 <IconButton size="large" aria-label="" color="inherit">
-                        <WhatsAppIcon />
+                        <WhatsAppIcon /><p>WhatsApp</p>
                 </IconButton>
-                <p>WhatsApp</p>
+
             </MenuItem>
-            <MenuItem onClick={()=> window.open("#", "_blank")} >
+            <MenuItem onClick={()=> window.open("https://www.youtube.com/channel/UCTAxNwe8HM_mfYtuGKqKGZQ", "_blank")} >
                 <IconButton size="large" aria-label="" color="inherit">
-                    <YouTube />
+                    <YouTube /> <p>Youtube</p>
                 </IconButton>
-                <p>Youtube</p>
+
             </MenuItem>
         </Menu>
     );
@@ -123,7 +123,7 @@ export default function Header() {
                         </IconButton>
                         <IconButton size="large"
                                     onClick={()=> window.open(
-                                        "#",
+                                        "https://www.youtube.com/channel/UCTAxNwe8HM_mfYtuGKqKGZQ",
                                         "_blank")}>
                             <YouTube style={{fill: "white" }}/>
                         </IconButton>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Container, Row, Footer } from 'mdbreact';
-import 'mdbreact/dist/css/mdb.css'
+import 'mdbreact/dist/css/mdb.css';
 // import FacebookIcon from '@material-ui/icons/Facebook';
 // import InstagramIcon from '@material-ui/icons/Instagram';
 // import TelegramIcon from '@material-ui/icons/Telegram';
