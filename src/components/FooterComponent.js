@@ -31,7 +31,7 @@ function FooterPage(){
                     <Col md="2">
                         <h5 style={{color: "white"}}  className="text-uppercase mb-4 mt-3 font-weight-bold">Quick Links</h5>
                         <ul className="list-unstyled">
-                            <li><Link to={'/events/eventsCalendar'}>Events</Link></li>
+                            <li><Link to={'/events'}>Past Events</Link></li>
                             <li><a href="https://onlinedegree.iitm.ac.in/student_life.html" target={"_blank"}>IITM :: Student Life</a></li>
                             <li><a href={'https://sites.google.com/student.onlinedegree.iitm.ac.in/nilgiri-house-academia'}
                                    target={"_blank"}>Academia</a></li>
@@ -45,15 +45,14 @@ function FooterPage(){
                         <ul className="list-unstyled">
                             <li><a href="#">New Club Registration</a></li>
                             <li><Link to={"/events/eventRegistration"}>Event Registration</Link></li>
-                            <li><a href="#">Grievance Form</a></li>
-                            <li><a href="#">Suggestion Form</a></li>
+                            <li><Link to={'/grievance-form'}>Grievance Form</Link></li>
                         </ul>
                     </Col>
                     <hr className="clearfix w-100 d-md-none" />
                     <Col md="2">
                         <h5 style={{color: "white"}} className="text-uppercase mb-4 mt-3 font-weight-bold">Contact Us</h5>
                         <ul className="list-unstyled">
-                            <li><a href="mailto:nilgiri-ds@student.onlinedegree.iitm.ac.in">
+                            <li><a href="mailto:nilgiri-sec@student.onlinedegree.iitm.ac.in">
                                 <MailOutlineIcon fontSize={'small'} style={{marginRight: '4px'}}/>Mail us</a></li>
                         </ul>
                     </Col>

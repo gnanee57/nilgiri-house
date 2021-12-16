@@ -17,16 +17,17 @@ const useStyles = makeStyles((theme) => ({
             width: '25ch',
             justifyContent: "center",
         },
-
     },
     textField: {
         width: 200,
     },
 }));
 
-let formData;
+export default function EventRegistration(props) {
 
-export default function EventRegistration() {
+    React.useEffect(() => {
+        document.title = 'Nilgiri Events Registration'
+    }, []);
 
     const [eventName, setEventName] = useState('');
     const [eventDescription, setEventDescription] = useState('');
@@ -73,7 +74,7 @@ export default function EventRegistration() {
             }
         }
         console.log(formData)*/
-        try {
+        /*try {
             const response = await fetch('https://v1.nocodeapi.com/nilgiriwebad/google_sheets/yTirTveSAIcHfgHB?tabId=eventRegistration', {
                     method: 'POST',
                     headers: {
@@ -88,7 +89,10 @@ export default function EventRegistration() {
             alert('Submission Successful! You will soon receive a confirmation mail. Have a Nice Day.');
         } catch (err) {
             console.log(err);
-        }
+        }*/
+        props.postEvent(eventName, eventDescription, tag, hostName, hostEmail,
+            anyCoHost, coHostName, coHostEmail, noParticipants, maxParticipants, mode, selectedDate,
+            startTime, endTime, support);
         resetForm();
     }
 

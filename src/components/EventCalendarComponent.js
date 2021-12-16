@@ -14,7 +14,7 @@ import {CardActions} from "@material-ui/core";
 import logo from "../assests/nilgiri_transparent.png";
 
 
-function Events() {
+function EventsCalendar() {
 
     React.useEffect(() => {
         document.title = 'Nilgiri Events Calendar'
@@ -269,4 +269,4 @@ function Events() {
     );
 }
 
-export default Events;
+export default EventsCalendar;

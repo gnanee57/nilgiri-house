@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import "../../node_modules/video-react/dist/video-react.css"; // import css
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,6 +29,7 @@ import wall from "../assests/jumbotron/nilgiri_gallery.jpg";
 import {Jumbotron} from "reactstrap";
 import useWindowSize from "./useWindowSize";
 import logo from "../assests/nilgiri_transparent.png";
+import {Loading} from "./LoadingComponent";
 
 
 
@@ -79,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 
 function RenderContent(props) {
 
-    const content = props.galleryContent.map(content => {
+    const content = props.wallContent.map(content => {
 
         if (content.contentType === "video") {
             return (
@@ -140,6 +141,11 @@ function RenderContent(props) {
 
 
 function Wall(props) {
+
+    React.useEffect(() => {
+        document.title = 'Nilgiri Wall';
+    }, []);
+
     const classes = useStyles();
     const size = useWindowSize();
     const [active, setActive] = React.useState(0);
@@ -147,85 +153,98 @@ function Wall(props) {
     const handleChange = (event, newValue) => {
         setActive(newValue);
     };
-    return (
-        <div className={classes.root}>
-            <Jumbotron className={'col-md-12 d-none d-xl-block'}>
-                <img src={wall} width={size.width - 17} height="500" />
-            </Jumbotron>
-            <Jumbotron className='col-md-12 d-xl-none' style={{
-                backgroundColor: "#c6c4ff"
-            }}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 col-sm-6 align-self-center mt-2">
-                            <CardTitle tag="h5" style={{
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                color: 'floralwhite',
-                                fontFamily : 'Trebuchet MS',
-                                fontSize: 'xx-large',
-                                fontWeight: 'bold'
-                            }}>Nilgiri Wall</CardTitle>
-                            <CardTitle tag="h5" style={{
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                color: 'floralwhite',
-                                fontFamily : 'Trebuchet MS',
-                                fontSize: 'large',
-                                fontWeight: 'bold'
-                            }}> A place full of talents... </CardTitle>
-                        </div>
-                        <div className="col-12 col-sm-3 align-self-center mt-2"/>
-                        <div className="col-12 col-sm-3 align-self-center mt-2">
-                            <img src={logo} className="img-fluid" />
+    if (props.wallContentLoading || props.wallContent === []) {
+        return (
+            <Loading />
+        );
+    } else if (props.wallContentErrMess) {
+        return (
+            <h4>{props.wallContentErrMess}</h4>
+        );
+    } else {
+        return (
+            <div className={classes.root}>
+                <Jumbotron className={'col-md-12 d-none d-xl-block'}>
+                    <img src={wall} width={size.width - 17} height="500"/>
+                </Jumbotron>
+                <Jumbotron className='col-md-12 d-xl-none' style={{
+                    backgroundColor: "#c6c4ff"
+                }}>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12 col-sm-6 align-self-center mt-2">
+                                <CardTitle tag="h5" style={{
+                                    justifyContent: 'center',
+                                    textAlign: 'center',
+                                    color: 'floralwhite',
+                                    fontFamily: 'Trebuchet MS',
+                                    fontSize: 'xx-large',
+                                    fontWeight: 'bold'
+                                }}>Nilgiri Wall</CardTitle>
+                                <CardTitle tag="h5" style={{
+                                    justifyContent: 'center',
+                                    textAlign: 'center',
+                                    color: 'floralwhite',
+                                    fontFamily: 'Trebuchet MS',
+                                    fontSize: 'large',
+                                    fontWeight: 'bold'
+                                }}> A place full of talents... </CardTitle>
+                            </div>
+                            <div className="col-12 col-sm-3 align-self-center mt-2"/>
+                            <div className="col-12 col-sm-3 align-self-center mt-2">
+                                <img src={logo} className="img-fluid"/>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </Jumbotron>
-            <AppBar position="static" color="default">
-                <Tabs
-                    classes={{ root: classes.root, scroller: classes.scroller }}
-                    value={active}
-                    onChange={handleChange}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    variant={"scrollable"}
-                    scrollButtons={"on"}
-                >
-                    <Tab icon={<Description />} label="ARTICLES" {...a11yProps(0)} />
-                    <Tab icon={<MusicNote/>}label="MUSIC & DANCE" {...a11yProps(1)} />
-                    <Tab icon={<BrushSharp/>} label="PAINTINGS" {...a11yProps(2)} />
-                    <Tab icon={<PhotoCamera/>} label="PHOTOGRAPHY" {...a11yProps(3)} />
-                    <Tab icon={<DevicesOther/>} label="OTHERS" {...a11yProps(4)} />
-                </Tabs>
-            </AppBar>
-            <TabPanel value={active} index={0}>
-                <RenderContent
-                    galleryContent={props.galleryContent.filter(content => content.tabId === 0)}
-                />
-            </TabPanel>
-            <TabPanel value={active} index={1}>
-                <RenderContent
-                    galleryContent={props.galleryContent.filter(content => content.tabId === 1)}
-                />
-            </TabPanel>
-            <TabPanel value={active} index={2}>
-                <RenderContent
-                    galleryContent={props.galleryContent.filter(content => content.tabId === 2)}
-                />
-            </TabPanel>
-            <TabPanel value={active} index={3}>
-                <RenderContent
-                    galleryContent={props.galleryContent.filter(content => content.tabId === 3)}
-                />
-            </TabPanel>
-            <TabPanel value={active} index={4}>
-                <RenderContent
-                    galleryContent={props.galleryContent.filter(content => content.tabId === 4)}
-                />
-            </TabPanel>
-        </div>
-    );
+                </Jumbotron>
+                <AppBar position="static" color="default">
+                    <Tabs
+                        classes={{root: classes.root, scroller: classes.scroller}}
+                        value={active}
+                        onChange={handleChange}
+                        indicatorColor="primary"
+                        textColor="primary"
+                        variant={"scrollable"}
+                        scrollButtons={"on"}
+                    >
+                        <Tab icon={<Description/>} label="ARTICLES" {...a11yProps(0)} />
+                        <Tab icon={<MusicNote/>} label="MUSIC & DANCE" {...a11yProps(1)} />
+                        <Tab icon={<BrushSharp/>} label="PAINTINGS" {...a11yProps(2)} />
+                        <Tab icon={<PhotoCamera/>} label="PHOTOGRAPHY" {...a11yProps(3)} />
+                        <Tab icon={<DevicesOther/>} label="OTHERS" {...a11yProps(4)} />
+                    </Tabs>
+                </AppBar>
+                {console.log(props.wallContent.filter(content => content["tabId"] === 2))}
+                <TabPanel value={active} index={0}>
+                    <RenderContent
+                        wallContent={props.wallContent.filter(content => content.tabId === 0)}
+
+                    />
+                </TabPanel>
+                <TabPanel value={active} index={1}>
+                    <RenderContent
+                        wallContent={props.wallContent.filter(content => content.tabId === 1)}
+
+                    />
+                </TabPanel>
+                <TabPanel value={active} index={2}>
+                    <RenderContent
+                        wallContent={props.wallContent.filter(content => content.tabId === 2)}
+                    />
+                </TabPanel>
+                <TabPanel value={active} index={3}>
+                    <RenderContent
+                        wallContent={props.wallContent.filter(content => content.tabId === 3)}
+                    />
+                </TabPanel>
+                <TabPanel value={active} index={4}>
+                    <RenderContent
+                        wallContent={props.wallContent.filter(content => content.tabId === 4)}
+                    />
+                </TabPanel>
+            </div>
+        );
+    }
 };
 
 export default Wall;

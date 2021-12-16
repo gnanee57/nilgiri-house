@@ -121,6 +121,11 @@ function CustomizedTimeline() {
 }
 
 function About() {
+
+    React.useEffect(() => {
+        document.title = 'Nilgiri : About Us'
+    }, []);
+
     const size = useWindowSize();
 
     return (

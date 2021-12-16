@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 /*import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classnames from 'classnames';*/
 import '../css/css/mdb.min.css';
@@ -9,22 +9,10 @@ import { faQuoteRight } from '@fortawesome/free-solid-svg-icons';
 //import home from '../assests/jumbotron/nilgiri_home.jpg';
 import birthdayPic from '../assests/birthday.png';
 //import logo from "../assests/nilgiri_transparent.png";
-import {BIRTHDAYCONTENT} from "../shared/birthdayContent";
-import {HOUSEDETAILS} from "../shared/houseDetails";
 import Divider from '@material-ui/core/Divider';
 //import useWindowSize from "./useWindowSize";
-import {
-    Card,
-    CardBody,
-    CardFooter,
-    CardHeader,
-    CardImg,
-    CardSubtitle,
-    CardText,
-    CardTitle, Fade,
-    Jumbotron
-} from "reactstrap";
-import {lighten, makeStyles} from '@material-ui/core/styles';
+import {Card, CardBody, CardFooter, CardHeader, CardImg, CardSubtitle, CardText, CardTitle} from "reactstrap";
+import {makeStyles} from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -33,7 +21,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import CardContent from "@material-ui/core/CardContent";
 import {Grid } from "@material-ui/core";
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
@@ -49,9 +36,8 @@ import {
     TimeDivider, VolumeMenuButton
 } from "video-react";
 import ReactPlayer from "react-player";
-import {BrushSharp, Description, DevicesOther, MusicNote, PhotoCamera} from "@material-ui/icons";
 import AppBar from "@material-ui/core/AppBar";
-
+import {Loading} from "./LoadingComponent";
 
 const useStyles1 = makeStyles((theme) => ({
     root: {
@@ -219,65 +205,126 @@ function FeaturedTabs(props) {
         setValue(newValue);
     };
 
-    return (
-        <React.Fragment>
-            <div className={"d-none d-lg-block"}>
-                <div className={classes1.root}>
-                    <Tabs
-                        orientation="vertical"
-                        variant="scrollable"
-                        value={value}
-                        onChange={handleChange}
-                        className={classes1.tabs}
-                    >
-                        <Tab label="Music & Dance" {...a11yProps(0)} />
-                        <Tab label="Paintings & Photography" {...a11yProps(1)} />
-                    </Tabs>
-                    <TabPanel value={value} index={0}>
-                        <FeaturedVideoContent content={props.featuredContent.filter(content => content.tabId === 1)} />
-                    </TabPanel>
-                    <TabPanel value={value} index={1}>
-                        <FeaturedImageContent content={props.featuredContent.filter(content =>  content.tabId === 2 || content.tabId === 3)} />
-                    </TabPanel>
-                </div>
-            </div>
-            <div className={"d-block d-lg-none"}>
-                <div className={classes2.root}>
-                    <AppBar position="static" color="default" style={{ background: 'transparent', boxShadow: 'none'}}>
+    if (props.isLoading || props.wallContent === []) {
+        return (
+            <Loading />
+        );
+    } else if (props.errMess) {
+        return (
+            <h4>{props.errMess}</h4>
+        );
+    } else {
+        return (
+            <React.Fragment>
+                <div className={"d-none d-lg-block"}>
+                    <div className={classes1.root}>
                         <Tabs
-                            classes={{ root: classes2.root, scroller: classes2.scroller }}
+                            orientation="vertical"
+                            variant="scrollable"
                             value={value}
                             onChange={handleChange}
-                            indicatorColor="primary"
-                            textColor="primary"
-                            variant={"scrollable"}
-                            scrollButtons={"on"}
+                            className={classes1.tabs}
                         >
                             <Tab label="Music & Dance" {...a11yProps(0)} />
                             <Tab label="Paintings & Photography" {...a11yProps(1)} />
                         </Tabs>
-                    </AppBar>
-                    <TabPanel value={value} index={0}>
-                        <FeaturedVideoContent content={props.featuredContent.filter(content => content.tabId === 1)} />
-                    </TabPanel>
-                    <TabPanel value={value} index={1}>
-                        <FeaturedImageContent content={props.featuredContent.filter(content =>  content.tabId === 2 || content.tabId === 3)} />
-                    </TabPanel>
+                        <TabPanel value={value} index={0}>
+                            <FeaturedVideoContent
+                                content={props.featuredContent.filter(content => content.tabId === 1)}/>
+                        </TabPanel>
+                        <TabPanel value={value} index={1}>
+                            <FeaturedImageContent
+                                content={props.featuredContent.filter(content => content.tabId === 2 || content.tabId === 3)}/>
+                        </TabPanel>
+                    </div>
                 </div>
-            </div>
-
-        </React.Fragment>
-    );
+                <div className={"d-block d-lg-none"}>
+                    <div className={classes2.root}>
+                        <AppBar position="static" color="default"
+                                style={{background: 'transparent', boxShadow: 'none'}}>
+                            <Tabs
+                                classes={{root: classes2.root, scroller: classes2.scroller}}
+                                value={value}
+                                onChange={handleChange}
+                                indicatorColor="primary"
+                                textColor="primary"
+                                variant={"scrollable"}
+                                scrollButtons={"on"}
+                            >
+                                <Tab label="Music & Dance" {...a11yProps(0)} />
+                                <Tab label="Paintings & Photography" {...a11yProps(1)} />
+                            </Tabs>
+                        </AppBar>
+                        <TabPanel value={value} index={0}>
+                            <FeaturedVideoContent
+                                content={props.featuredContent.filter(content => content.tabId === 1)}/>
+                        </TabPanel>
+                        <TabPanel value={value} index={1}>
+                            <FeaturedImageContent
+                                content={props.featuredContent.filter(content => content.tabId === 2 || content.tabId === 3)}/>
+                        </TabPanel>
+                    </div>
+                </div>
+            </React.Fragment>
+        );
+    }
 }
 
-function BirthdaySegment() {
+function BirthdaySegment(props) {
 
-    const Birthday = (props) => {
-        console.log(props)
-        if (props.item.length != 0) {
-            return (
+    if (props.isLoading) {
+        return (
+            <Loading />
+        );
+    } else if (props.errMess || props.birthday[0] === undefined) {
+        return (
+            <Card body outline className={'border-0'}>
+                <CardHeader style={{backgroundColor: '#e6e5ff'}}>
+                    <CardTitle tag="h5" style={{
+                        justifyContent: 'center',
+                        fontFamily: 'Trebuchet MS',
+                    }}>Birthday of the Day</CardTitle>
+                    <CardSubtitle className="mb-2 text-muted" style={{
+                        justifyContent: 'center',
+                        fontFamily: 'Trebuchet MS',
+                        fontStyle: 'italic',
+                        fontSize: 'small',
+                    }}>Date: {moment().format("MMM Do YY")}</CardSubtitle>
+                </CardHeader>
                 <div>
-                    <CardImg height={"50%"} src={props.item[0].linkUrl} alt="Card image cap"/>
+                    <CardImg src={birthdayPic} alt="Card image cap"/>
+                    {console.log('No Birthday Today')}
+                </div>
+                <CardFooter style={{backgroundColor: '#e6e5ff'}}>
+                    <CardText style={{
+                        justifyContent: 'center',
+                        fontFamily: 'Trebuchet MS',
+                        fontStyle: 'italic',
+                        fontSize: 'small',
+                    }}>Want your birthday to be displayed? <a href="https://forms.gle/Y46JLFWhBzbtEobYA"
+                                                              target={'_blank'}>
+                        Fill this form.</a>
+                    </CardText>
+                </CardFooter>
+            </Card>
+        );
+    } else {
+        return (
+            <Card body outline className={'border-0'}>
+                <CardHeader style={{backgroundColor: '#e6e5ff'}}>
+                    <CardTitle tag="h5" style={{
+                        justifyContent: 'center',
+                        fontFamily: 'Trebuchet MS',
+                    }}>Birthday of the Day</CardTitle>
+                    <CardSubtitle className="mb-2 text-muted" style={{
+                        justifyContent: 'center',
+                        fontFamily: 'Trebuchet MS',
+                        fontStyle: 'italic',
+                        fontSize: 'small',
+                    }}>Date: {moment().format("MMM Do YY")}</CardSubtitle>
+                </CardHeader>
+                <div>
+                    <CardImg height={"50%"} src={props.birthday[0].linkUrl} alt="Card image cap"/>
                     <CardBody>
                         <CardText style={{
                             justifyContent: 'center',
@@ -286,49 +333,24 @@ function BirthdaySegment() {
                             fontSize: 'small',
                             fontWeight: 'bold'
                         }}>
-                            Wish you many more happy returns of the Day "{props.item[0].name}". May all your dreams come true.
+                            Wish you many more happy returns of the Day "{props.birthday[0].name}". May all your dreams come true.
                         </CardText>
                     </CardBody>
                 </div>
-            );
-        }
-        else {
-            return (
-                <div>
-                    <CardImg src={birthdayPic} alt="Card image cap"/>
-
-                </div>
-            );
-        }
-    };
-
-    return (
-        <Card body outline className={'border-0'}>
-            <CardHeader style={{backgroundColor : '#e6e5ff'}} >
-                <CardTitle tag="h5" style={{
-                    justifyContent: 'center',
-                    fontFamily : 'Trebuchet MS',
-                }}>Birthday of the Day</CardTitle>
-                <CardSubtitle className="mb-2 text-muted" style={{
-                    justifyContent: 'center',
-                    fontFamily : 'Trebuchet MS',
-                    fontStyle: 'italic',
-                    fontSize: 'small',
-                }}>Date: {moment().format("MMM Do YY")}</CardSubtitle>
-            </CardHeader>
-            <Birthday item = {BIRTHDAYCONTENT.filter(item => moment(item.date).isSame(moment(), 'day'))} />
-            <CardFooter style={{backgroundColor : '#e6e5ff'}}>
-                <CardText style={{
-                    justifyContent: 'center',
-                    fontFamily : 'Trebuchet MS',
-                    fontStyle: 'italic',
-                    fontSize: 'small',
-                }}>Want your birthday to be displayed? <a href="https://forms.gle/Y46JLFWhBzbtEobYA" target={'_blank'}>
-                    Fill this form.</a>
-                </CardText>
-            </CardFooter>
-        </Card>
-    );
+                <CardFooter style={{backgroundColor: '#e6e5ff'}}>
+                    <CardText style={{
+                        justifyContent: 'center',
+                        fontFamily: 'Trebuchet MS',
+                        fontStyle: 'italic',
+                        fontSize: 'small',
+                    }}>Want your birthday to be displayed? <a href="https://forms.gle/Y46JLFWhBzbtEobYA"
+                                                              target={'_blank'}>
+                        Fill this form.</a>
+                    </CardText>
+                </CardFooter>
+            </Card>
+        );
+    }
 }
 
 /*function RiddleSegment() {
@@ -606,38 +628,25 @@ function QuoteStreak() {
 }
 
 
-function HouseDetails() {
+function HouseDetails(props) {
+
+
     const [rollNum, setRollNum] = useState('');
     const [rollNo, setRollNo] = useState('');
-    const [groupId, setGroupId] = useState('');
-    const [house, setHouse] = useState('');
-    const [termAdded, setTermAdded] = useState('');
-    const [detailsFetched, setDetailsFetched] = useState(false);
 
     const resetForm = () => {
         setRollNum('');
     }
 
-    const handleSearch = async e => {
-        e.preventDefault();
-        let student = HOUSEDETAILS.filter(student =>
-            student.studentId === rollNo.toLowerCase() + '@student.onlinedegree.iitm.ac.in'
-        );
-        console.log(student);
-
-        if(student.length) {
-            setRollNo(rollNum);
-            setGroupId(student[0].groupId);
-            setHouse(student[0].house);
-            setTermAdded(student[0].termAdded);
-            setDetailsFetched(true);
-        }
-        resetForm();
-    }
-
-
     const StudentDetails = () => {
-        if (detailsFetched && rollNo.length === 10) {
+        {console.log(props.studentDetails)}
+        if (props.studentDetailsLoading) {
+            return (
+                <Loading />
+            );
+        } else if (props.studentDetailsErrMess || props.studentDetails[0] === undefined) {
+            return (<div></div>);
+        } else {
             return (
                 <CardText style={{
                     justifyContent: 'center',
@@ -647,17 +656,18 @@ function HouseDetails() {
                     fontWeight: 'bold'
                 }}>
                     Your House & Group Details are: <br/>
-                    Roll No : {rollNo} <br/>
-                    Group Id: {groupId} <br/>
-                    House Name: {house} <br/>
-                    Added in : {moment(termAdded).format('MMMM YYYY')}
+                    Roll No : {props.studentDetails[0].studentId} <br/>
+                    Group Id: {props.studentDetails[0].groupId} <br/>
+                    House Name: {props.studentDetails[0].house} <br/>
+                    Added in : {moment(props.studentDetails[0].termAdded,'DD-MM-YYYY').format('MMMM YYYY')}
                 </CardText>
             );
-        } else { return (<div></div>) }
+        }
     }
+
     const TraceDetails = () => {
-        if (detailsFetched && rollNo.length === 10) { return (<div></div>) }
-        else if(!detailsFetched && rollNo.length === 10) {
+        if (props.studentDetails === null && rollNo.length === 10) { return (<div></div>) }
+        else if(props.studentDetails !== null && rollNo.length === 10) {
             return (
                 <CardText style={{
                     justifyContent: 'center',
@@ -696,7 +706,12 @@ function HouseDetails() {
                                 Know your House & Group</h4>
                             <hr className="mb-2" />
                             <div className={'col-md-4'}>
-                                <form  noValidate autoComplete="off" onSubmit={handleSearch}>
+                                <form  noValidate autoComplete="off" onSubmit={(e) => {
+                                    e.preventDefault();
+                                    props.handleSearch(rollNum);
+                                    resetForm();
+                                }}
+                                >
                                     <div  className="col-6">
                                         <TextField
                                             required
@@ -712,7 +727,6 @@ function HouseDetails() {
                                             onChange={(e) => {
                                                 setRollNum(e.target.value);
                                                 setRollNo(e.target.value);
-                                                setDetailsFetched(false);
                                             }}
                                         />
                                     </div>
@@ -742,7 +756,13 @@ function HouseDetails() {
     );
 }
 
+
+
 function Home(props) {
+
+    useEffect(() => {
+        document.title = 'Nilgiri Home'
+    }, []);
 
     /*const [isVideoLoaded, setIsVideoLoaded] = React.useState(false);
     const onLoadedData = () => {
@@ -865,11 +885,19 @@ function Home(props) {
                         <FeaturedAnnouncements />
                     </div>
                     <div className={'col-md-3'}>
-                        <BirthdaySegment />
+                        <BirthdaySegment birthday = {props.birthday}
+                                         isLoading={props.birthdayLoading}
+                                         errMess={props.birthdayErrMess}
+                        />
                     </div>
                 </div>
             </div>
-            <HouseDetails />
+            <HouseDetails
+                handleSearch={props.handleSearch}
+                studentDetails={props.studentDetails}
+                studentDetailsLoading={props.studentDetailsLoading}
+                studentDetailsErrMess={props.studentDetailsErrMess}
+            />
             <div className={'container'}>
                 <div className={'row mb-3'}>
                     <div className={'col-md-12'}>
@@ -927,7 +955,7 @@ function Home(props) {
                     </section>
                 </div>
             </div>
-            <div className='container mt-2 overflow-hidden'>
+            <div className='container-fluid mt-2 overflow-hidden'>
                 {/*<div className={'row'}>
                     <div className={'col-md-12 mb-0'}>
                         <Card body outline className={'border-0'} >

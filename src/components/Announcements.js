@@ -6,6 +6,11 @@ import moment from "moment";
 import logo from "../assests/nilgiri_transparent.png";
 
 function Announcements() {
+
+    React.useEffect(() => {
+        document.title = 'Nilgiri Announcements'
+    }, []);
+
     const size = useWindowSize();
 
     return (
@@ -106,15 +111,7 @@ function Announcements() {
                         So please fill this <a href={'https://forms.gle/xALs8NTencD12kqd6'} target={'_blank'}> G Form </a>
                         given to opt your membership.
                     </CardText>
-                    <CardText style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
-                        fontSize: 'medium', fontWeight: 'bold'}}>
-                        {moment('2021-07-13').format("MMM Do YY")} : Please write an essay on the advantages and
-                        disadvantages of learning English remotely as a part of the course. You may write about the English
-                        course content and features that you like and dislike the most. The maximum word limit is 400 words
-                        or a one-word page. The essays will be evaluated randomly and given feedbacks.
-                        Use this <a href={'https://forms.gle/XVaUmTCS7vHny9hw6'} target={'_blank'}> G Form </a> to submit
-                        your essay. Deadline: 16th July (11.00 pm)
-                    </CardText>
+
                 </CardBody>
             </Card>
         </div>

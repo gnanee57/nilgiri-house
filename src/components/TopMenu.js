@@ -41,39 +41,42 @@ class TopMenu extends Component {
                   mode="horizontal"
                   style={this.centerStyle}>
                 <Menu.Item key="/home" icon={<HomeIcon fontSize="small"/>}>Home
-                    <Link to={"/home"}></Link>
+                    <Link to={"/home"}/>
                 </Menu.Item>
                 <SubMenu key="/clubs" icon={<GroupWorkIcon fontSize="small"/>} title="Clubs">
                     <Menu.ItemGroup>
                         <Menu.Item key="/clubs">Clubs :: Rules
-                            <Link to={"/clubs"}></Link>
+                            <Link to={"/clubs"}/>
                         </Menu.Item>
                         <Menu.Item key="/clubs/clubsList">List of Clubs
-                            <Link to={"/clubs/clubsList"}></Link>
+                            <Link to={"/clubs/clubsList"}/>
                         </Menu.Item>
                         <Menu.Item key="clubRegister">New Club Registration
-                            <Link to={"#"}></Link>
+                            <Link to={"#"}/>
                         </Menu.Item>
                     </Menu.ItemGroup>
                 </SubMenu>
                 <SubMenu key="/events/eventsCalendar" icon={<EventIcon fontSize="small"/>} title="Events">
                     <Menu.ItemGroup>
+                        <Menu.Item key="/events">Past Events
+                            <Link to={"/events"}/>
+                        </Menu.Item>
                         <Menu.Item key="/events/eventsCalendar">Events :: Calendar
-                            <Link to={"/events/eventsCalendar"}></Link>
+                            <Link to={"/events/eventsCalendar"}/>
                         </Menu.Item>
                         <Menu.Item key="/events/eventRegistration">Event Registration
-                            <Link to={"/events/eventRegistration"}></Link>
+                            <Link to={"/events/eventRegistration"}/>
                         </Menu.Item>
                     </Menu.ItemGroup>
                 </SubMenu>
                 <Menu.Item key="/wall" icon={<PhotoLibraryIcon fontSize="small"/>}>Wall
-                    <Link to={"/wall"}></Link>
+                    <Link to={"/wall"}/>
                 </Menu.Item>
                 <Menu.Item key="/houseCouncil" icon={<AccountBalanceIcon fontSize="small"/>}>House Council
-                    <Link to={"/houseCouncil"}></Link>
+                    <Link to={"/houseCouncil"}/>
                 </Menu.Item>
                 <Menu.Item key="/about" icon={<InfoIcon fontSize="small"/>}>About us
-                    <Link to={"/about"}></Link>
+                    <Link to={"/about"}/>
                 </Menu.Item>
                 <Menu.Item key="iitmHome">
                     <a href="https://onlinedegree.iitm.ac.in/" target="_blank" rel="noopener noreferrer">
