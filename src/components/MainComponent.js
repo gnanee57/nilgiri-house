@@ -143,7 +143,11 @@ function Main(props) {
                 <Route
                     exact
                     path="/clubs/clubsList"
-                    component={() => (<ClubsList/>)}
+                    component={() => (<ClubsList
+                        clubs={props.clubs.clubs}
+                        clubsLoading={props.clubs.isLoading}
+                        clubsErrMess={props.clubs.errMess}
+                    />)}
                 />
                 <Route
                     path="/events/eventsCalendar"

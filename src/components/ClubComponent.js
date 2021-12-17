@@ -25,7 +25,7 @@ function Club() {
     return (
         <div>
             <Jumbotron className={'col-md-12 d-none d-sm-block'}>
-                <img src={club} width={size.width  - 17} height="500" />
+                <img src={"https://qutguild.com/pageassets/clubs/Web-Banner_Clubs-Societies.jpg"} width={size.width  - 17} height="500" />
             </Jumbotron>
             <div className={'container-fluid'}>
                 <div className={'row'}>

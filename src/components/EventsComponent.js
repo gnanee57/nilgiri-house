@@ -207,6 +207,10 @@ const PastEvents = (props) => {
 
 export default function Events(props) {
 
+    React.useEffect(() => {
+        document.title = 'Nilgiri Events';
+    }, []);
+
     const size = useWindowSize();
 
     return (

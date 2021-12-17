@@ -67,6 +67,9 @@ class TopMenu extends Component {
                         <Menu.Item key="/events/eventRegistration">Event Registration
                             <Link to={"/events/eventRegistration"}/>
                         </Menu.Item>
+                        <Menu.Item key="/events/certificates">Verify Certicates
+                            <Link to={"/events/certificates"}/>
+                        </Menu.Item>
                     </Menu.ItemGroup>
                 </SubMenu>
                 <Menu.Item key="/wall" icon={<PhotoLibraryIcon fontSize="small"/>}>Wall
