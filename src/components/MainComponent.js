@@ -15,6 +15,8 @@ import Announcements from "./Announcements";
 import GrievanceForm from "./GrievanceForm"
 import FooterPage from "./FooterComponent";
 import EventRegistration from "./EventRegistration";
+import FetchCertificate from "./FetchCertificate";
+import VerifyCertificates from './VerifyCertificate';
 import {fetchBirthday, fetchStudentDetails, fetchEvents, fetchWallContent,
     fetchClubs, fetchHouseCouncil, fetchCertificates,
     postEvent, postGrievance } from "../redux/ActionCreators";
@@ -61,8 +63,8 @@ const mapDispatchToProps = dispatch => ({
     fetchHouseCouncil: () => {
         dispatch(fetchHouseCouncil());
     },
-    fetchCertificates: () => {
-        dispatch(fetchCertificates());
+    fetchCertificates: (certId) => {
+        dispatch(fetchCertificates(certId));
     }
 
 });
@@ -72,14 +74,19 @@ function Main(props) {
 
     const [studentId, setStudentId] = useState();
 
+    const [certId, setCertId] = useState();
+
     const handleSearch = rollNum => {
         setStudentId(rollNum);
+    }
+
+    const handleCertSearch = certId => {
+        setCertId(certId);
     }
 
     useEffect(async() => {
         props.fetchStudentDetails(studentId);
     }, [studentId]);
-
 
     useEffect(async() => {
         props.fetchBirthday();
@@ -102,8 +109,8 @@ function Main(props) {
     }, []);
 
     useEffect(async() => {
-        props.fetchCertificates();
-    }, []);
+        props.fetchCertificates(certId);
+    }, [certId]);
 
 
 
@@ -143,6 +150,18 @@ function Main(props) {
                     component={() => (<EventsCalendar />)}
                 />
                 <Route
+                    path="/events/eventRegistration"
+                    component={() => (<EventRegistration
+                        postEvent = {props.postEvent}
+                    />)}
+                />
+
+                <Route
+                    path="/events/certificates"
+                    component={() => (<FetchCertificate />)}
+                />
+
+                <Route
                     path="/events"
                     component={() => (<Events
                         events={props.events.events}
@@ -151,11 +170,15 @@ function Main(props) {
                     />)}
                 />
                 <Route
-                    path="/events/eventRegistration"
-                    component={() => (<EventRegistration
-                        postEvent = {props.postEvent}
+                    path={"/certificates/search"}
+                    component={() => (<VerifyCertificates
+                        handleCertSearch = {handleCertSearch}
+                        certificates={props.certificates.certificates}
+                        certificatesLoading={props.certificates.isLoading}
+                        certificatesErrMess={props.certificates.errMess}
                     />)}
                 />
+
                 <Route
                     path="/wall"
                     component={() => (

@@ -225,10 +225,10 @@ export const addHouseCouncil = (houseCouncil) => ({
     payload: houseCouncil
 });
 
-export const fetchCertificates = () => (dispatch) => {
+export const fetchCertificates = (certId) => (dispatch) => {
 
     dispatch(certificatesLoading(true));
-    return fetch(baseUrl + 'certificates')
+    return fetch(baseUrl + 'certificate/' + certId)
         .then(response => {
             if (response.ok) {
                 return response;
