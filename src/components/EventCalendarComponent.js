@@ -6,13 +6,9 @@ import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import listPlugin from '@fullcalendar/list';
 import Button from '@material-ui/core/Button';
-import {Card, CardBody, CardFooter, CardHeader, CardSubtitle, CardText, CardTitle, Jumbotron} from "reactstrap";
-import eventBanner from "../assests/jumbotron/nilgiri_events.jpg";
-import useWindowSize from "./useWindowSize";
+import {Card, CardBody, CardFooter, CardHeader, CardSubtitle, CardText, CardTitle} from "reactstrap";
 import moment from "moment";
 import {CardActions} from "@material-ui/core";
-import logo from "../assests/nilgiri_transparent.png";
-
 
 function EventsCalendar() {
 
@@ -209,43 +205,12 @@ function EventsCalendar() {
         }
     };
 
-    const size = useWindowSize();
-
     return (
         <div>
-            <Jumbotron className={'col-md-12 d-none d-xl-block'}>
-                <img src={eventBanner} width={size.width  - 17} height="500" />
-            </Jumbotron>
-            <Jumbotron className='col-md-12 d-xl-none' style={{
-                backgroundColor: "#c6c4ff"
-            }}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 col-sm-6 align-self-center mt-2">
-                            <CardTitle tag="h5" style={{
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                color: 'floralwhite',
-                                fontFamily : 'Trebuchet MS',
-                                fontSize: 'xx-large',
-                                fontWeight: 'bold'
-                            }}>Events</CardTitle>
-                            <CardTitle tag="h5" style={{
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                color: 'floralwhite',
-                                fontFamily : 'Trebuchet MS',
-                                fontSize: 'large',
-                                fontWeight: 'bold'
-                            }}> Fun on the way... </CardTitle>
-                        </div>
-                        <div className="col-12 col-sm-3 align-self-center mt-2"/>
-                        <div className="col-12 col-sm-3 align-self-center mt-2">
-                            <img src={logo} className="img-fluid" />
-                        </div>
-                    </div>
-                </div>
-            </Jumbotron>
+            <div className="jumbotron jumbotron-fluid" style={{
+                backgroundImage : 'url("https://drive.google.com/uc?export=download&id=1iev3zMjNCzW42SKj_QEDVroqC3-zyXBc")',
+                backgroundSize : 'cover'
+            }} />
             <div className="container-fluid">
                 <div className="row m-4">
                     <div className="col-12 col-lg-7">

@@ -1,7 +1,5 @@
 import React from "react";
-import useWindowSize from "./useWindowSize";
-import {Card, CardBody, CardHeader, CardText, CardTitle, Jumbotron} from "reactstrap";
-import club from "../assests/jumbotron/clubs.jpg";
+import {Card, CardBody, CardHeader, CardText, CardTitle} from "reactstrap";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
@@ -20,13 +18,14 @@ function Club() {
     }, []);
 
     const classes = useStyles();
-    const size = useWindowSize();
 
     return (
         <div>
-            <Jumbotron className={'col-md-12 d-none d-sm-block'}>
-                <img src={"https://qutguild.com/pageassets/clubs/Web-Banner_Clubs-Societies.jpg"} width={size.width  - 17} height="500" />
-            </Jumbotron>
+            <div className="jumbotron jumbotron-fluid" style={{backgroundImage :
+                    "url('https://qutguild.com/pageassets/clubs/Web-Banner_Clubs-Societies.jpg')",
+                backgroundSize : 'cover',
+                opacity: '0.8'
+            }} />
             <div className={'container-fluid'}>
                 <div className={'row'}>
                     <div className={'col-md-12'}>

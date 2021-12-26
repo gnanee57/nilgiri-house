@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import "../../node_modules/video-react/dist/video-react.css"; // import css
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,7 +7,7 @@ import {
     Card,
     CardFooter,
     CardImg,
-    CardSubtitle, CardTitle,
+    CardSubtitle,
 } from "reactstrap";
 import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
@@ -25,10 +25,7 @@ import {
     VolumeMenuButton
 } from 'video-react';
 import {Description, BrushSharp, DevicesOther, MusicNote, PhotoCamera} from "@material-ui/icons";
-import wall from "../assests/jumbotron/nilgiri_gallery.jpg";
-import {Jumbotron} from "reactstrap";
 import useWindowSize from "./useWindowSize";
-import logo from "../assests/nilgiri_transparent.png";
 import {Loading} from "./LoadingComponent";
 
 
@@ -164,39 +161,11 @@ function Wall(props) {
     } else {
         return (
             <div className={classes.root}>
-                <Jumbotron className={'col-md-12 d-none d-xl-block'}>
-                    <img src={wall} width={size.width - 17} height="500"/>
-                </Jumbotron>
-                <Jumbotron className='col-md-12 d-xl-none' style={{
-                    backgroundColor: "#c6c4ff"
-                }}>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-12 col-sm-6 align-self-center mt-2">
-                                <CardTitle tag="h5" style={{
-                                    justifyContent: 'center',
-                                    textAlign: 'center',
-                                    color: 'floralwhite',
-                                    fontFamily: 'Trebuchet MS',
-                                    fontSize: 'xx-large',
-                                    fontWeight: 'bold'
-                                }}>Nilgiri Wall</CardTitle>
-                                <CardTitle tag="h5" style={{
-                                    justifyContent: 'center',
-                                    textAlign: 'center',
-                                    color: 'floralwhite',
-                                    fontFamily: 'Trebuchet MS',
-                                    fontSize: 'large',
-                                    fontWeight: 'bold'
-                                }}> A place full of talents... </CardTitle>
-                            </div>
-                            <div className="col-12 col-sm-3 align-self-center mt-2"/>
-                            <div className="col-12 col-sm-3 align-self-center mt-2">
-                                <img src={logo} className="img-fluid"/>
-                            </div>
-                        </div>
-                    </div>
-                </Jumbotron>
+                <div className="jumbotron jumbotron-fluid" style={{
+                    backgroundImage : 'url("https://drive.google.com/uc?export=download&id=18-Trf02QkPJyGRoUh-G-g4lgzBaU1HyC")',
+                    backgroundSize : 'cover',
+                    opacity: '0.8'
+                }} />
                 <AppBar position="static" color="default">
                     <Tabs
                         classes={{root: classes.root, scroller: classes.scroller}}
@@ -214,7 +183,6 @@ function Wall(props) {
                         <Tab icon={<DevicesOther/>} label="OTHERS" {...a11yProps(4)} />
                     </Tabs>
                 </AppBar>
-                {console.log(props.wallContent.filter(content => content["tabId"] === 2))}
                 <TabPanel value={active} index={0}>
                     <RenderContent
                         wallContent={props.wallContent.filter(content => content.tabId === 0)}
@@ -245,6 +213,6 @@ function Wall(props) {
             </div>
         );
     }
-};
+}
 
 export default Wall;

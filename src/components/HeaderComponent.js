@@ -75,7 +75,7 @@ export default function Header() {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" style={{ background: '#0900ff' }} color={"transparent"}>
+            <AppBar position="static" style={{background: "linear-gradient(315deg, #2a2a72 0%, #009ffd 74%)",}} color={"transparent"}>
                 <Toolbar>
                     <IconButton
                         size="large"

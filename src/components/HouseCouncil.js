@@ -1,11 +1,8 @@
 import React from "react";
-import useWindowSize from "./useWindowSize";
-import {Card, CardBody, CardGroup, CardHeader, CardImg, CardSubtitle, CardText, CardTitle, Jumbotron,} from "reactstrap";
-import houseCouncil from "../assests/jumbotron/nilgiri_council.jpg";
+import {Card, CardBody, CardGroup, CardHeader, CardImg, CardSubtitle, CardText, CardTitle} from "reactstrap";
 import houseStructure from '../assests/structure.png';
 import {makeStyles} from "@material-ui/core/styles";
 import {Avatar} from "@material-ui/core";
-import logo from "../assests/nilgiri_transparent.png";
 import {Loading} from "./LoadingComponent";
 
 const useStyles1 = makeStyles((theme) => ({
@@ -56,7 +53,6 @@ function HouseCouncil(props) {
 
     const classes = useStyles1();
     const classes1 = useStyles2();
-    const size = useWindowSize();
 
     if (props.houseCouncilLoading) {
         return (
@@ -69,39 +65,11 @@ function HouseCouncil(props) {
     } else {
         return (
             <div>
-                <Jumbotron className={'col-md-12 d-none d-xl-block'}>
-                    <img src={houseCouncil} width={size.width - 17} height="500"/>
-                </Jumbotron>
-                <Jumbotron className='col-md-12 d-xl-none' style={{
-                    backgroundColor: "#c6c4ff"
-                }}>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-12 col-sm-6 align-self-center mt-2">
-                                <CardTitle tag="h5" style={{
-                                    justifyContent: 'center',
-                                    textAlign: 'center',
-                                    color: 'floralwhite',
-                                    fontFamily: 'Trebuchet MS',
-                                    fontSize: 'xx-large',
-                                    fontWeight: 'bold'
-                                }}>House Council</CardTitle>
-                                <CardTitle tag="h5" style={{
-                                    justifyContent: 'center',
-                                    textAlign: 'center',
-                                    color: 'floralwhite',
-                                    fontFamily: 'Trebuchet MS',
-                                    fontSize: 'large',
-                                    fontWeight: 'bold'
-                                }}> Catalyts for change... </CardTitle>
-                            </div>
-                            <div className="col-12 col-sm-3 align-self-center mt-2"/>
-                            <div className="col-12 col-sm-3 align-self-center mt-2">
-                                <img src={logo} className="img-fluid"/>
-                            </div>
-                        </div>
-                    </div>
-                </Jumbotron>
+                <div className="jumbotron jumbotron-fluid" style={{
+                    backgroundImage : 'url("https://drive.google.com/uc?export=download&id=1qO5xSdbYBpkvvqMLrvbWCObV5o9dCweC")',
+                    backgroundSize : 'cover',
+                    opacity: '0.8'
+                }} />
                 <div className={'container-fluid'}>
                     <div className={'row'}>
                         <div className={'col-md-6'}>

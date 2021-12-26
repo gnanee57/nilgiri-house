@@ -11,7 +11,9 @@ import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 function FooterPage(){
     return (
-        <Footer color="primary-color" className="page-footer font-small pt-4 mt-4">
+        <Footer style={{backgroundColor: '#537895',
+                backgroundImage: 'linear-gradient(315deg, #537895 0%, #09203f 74%)'}}
+                className="page-footer font-small pt-4 mt-4">
             {/*<div className="text-center">
                 <ul className="list-unstyled list-inline">
                     <li className="list-inline-item"><a className="btn-floating btn-sm btn-fb mx-1"><FacebookIcon /></a></li>

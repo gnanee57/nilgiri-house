@@ -293,7 +293,6 @@ function BirthdaySegment(props) {
                 </CardHeader>
                 <div>
                     <CardImg src={birthdayPic} alt="Card image cap"/>
-                    {console.log('No Birthday Today')}
                 </div>
                 <CardFooter style={{backgroundColor: '#e6e5ff'}}>
                     <CardText style={{
@@ -771,49 +770,50 @@ function Home(props) {
 
     return(
         <React.Fragment>
-            <div className="jumbotron jumbotron-fluid d-none d-md-block">
-                <video preload muted autoPlay loop>
-                    <source src={'https://drive.google.com/uc?export=download&id=1c6znDeRilY72gWT58SzF1sT26xLzSZ9k'}
-                            type="video/mp4"/>
-                </video>
-                    <div className="container text-center">
-                        <div className="col-12">
-                            <div className="wow fadeInDown" data-wow-delay="0.2s">
-                            <h1 style={{
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                color: 'floralwhite',
-                                fontFamily : 'Trebuchet MS',
-                                textTransform: 'uppercase',
-                                fontSize : '80px',
-                                fontWeight: 'bold'
-                            }}>Nilgiri House <br/>
-                                <hr style={{ height: "5px",
-                                    border:'none'}} />
-                            </h1>
-                            </div>
-                            <div className="wow fadeInUp" data-wow-delay="0.3s">
-                            <p className="lead" style={{
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                color: 'dark-grey',
-                                textTransform: 'capitalize',
-                                fontSize : '30px',
-                                fontFamily : 'Trebuchet MS',
-                                fontWeight: 'bold'
-                            }}>Nearer to the House, Closer to your heart!</p>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            <div className="jumbotron jumbotron-fluid d-none d-sm-block d-md-none">
-                <video preload muted autoPlay loop>
-                    <source src={'https://drive.google.com/uc?export=download&id=1c6znDeRilY72gWT58SzF1sT26xLzSZ9k'}
-                            type="video/mp4"/>
-                </video>
+            <div className="jumbotron jumbotron-fluid d-none d-md-block" style={{backgroundImage :
+            "url('https://drive.google.com/uc?export=download&id=1xHXG3-8Rm_KjbggCjo7nhZUeHafcEWV1')",
+            backgroundSize : 'cover',
+            opacity: '0.8'
+            }}>
                 <div className="container text-center">
                     <div className="col-12">
-                        <div className="wow fadeInDown" data-wow-delay="0.2s">
+                        <div className="wow fadeInDown" data-wow-delay="0.5s">
+                        <h1 style={{
+                            justifyContent: 'center',
+                            textAlign: 'center',
+                            color: 'floralwhite',
+                            fontFamily : 'Trebuchet MS',
+                            textTransform: 'uppercase',
+                            fontSize : '80px',
+                            fontWeight: 'bold'
+                        }}>Nilgiri House <br/>
+                            <hr style={{ height: "5px",
+                                border:'none'}} />
+                        </h1>
+                        </div>
+                        <div className="wow fadeInUp" data-wow-delay="0.8s">
+                        <p className="lead" style={{
+                            justifyContent: 'center',
+                            textAlign: 'center',
+                            color: 'black',
+                            opacity: '1',
+                            textTransform: 'capitalize',
+                            fontSize : '30px',
+                            fontFamily : 'Trebuchet MS',
+                            fontWeight: 'bold'
+                        }}>Nearer to the House, Closer to your heart!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="jumbotron jumbotron-fluid d-none d-sm-block d-md-none" style={{backgroundImage :
+                    "url('https://drive.google.com/uc?export=download&id=1xHXG3-8Rm_KjbggCjo7nhZUeHafcEWV1')",
+                backgroundSize : 'cover',
+                opacity: '0.7'
+            }}>
+                <div className="container text-center">
+                    <div className="col-12">
+                        <div className="wow fadeInDown" data-wow-delay="0.5s">
                         <h1 style={{
                             justifyContent: 'center',
                             textAlign: 'center',
@@ -827,7 +827,7 @@ function Home(props) {
                                 border:'none'}} />
                         </h1>
                         </div>
-                        <div className="wow fadeInUp" data-wow-delay="0.2s">
+                        <div className="wow fadeInUp" data-wow-delay="0.8s">
                         <p className="lead" style={{
                             justifyContent: 'center',
                             textAlign: 'center',
@@ -841,14 +841,14 @@ function Home(props) {
                     </div>
                 </div>
             </div>
-            <div className="jumbotron jumbotron-fluid d-block d-sm-none">
-                <video preload muted autoPlay loop>
-                    <source src={'https://drive.google.com/uc?export=download&id=1c6znDeRilY72gWT58SzF1sT26xLzSZ9k'}
-                            type="video/mp4"/>
-                </video>
+            <div className="jumbotron jumbotron-fluid d-block d-sm-none" style={{backgroundImage :
+                    "url('https://drive.google.com/uc?export=download&id=1xHXG3-8Rm_KjbggCjo7nhZUeHafcEWV1')",
+                backgroundSize : 'cover',
+                opacity: '0.7'
+            }}>
                 <div className="container text-center">
                     <div className="col-12">
-                        <div className="wow fadeInDown" data-wow-delay="0.2s">
+                        <div className="wow fadeInDown" data-wow-delay="0.5s">
                         <h1 style={{
                             justifyContent: 'center',
                             textAlign: 'center',
@@ -862,7 +862,7 @@ function Home(props) {
                                 border:'none'}} />
                         </h1>
                         </div>
-                        <div className="wow fadeInUp" data-wow-delay="0.2s">
+                        <div className="wow fadeInUp" data-wow-delay="0.8s">
                         <p className="lead" style={{
                             justifyContent: 'center',
                             textAlign: 'center',

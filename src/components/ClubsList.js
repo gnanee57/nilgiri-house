@@ -1,7 +1,4 @@
 import React from "react";
-import useWindowSize from "./useWindowSize";
-import {Jumbotron, Media} from "reactstrap";
-import clubList from "../assests/jumbotron/listClubs.png";
 import {Loading} from "./LoadingComponent";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -17,8 +14,6 @@ function ClubsList(props) {
         document.title = 'Nilgiri Clubs & Societies';
     }, []);
 
-    const size = useWindowSize();
-
 
     if (props.clubsLoading) {
         return (
@@ -31,9 +26,11 @@ function ClubsList(props) {
     } else {
         return (
             <div>
-                <Jumbotron className={'col-md-12 d-none d-sm-block'}>
-                    <img src={clubList} width={size.width - 17} height="500"/>
-                </Jumbotron>
+                <div className="jumbotron jumbotron-fluid" style={{
+                    backgroundImage : 'url("https://drive.google.com/uc?export=download&id=1qOGyA6kyuDWhoZtvltf8Or1QSIUUUmdR")',
+                    backgroundSize : 'cover',
+                    opacity: '0.8'
+                }} />
                 <div className="container-fluid">
                     <section className="mt-5 mb-5">
                         <h4 className="text-center dark-grey-text mb-5 pt-3 wow fadeIn" data-wow-delay="0.2s" style={{

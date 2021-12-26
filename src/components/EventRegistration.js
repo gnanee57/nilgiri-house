@@ -3,12 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker,} from '@material-ui/pickers';
-import {Grid, MenuItem,} from "@material-ui/core";
+import {MenuItem,} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import register from "../assests/jumbotron/nilgiri_register.jpg";
-import {CardTitle, Jumbotron} from "reactstrap";
-import useWindowSize from "./useWindowSize";
-import logo from "../assests/nilgiri_transparent.png";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -97,42 +93,13 @@ export default function EventRegistration(props) {
     }
 
     const classes = useStyles();
-    const size = useWindowSize();
+
     return (
         <div>
-            <Jumbotron className={'col-md-12 d-none d-xl-block'}>
-                <img src={register} width={size.width  - 17} height="500" />
-            </Jumbotron>
-            <Jumbotron className='col-md-12 d-xl-none' style={{
-                backgroundColor: "#c6c4ff"
-            }}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 col-sm-6 align-self-center mt-2">
-                            <CardTitle tag="h5" style={{
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                color: 'floralwhite',
-                                fontFamily : 'Trebuchet MS',
-                                fontSize: 'xx-large',
-                                fontWeight: 'bold'
-                            }}>Event Registration</CardTitle>
-                            <CardTitle tag="h5" style={{
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                color: 'floralwhite',
-                                fontFamily : 'Trebuchet MS',
-                                fontSize: 'large',
-                                fontWeight: 'bold'
-                            }}> Register your event... </CardTitle>
-                        </div>
-                        <div className="col-12 col-sm-3 align-self-center mt-2"/>
-                        <div className="col-12 col-sm-3 align-self-center mt-2">
-                            <img src={logo} className="img-fluid" />
-                        </div>
-                    </div>
-                </div>
-            </Jumbotron>
+            <div className="jumbotron jumbotron-fluid" style={{
+                backgroundImage : 'url("https://drive.google.com/uc?export=download&id=1RXF7b8o33B-xsW80BPaiZEfxM-C0GDCa")',
+                backgroundSize : 'cover'
+            }} />
             <div className="container-fluid">
                 <div className="row m-5">
                     <div className="col-12 col-md-6">

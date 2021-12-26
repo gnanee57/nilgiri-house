@@ -5,11 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {CardTitle, Jumbotron} from "reactstrap";
-import eventBanner from "../assests/jumbotron/nilgiri_events.jpg";
-import logo from "../assests/nilgiri_transparent.png";
 import {Loading} from "./LoadingComponent";
-import useWindowSize from "./useWindowSize";
 import {ExpandMore} from "@material-ui/icons";
 import {Collapse} from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -61,27 +57,6 @@ const PastEvents = (props) => {
                 );
             }
         }
-        if(props.event.eventStartDate === props.event.eventEndDate) {
-            return (
-                <Typography variant="body2" color="text.secondary">
-                    {moment(props.event.eventStartDate).format("MMM Do YY")}
-                    &nbsp; {moment(props.event.eventStartTime, 'hh:mm a').format("LT")}  &nbsp; -
-                    &nbsp; {moment(props.event.eventEndTime, 'hh:mm a').format("LT")}
-                    <br/><br/>
-                    Venue: {props.event.venue} <br/>
-                </Typography>
-            );
-        }
-        else {
-            return (
-                <Typography variant="body2" color="text.secondary">
-                    {moment(props.event.eventStartDate).format("MMM Do YY")} - {moment(props.event.eventEndDate).format("MMM Do YY")}
-                    <br/>
-                    Venue: {props.event.venue} <br/>
-                </Typography>
-            );
-        }
-
     }
     const CardDescription = (props) => {
         const [expanded, setExpanded] = React.useState(false);
@@ -211,43 +186,13 @@ export default function Events(props) {
         document.title = 'Nilgiri Events';
     }, []);
 
-    const size = useWindowSize();
-
     return (
         <React.Fragment>
-            <Jumbotron className={'col-md-12 d-none d-xl-block'}>
-                <img src={eventBanner} width={size.width - 17} height="500"/>
-            </Jumbotron>
-            <Jumbotron className='col-md-12 d-xl-none' style={{
-                backgroundColor: "#c6c4ff"
-            }}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 col-sm-6 align-self-center mt-2">
-                            <CardTitle tag="h5" style={{
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                color: 'floralwhite',
-                                fontFamily: 'Trebuchet MS',
-                                fontSize: 'xx-large',
-                                fontWeight: 'bold'
-                            }}>Events</CardTitle>
-                            <CardTitle tag="h5" style={{
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                color: 'floralwhite',
-                                fontFamily: 'Trebuchet MS',
-                                fontSize: 'large',
-                                fontWeight: 'bold'
-                            }}> Fun on the way... </CardTitle>
-                        </div>
-                        <div className="col-12 col-sm-3 align-self-center mt-2"/>
-                        <div className="col-12 col-sm-3 align-self-center mt-2">
-                            <img src={logo} className="img-fluid"/>
-                        </div>
-                    </div>
-                </div>
-            </Jumbotron>
+            <div className="jumbotron jumbotron-fluid" style={{
+                backgroundImage : 'url("https://drive.google.com/uc?export=download&id=1dflPoHrKCFLgItjWy9QFdLLIaxgu8jqG")',
+                backgroundSize : 'cover',
+                opacity: '0.8'
+            }} />
             <PastEvents events={props.events}
                         eventsLoading={props.eventsLoading}
                         eventsErrMess={props.eventsErrMess}/>

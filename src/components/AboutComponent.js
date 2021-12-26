@@ -1,7 +1,5 @@
 import React from "react";
-import useWindowSize from "./useWindowSize";
-import {Card, CardBody, CardHeader, CardSubtitle, CardText, CardTitle, Jumbotron} from "reactstrap";
-import aboutBanner from "../assests/jumbotron/nilgiri_about.jpg";
+import {Card, CardBody, CardHeader, CardSubtitle, CardText, CardTitle} from "reactstrap";
 import logo from "../assests/nilgiri_transparent.png";
 import { makeStyles } from '@material-ui/core/styles';
 import Timeline from '@material-ui/lab/Timeline';
@@ -126,43 +124,14 @@ function About() {
         document.title = 'Nilgiri : About Us'
     }, []);
 
-    const size = useWindowSize();
 
     return (
         <div>
-            <Jumbotron className={'col-md-12 d-none d-xl-block'}>
-                <img src={aboutBanner} width={size.width  - 17} height="500" />
-            </Jumbotron>
-            <Jumbotron className='col-md-12 d-xl-none' style={{
-                backgroundColor: "#c6c4ff"
-            }}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 col-sm-6 align-self-center mt-2">
-                            <CardTitle tag="h5" style={{
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                color: 'floralwhite',
-                                fontFamily : 'Trebuchet MS',
-                                fontSize: 'xx-large',
-                                fontWeight: 'bold'
-                            }}>About Us</CardTitle>
-                            <CardTitle tag="h5" style={{
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                color: 'floralwhite',
-                                fontFamily : 'Trebuchet MS',
-                                fontSize: 'large',
-                                fontWeight: 'bold'
-                            }}>Nilgiris and more... </CardTitle>
-                        </div>
-                        <div className="col-12 col-sm-3 align-self-center mt-2"/>
-                        <div className="col-12 col-sm-3 align-self-center mt-2">
-                            <img src={logo} className="img-fluid" />
-                        </div>
-                    </div>
-                </div>
-            </Jumbotron>
+            <div className="jumbotron jumbotron-fluid" style={{
+                backgroundImage : 'url("https://drive.google.com/uc?export=download&id=11jK5JEA2phJiDBEdJYy2JY68S0f7o6F8")',
+                backgroundSize : 'cover',
+                opacity: '0.8'
+            }} />
             <div className="container-fluid">
                 <div className="row m-4">
                     <div className="col-12 col-md-6">
