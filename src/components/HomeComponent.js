@@ -638,7 +638,6 @@ function HouseDetails(props) {
     }
 
     const StudentDetails = () => {
-        {console.log(props.studentDetails)}
         if (props.studentDetailsLoading) {
             return (
                 <Loading />

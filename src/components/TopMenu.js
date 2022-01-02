@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import "antd/dist/antd.css";
 import {Menu} from 'antd';
 import {Link, withRouter} from "react-router-dom";
@@ -56,7 +56,7 @@ class TopMenu extends Component {
                         </Menu.Item>
                     </Menu.ItemGroup>
                 </SubMenu>
-                <SubMenu key="/events/eventsCalendar" icon={<EventIcon fontSize="small"/>} title="Events">
+                <SubMenu key="/events" icon={<EventIcon fontSize="small"/>} title="Events">
                     <Menu.ItemGroup>
                         <Menu.Item key="/events">Past Events
                             <Link to={"/events"}/>

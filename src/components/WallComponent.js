@@ -25,7 +25,6 @@ import {
     VolumeMenuButton
 } from 'video-react';
 import {Description, BrushSharp, DevicesOther, MusicNote, PhotoCamera} from "@material-ui/icons";
-import useWindowSize from "./useWindowSize";
 import {Loading} from "./LoadingComponent";
 
 
@@ -144,7 +143,6 @@ function Wall(props) {
     }, []);
 
     const classes = useStyles();
-    const size = useWindowSize();
     const [active, setActive] = React.useState(0);
 
     const handleChange = (event, newValue) => {

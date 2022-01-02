@@ -1,18 +1,9 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {Loading} from "./LoadingComponent";
 
 
 
 class VerifyCertificates extends Component {
-
-    /*static propTypes = {
-        location: PropTypes.object.isRequired
-    }*/
-
-    constructor(props) {
-        super(props);
-    }
 
     url = window.location.href;
 

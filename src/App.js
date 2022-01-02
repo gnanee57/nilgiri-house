@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import WOW from 'wowjs';
 import {BrowserRouter} from 'react-router-dom';
 import './App.css';
@@ -9,6 +9,7 @@ import { ConfigureStore } from './redux/configureStore';
 const store = ConfigureStore();
 
 function App() {
+
     useEffect(() => {
         new WOW.WOW({
             live: false
@@ -18,9 +19,7 @@ function App() {
     return (
         <Provider store={store}>
             <BrowserRouter>
-                <div>
-                    <Main />
-                </div>
+                <Main />
             </BrowserRouter>
         </Provider>
 

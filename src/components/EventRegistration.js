@@ -5,6 +5,8 @@ import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker,} from '@material-ui/pickers';
 import {MenuItem,} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import {useDispatch} from "react-redux";
+import {postEvent} from "../redux/ActionCreators";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +26,8 @@ export default function EventRegistration(props) {
     React.useEffect(() => {
         document.title = 'Nilgiri Events Registration'
     }, []);
+
+    const dispatch = useDispatch();
 
     const [eventName, setEventName] = useState('');
     const [eventDescription, setEventDescription] = useState('');
@@ -86,9 +90,9 @@ export default function EventRegistration(props) {
         } catch (err) {
             console.log(err);
         }*/
-        props.postEvent(eventName, eventDescription, tag, hostName, hostEmail,
+        dispatch(postEvent(eventName, eventDescription, tag, hostName, hostEmail,
             anyCoHost, coHostName, coHostEmail, noParticipants, maxParticipants, mode, selectedDate,
-            startTime, endTime, support);
+            startTime, endTime, support));
         resetForm();
     }
 

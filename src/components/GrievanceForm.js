@@ -3,6 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import {MenuItem} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import {postGrievance} from "../redux/ActionCreators";
+import {useDispatch} from "react-redux";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -18,11 +20,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function GrievanceForm(props) {
+export default function GrievanceForm() {
 
     React.useEffect(() => {
         document.title = 'Nilgiri Grievance Redressal'
     }, []);
+
+    const dispatch = useDispatch();
 
     const [studentName, setStudentName] = useState('');
     const [studentId, setStudentId] = useState('');
@@ -42,7 +46,7 @@ export default function GrievanceForm(props) {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        props.postGrievance(studentName, studentId, type, grievance, anyAssistance);
+        dispatch(postGrievance(studentName, studentId, type, grievance, anyAssistance));
         resetForm();
     }
 
@@ -148,7 +152,7 @@ export default function GrievanceForm(props) {
                             </div>
                         </form>
                     </div>
-                    <div className="col-12 col-md-6 mt-5">
+                    <div className="col-12 col-md-6 mt-5 d-none d-lg-block">
                         <img height="500px" width="550px" src={'https://www.privilege.com/lib/img/drawings/complaints-mobile.png'}/>
                     </div>
                 </div>

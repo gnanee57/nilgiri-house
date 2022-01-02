@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Switch, Route, Redirect, withRouter} from "react-router-dom";
-import { connect } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Header from "./HeaderComponent";
 import Navbar from "./TopMenu";
 import Home from "./HomeComponent";
@@ -18,59 +18,20 @@ import EventRegistration from "./EventRegistration";
 import FetchCertificate from "./FetchCertificate";
 import VerifyCertificates from './VerifyCertificate';
 import {fetchBirthday, fetchStudentDetails, fetchEvents, fetchWallContent,
-    fetchClubs, fetchHouseCouncil, fetchCertificates,
-    postEvent, postGrievance } from "../redux/ActionCreators";
-
-const mapStateToProps = state => {
-    return {
-        birthday: state.birthday,
-        studentDetails: state.studentDetails,
-        events: state.events,
-        wallContent: state.wallContent,
-        clubs: state.clubs,
-        houseCouncil: state.houseCouncil,
-        certificates: state.certificates
-    };
-};
+    fetchClubs, fetchHouseCouncil, fetchCertificates} from "../redux/ActionCreators";
 
 
-const mapDispatchToProps = dispatch => ({
-    postEvent: (eventName, eventDescription, tag, hostName, hostEmail,
-                            anyCoHost, coHostName, coHostEmail, noParticipants, maxParticipants, mode, selectedDate,
-                            startTime, endTime, support) =>
-        dispatch(postEvent(eventName, eventDescription, tag, hostName, hostEmail,
-            anyCoHost, coHostName, coHostEmail, noParticipants, maxParticipants, mode, selectedDate,
-            startTime, endTime, support)),
+function Main() {
 
-    postGrievance: (studentName, studentId, type, grievance, anyAssistance) =>
-        dispatch(postGrievance(studentName, studentId, type, grievance, anyAssistance)),
+    const birthday = useSelector(state => state.birthday);
+    const studentDetails =  useSelector(state => state.studentDetails);
+    const events=  useSelector(state => state.events);
+    const wallContent=  useSelector(state => state.wallContent);
+    const clubs=  useSelector(state => state.clubs);
+    const houseCouncil=  useSelector(state => state.houseCouncil);
+    const certificates=  useSelector(state => state.certificates);
 
-    fetchBirthday: () => {
-        dispatch(fetchBirthday());
-    },
-    fetchStudentDetails: (studentId) => {
-        dispatch(fetchStudentDetails(studentId));
-    },
-    fetchEvents: () => {
-        dispatch(fetchEvents());
-    },
-    fetchWallContent: () => {
-        dispatch(fetchWallContent());
-    },
-    fetchClubs: () => {
-        dispatch(fetchClubs());
-    },
-    fetchHouseCouncil: () => {
-        dispatch(fetchHouseCouncil());
-    },
-    fetchCertificates: (certId) => {
-        dispatch(fetchCertificates(certId));
-    }
-
-});
-
-
-function Main(props) {
+    const dispatch = useDispatch();
 
     const [studentId, setStudentId] = useState();
 
@@ -85,31 +46,31 @@ function Main(props) {
     }
 
     useEffect(async() => {
-        props.fetchStudentDetails(studentId);
+        dispatch(fetchStudentDetails(studentId));
     }, [studentId]);
 
     useEffect(async() => {
-        props.fetchBirthday();
+        dispatch(fetchBirthday());
     }, []);
 
     useEffect(async() => {
-        props.fetchEvents();
+        dispatch(fetchEvents());
     }, []);
 
     useEffect(async() => {
-        props.fetchWallContent();
+        dispatch(fetchWallContent());
     }, []);
 
     useEffect(async() => {
-        props.fetchClubs();
+        dispatch(fetchClubs());
     }, []);
 
     useEffect(async() => {
-        props.fetchHouseCouncil();
+        dispatch(fetchHouseCouncil());
     }, []);
 
     useEffect(async() => {
-        props.fetchCertificates(certId);
+        dispatch(fetchCertificates(certId));
     }, [certId]);
 
 
@@ -123,16 +84,16 @@ function Main(props) {
                     path="/home"
                     component={() => (
                         <Home
-                            birthday={props.birthday.birthday}
-                            birthdayLoading={props.birthday.isLoading}
-                            birthdayErrMess={props.birthday.errMess}
-                            featuredContent={props.wallContent.wallContent.filter(content => content.featured === "TRUE")}
-                            featuredContentLoading={props.wallContent.isLoading}
-                            featuredContentErrMess={props.wallContent.errMess}
+                            birthday={birthday.birthday}
+                            birthdayLoading={birthday.isLoading}
+                            birthdayErrMess={birthday.errMess}
+                            featuredContent={wallContent.wallContent.filter(content => content.featured === "TRUE")}
+                            featuredContentLoading={wallContent.isLoading}
+                            featuredContentErrMess={wallContent.errMess}
                             handleSearch = {handleSearch}
-                            studentDetails={props.studentDetails.studentDetails}
-                            studentDetailsLoading={props.studentDetails.isLoading}
-                            studentDetailsErrMess={props.studentDetails.errMess}
+                            studentDetails={studentDetails.studentDetails}
+                            studentDetailsLoading={studentDetails.isLoading}
+                            studentDetailsErrMess={studentDetails.errMess}
                         />
                     )} />
                 <Route
@@ -144,9 +105,9 @@ function Main(props) {
                     exact
                     path="/clubs/clubsList"
                     component={() => (<ClubsList
-                        clubs={props.clubs.clubs}
-                        clubsLoading={props.clubs.isLoading}
-                        clubsErrMess={props.clubs.errMess}
+                        clubs={clubs.clubs}
+                        clubsLoading={clubs.isLoading}
+                        clubsErrMess={clubs.errMess}
                     />)}
                 />
                 <Route
@@ -155,9 +116,7 @@ function Main(props) {
                 />
                 <Route
                     path="/events/eventRegistration"
-                    component={() => (<EventRegistration
-                        postEvent = {props.postEvent}
-                    />)}
+                    component={() => (<EventRegistration />)}
                 />
 
                 <Route
@@ -168,18 +127,18 @@ function Main(props) {
                 <Route
                     path="/events"
                     component={() => (<Events
-                        events={props.events.events}
-                        eventsLoading={props.events.isLoading}
-                        eventsErrMess={props.events.errMess}
+                        events={events.events}
+                        eventsLoading={events.isLoading}
+                        eventsErrMess={events.errMess}
                     />)}
                 />
                 <Route
                     path={"/certificates/search"}
                     component={() => (<VerifyCertificates
                         handleCertSearch = {handleCertSearch}
-                        certificates={props.certificates.certificates}
-                        certificatesLoading={props.certificates.isLoading}
-                        certificatesErrMess={props.certificates.errMess}
+                        certificates={certificates.certificates}
+                        certificatesLoading={certificates.isLoading}
+                        certificatesErrMess={certificates.errMess}
                     />)}
                 />
 
@@ -187,18 +146,18 @@ function Main(props) {
                     path="/wall"
                     component={() => (
                         <Wall
-                            wallContent={props.wallContent.wallContent}
-                            wallContentLoading={props.wallContent.isLoading}
-                            wallContentErrMess={props.wallContent.errMess}
+                            wallContent={wallContent.wallContent}
+                            wallContentLoading={wallContent.isLoading}
+                            wallContentErrMess={wallContent.errMess}
                         />
                     )}
                 />
                 <Route
                     path="/houseCouncil"
                     component={() => (<HouseCouncil
-                        houseCouncil={props.houseCouncil.houseCouncil}
-                        houseCouncilLoading={props.houseCouncil.isLoading}
-                        houseCouncilErrMess={props.houseCouncil.errMess}
+                        houseCouncil={houseCouncil.houseCouncil}
+                        houseCouncilLoading={houseCouncil.isLoading}
+                        houseCouncilErrMess={houseCouncil.errMess}
                     />)}
                 />
                 <Route
@@ -213,9 +172,7 @@ function Main(props) {
                 />
                 <Route
                     path="/grievance-form"
-                    component={() => (<GrievanceForm
-                        postGrievance = {props.postGrievance}
-                    />)}
+                    component={() => (<GrievanceForm />)}
                 />
                 <Redirect to="/home" />
             </Switch>
@@ -224,9 +181,4 @@ function Main(props) {
     );
 }
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(Main)
-);
+export default withRouter(Main);
