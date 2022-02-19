@@ -7,6 +7,11 @@ import 'mdbreact/dist/css/mdb.css';
 // import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import {Link} from "react-router-dom";
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import TelegramIcon from '@material-ui/icons/Telegram';
+import {YouTube} from "@material-ui/icons";
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+
 
 
 function FooterPage(){
@@ -14,15 +19,17 @@ function FooterPage(){
         <Footer style={{backgroundColor: '#537895',
                 backgroundImage: 'linear-gradient(315deg, #537895 0%, #09203f 74%)'}}
                 className="page-footer font-small pt-4 mt-4">
-            {/*<div className="text-center">
-                <ul className="list-unstyled list-inline">
-                    <li className="list-inline-item"><a className="btn-floating btn-sm btn-fb mx-1"><FacebookIcon /></a></li>
-                    <li className="list-inline-item"><a href={"https://www.instagram.com/nilgirihouse_iitm"} target={"_blank"} className="btn-floating btn-sm btn-gplus mx-1"><InstagramIcon /></a></li>
-                    <li className="list-inline-item"><a href={"https://t.me/joinchat/0Bkmw5zCYhY1MThl"} target={"_blank"} className="btn-floating btn-sm btn-li mx-1"><TelegramIcon /></a></li>
-                    <li className="list-inline-item"><a className="btn-floating btn-sm btn-li mx-1"><WhatsAppIcon /></a></li>
-                </ul>
+            <div className={"d-block d-sm-block d-md-none d-lg-none d-xl-none"}>
+                <div className="text-center">
+                    <ul className="list-unstyled list-inline">
+                        <li className="list-inline-item"><a href={"https://www.instagram.com/nilgirihouse_iitm"} target={"_blank"} className="btn-sm mx-1"><InstagramIcon /></a></li>
+                        <li className="list-inline-item"><a href={"https://t.me/joinchat/0Bkmw5zCYhY1MThl"} target={"_blank"} className="btn-sm mx-1"><TelegramIcon /></a></li>
+                        <li className="list-inline-item"><a className="btn-sm mx-1"><WhatsAppIcon /></a></li>
+                        <li className="list-inline-item"><a className="btn-sm mx-1"><YouTube/></a></li>
+                    </ul>
+                </div>
+                <hr/>
             </div>
-            <hr/>*/}
 
             <Container className="text-left">
                 <Row>

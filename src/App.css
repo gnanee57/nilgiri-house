@@ -1,3 +1,9 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
 .footer{
   background-color: #ebeaff;
   margin:0px auto;

@@ -17,56 +17,24 @@ import FooterPage from "./FooterComponent";
 import EventRegistration from "./EventRegistration";
 import FetchCertificate from "./FetchCertificate";
 import VerifyCertificates from './VerifyCertificate';
-import {fetchBirthday, fetchStudentDetails, fetchEvents, fetchWallContent,
-    fetchClubs, fetchHouseCouncil, fetchCertificates} from "../redux/ActionCreators";
+import {fetchWallContent, fetchCertificates} from "../redux/ActionCreators";
 
 
 function Main() {
 
-    const birthday = useSelector(state => state.birthday);
-    const studentDetails =  useSelector(state => state.studentDetails);
-    const events=  useSelector(state => state.events);
     const wallContent=  useSelector(state => state.wallContent);
-    const clubs=  useSelector(state => state.clubs);
-    const houseCouncil=  useSelector(state => state.houseCouncil);
     const certificates=  useSelector(state => state.certificates);
 
     const dispatch = useDispatch();
 
-    const [studentId, setStudentId] = useState();
-
     const [certId, setCertId] = useState();
-
-    const handleSearch = rollNum => {
-        setStudentId(rollNum);
-    }
 
     const handleCertSearch = certId => {
         setCertId(certId);
     }
 
     useEffect(async() => {
-        dispatch(fetchStudentDetails(studentId));
-    }, [studentId]);
-
-    useEffect(async() => {
-        dispatch(fetchBirthday());
-    }, []);
-
-    useEffect(async() => {
-        dispatch(fetchEvents());
-    }, []);
-
-    useEffect(async() => {
         dispatch(fetchWallContent());
-    }, []);
-
-    useEffect(async() => {
-        dispatch(fetchClubs());
-    }, []);
-
-    useEffect(async() => {
-        dispatch(fetchHouseCouncil());
     }, []);
 
     useEffect(async() => {
@@ -84,16 +52,9 @@ function Main() {
                     path="/home"
                     component={() => (
                         <Home
-                            birthday={birthday.birthday}
-                            birthdayLoading={birthday.isLoading}
-                            birthdayErrMess={birthday.errMess}
                             featuredContent={wallContent.wallContent.filter(content => content.featured === "TRUE")}
                             featuredContentLoading={wallContent.isLoading}
                             featuredContentErrMess={wallContent.errMess}
-                            handleSearch = {handleSearch}
-                            studentDetails={studentDetails.studentDetails}
-                            studentDetailsLoading={studentDetails.isLoading}
-                            studentDetailsErrMess={studentDetails.errMess}
                         />
                     )} />
                 <Route
@@ -104,11 +65,7 @@ function Main() {
                 <Route
                     exact
                     path="/clubs/clubsList"
-                    component={() => (<ClubsList
-                        clubs={clubs.clubs}
-                        clubsLoading={clubs.isLoading}
-                        clubsErrMess={clubs.errMess}
-                    />)}
+                    component={() => (<ClubsList />)}
                 />
                 <Route
                     path="/events/eventsCalendar"
@@ -126,11 +83,7 @@ function Main() {
 
                 <Route
                     path="/events"
-                    component={() => (<Events
-                        events={events.events}
-                        eventsLoading={events.isLoading}
-                        eventsErrMess={events.errMess}
-                    />)}
+                    component={() => (<Events />)}
                 />
                 <Route
                     path={"/certificates/search"}
@@ -154,11 +107,7 @@ function Main() {
                 />
                 <Route
                     path="/houseCouncil"
-                    component={() => (<HouseCouncil
-                        houseCouncil={houseCouncil.houseCouncil}
-                        houseCouncilLoading={houseCouncil.isLoading}
-                        houseCouncilErrMess={houseCouncil.errMess}
-                    />)}
+                    component={() => (<HouseCouncil />)}
                 />
                 <Route
                     exact

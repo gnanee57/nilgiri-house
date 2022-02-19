@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Card, CardBody, CardGroup, CardHeader, CardImg, CardSubtitle, CardText, CardTitle} from "reactstrap";
 import houseStructure from '../assests/structure.png';
 import {makeStyles} from "@material-ui/core/styles";
 import {Avatar} from "@material-ui/core";
 import {Loading} from "./LoadingComponent";
+import {fetchHouseCouncil} from "../redux/ActionCreators";
+import {useDispatch, useSelector} from "react-redux";
 
 const useStyles1 = makeStyles((theme) => ({
     root: {
@@ -45,22 +47,27 @@ const useStyles2 = makeStyles((theme) => ({
     },
 }));
 
-function HouseCouncil(props) {
+function HouseCouncil() {
 
-    React.useEffect(() => {
-        document.title = 'Nilgiri House Council'
+    const houseCouncil=  useSelector(state => state.houseCouncil);
+
+    const dispatch = useDispatch();
+
+    useEffect(async() => {
+        document.title = 'Nilgiri House Council';
+        dispatch(fetchHouseCouncil());
     }, []);
 
     const classes = useStyles1();
     const classes1 = useStyles2();
 
-    if (props.houseCouncilLoading) {
+    if (houseCouncil.loading) {
         return (
             <Loading />
         );
-    } else if (props.houseCouncilErrMess) {
+    } else if (houseCouncil.errMess) {
         return (
-            <h4>{props.houseCouncilErrMess}</h4>
+            <h4>{houseCouncil.errMess}</h4>
         );
     } else {
         return (
@@ -311,7 +318,7 @@ function HouseCouncil(props) {
                     <div className={'row d-none d-lg-block'}>
                         <div className={'col-md-12'}>
                             <CardGroup>
-                                {props.houseCouncil.filter(student => student.role === 'Secretary').map(student =>
+                                {houseCouncil.houseCouncil.filter(student => student.role === 'Secretary').map(student =>
                                     <Card body outline className={'border-0 text-center'}>
                                         <CardHeader style={{backgroundColor: '#e6e5ff'}}>
                                             <CardTitle tag="h5" style={{
@@ -341,7 +348,7 @@ function HouseCouncil(props) {
                                         </CardBody>
                                     </Card>
                                 )}
-                                {props.houseCouncil.filter(student => student.role === 'Deputy Secretary').map(student =>
+                                {houseCouncil.houseCouncil.filter(student => student.role === 'Deputy Secretary').map(student =>
                                     <Card body outline className={'border-0 text-center'}>
                                         <CardHeader style={{backgroundColor: '#e6e5ff'}}>
                                             <CardTitle tag="h5" style={{
@@ -371,7 +378,7 @@ function HouseCouncil(props) {
                                         </CardBody>
                                     </Card>
                                 )}
-                                {props.houseCouncil.filter(student => student.role === 'Web Admin').map(student =>
+                                {houseCouncil.houseCouncil.filter(student => student.role === 'Web Admin').map(student =>
                                     <Card body outline className={'border-0 text-center'}>
                                         <CardHeader style={{backgroundColor: '#e6e5ff'}}>
                                             <CardTitle tag="h5" style={{
@@ -407,7 +414,7 @@ function HouseCouncil(props) {
                     <div className={'row d-block d-sm-block d-md-block d-lg-none'}>
                         <div className={'col-md-12'}>
                             <CardGroup>
-                                {props.houseCouncil.filter(student => student.role === 'Secretary').map(student =>
+                                {houseCouncil.houseCouncil.filter(student => student.role === 'Secretary').map(student =>
                                     <Card body outline className={'border-0 text-center'}>
                                         <CardHeader style={{backgroundColor: '#e6e5ff'}}>
                                             <CardTitle tag="h5" style={{
@@ -437,7 +444,7 @@ function HouseCouncil(props) {
                                         </CardBody>
                                     </Card>
                                 )}
-                                {props.houseCouncil.filter(student => student.role === 'Deputy Secretary').map(student =>
+                                {houseCouncil.houseCouncil.filter(student => student.role === 'Deputy Secretary').map(student =>
                                     <Card body outline className={'border-0 text-center'}>
                                         <CardHeader style={{backgroundColor: '#e6e5ff'}}>
                                             <CardTitle tag="h5" style={{
@@ -467,7 +474,7 @@ function HouseCouncil(props) {
                                         </CardBody>
                                     </Card>
                                 )}
-                                {props.houseCouncil.filter(student => student.role === 'Web Admin').map(student =>
+                                {houseCouncil.houseCouncil.filter(student => student.role === 'Web Admin').map(student =>
                                     <Card body outline className={'border-0 text-center'}>
                                         <CardHeader style={{backgroundColor: '#e6e5ff'}}>
                                             <CardTitle tag="h5" style={{
@@ -513,7 +520,7 @@ function HouseCouncil(props) {
                                 </CardHeader>
                             </Card>
                             <div className={"row"}>
-                                {props.houseCouncil.filter(student => student.role === 'Group Leader').map(student =>
+                                {houseCouncil.houseCouncil.filter(student => student.role === 'Group Leader').map(student =>
                                     <div className={"col-lg-3 col-md-6"}>
                                         <Card body outline className={'border-0 text-center'}>
                                             <div className={classes1.root}>

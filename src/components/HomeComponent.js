@@ -28,6 +28,7 @@ import moment from "moment";
 import TextField from "@material-ui/core/TextField";
 import {
     ControlBar,
+    BigPlayButton,
     CurrentTimeDisplay,
     ForwardControl,
     PlaybackRateMenuButton,
@@ -38,6 +39,8 @@ import {
 import ReactPlayer from "react-player";
 import AppBar from "@material-ui/core/AppBar";
 import {Loading} from "./LoadingComponent";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchBirthday, fetchStudentDetails} from "../redux/ActionCreators";
 
 const useStyles1 = makeStyles((theme) => ({
     root: {
@@ -85,6 +88,13 @@ function FeaturedVideoContent(props) {
                 <GridListTile>
                     <ReactPlayer
                         url={content.link}
+                        config={{
+                            file: {
+                                attributes: {
+                                    preload: 'metadata'
+                                }
+                            }
+                        }}
                         controls={true}
                         width="360px"
                         height="180px"
@@ -758,18 +768,34 @@ function HouseDetails(props) {
 
 function Home(props) {
 
-    useEffect(() => {
-        document.title = 'Nilgiri Home'
+    const birthday = useSelector(state => state.birthday);
+    const studentDetails =  useSelector(state => state.studentDetails);
+
+    const dispatch = useDispatch();
+
+    const [studentId, setStudentId] = useState();
+
+    const handleSearch = rollNum => {
+        setStudentId(rollNum);
+    }
+
+    useEffect(async() => {
+        document.title = 'Nilgiri Home';
     }, []);
 
-    /*const [isVideoLoaded, setIsVideoLoaded] = React.useState(false);
-    const onLoadedData = () => {
-        setIsVideoLoaded(true);
-    };*/
+    useEffect(async() => {
+        dispatch(fetchBirthday());
+    }, []);
+
+    useEffect(async() => {
+        document.title = 'Nilgiri Home';
+        dispatch(fetchStudentDetails(studentId));
+    }, [studentId]);
 
     return(
         <React.Fragment>
-            <div className="jumbotron jumbotron-fluid d-none d-md-block" style={{backgroundImage :
+
+                <div className="jumbotron jumbotron-fluid d-none d-md-block" style={{backgroundImage :
             "url('https://drive.google.com/uc?export=download&id=1xHXG3-8Rm_KjbggCjo7nhZUeHafcEWV1')",
             backgroundSize : 'cover',
             opacity: '0.8'
@@ -783,6 +809,7 @@ function Home(props) {
                             color: 'floralwhite',
                             fontFamily : 'Trebuchet MS',
                             textTransform: 'uppercase',
+                            textShadow: '2px 2px black',
                             fontSize : '80px',
                             fontWeight: 'bold'
                         }}>Nilgiri House <br/>
@@ -818,6 +845,7 @@ function Home(props) {
                             textAlign: 'center',
                             color: 'floralwhite',
                             fontFamily : 'Trebuchet MS',
+                            textShadow: '2px 2px black',
                             textTransform: 'uppercase',
                             fontSize : '50px',
                             fontWeight: 'bold'
@@ -853,6 +881,7 @@ function Home(props) {
                             textAlign: 'center',
                             color: 'floralwhite',
                             fontFamily : 'Trebuchet MS',
+                            textShadow: '2px 2px black',
                             textTransform: 'uppercase',
                             fontSize : '30px',
                             fontWeight: 'bold'
@@ -884,18 +913,18 @@ function Home(props) {
                         <FeaturedAnnouncements />
                     </div>
                     <div className={'col-md-3'}>
-                        <BirthdaySegment birthday = {props.birthday}
-                                         isLoading={props.birthdayLoading}
-                                         errMess={props.birthdayErrMess}
+                        <BirthdaySegment birthday = {birthday.birthday}
+                                         isLoading={birthday.loading}
+                                         errMess={birthday.errMess}
                         />
                     </div>
                 </div>
             </div>
             <HouseDetails
-                handleSearch={props.handleSearch}
-                studentDetails={props.studentDetails}
-                studentDetailsLoading={props.studentDetailsLoading}
-                studentDetailsErrMess={props.studentDetailsErrMess}
+                handleSearch={handleSearch}
+                studentDetails={studentDetails.studentDetails}
+                studentDetailsLoading={studentDetails.loading}
+                studentDetailsErrMess={studentDetails.errMess}
             />
             <div className={'container'}>
                 <div className={'row mb-3'}>
@@ -905,15 +934,7 @@ function Home(props) {
                 </div>
             </div>
             <QuoteStreak />
-                {/*<div className='row mb-3'>
-                    <div className={'col-md-12'}>
-                        <div className={'row'}>
-                            <div className={'col-md-3 mb-0'}>
-                                <RiddleSegment />
-                            </div>
-                        </div>
-                    </div>
-                </div>*/}
+
             <div className='container-fluid overflow-hidden grey lighten-4'>
                 <div className={'col-md-12'}>
                     <section className="mt-3 mb-2">
@@ -925,23 +946,6 @@ function Home(props) {
                         <p className="text-center w-responsive mx-auto grey-text wow fadeIn" data-wow-delay="0.2s">
                             Want your work to be posted on Nilgiri Wall? <a
                             href={'https://forms.gle/fFftSgDAHcX7DDHp6'} target={'_blank'}>Fill this form</a></p>
-                                {/*<Card body outline className={'border-0'}>
-                                    <CardHeader style={{backgroundColor : '#e6e5ff'}}>
-                                        <CardTitle tag="h5" style={{
-                                            justifyContent: 'start',
-                                            fontFamily : 'Trebuchet MS',
-                                            textTransform: 'uppercase',
-                                            fontSize: 'x-large',
-                                            fontWeight: 'bold'
-                                        }}>Our Wall</CardTitle>
-                                        <CardSubtitle className="mb-2 text-muted" style={{
-                                            justifyContent: 'center',
-                                            fontFamily : 'Trebuchet MS',
-                                            fontStyle: 'italic',
-                                            fontSize: 'small',
-                                        }}></CardSubtitle>
-                                    </CardHeader>
-                                </Card>*/}
                         <Divider />
                         <FeaturedTabs featuredContent={props.featuredContent}/>
                         <div style={{ display: "flex" }}>
@@ -955,107 +959,61 @@ function Home(props) {
                 </div>
             </div>
             <div className='container-fluid mt-2 overflow-hidden'>
-                {/*<div className={'row'}>
-                    <div className={'col-md-12 mb-0'}>
-                        <Card body outline className={'border-0'} >
-                            <CardHeader style={{backgroundColor : '#e6e5ff'}}>
-                                <CardTitle tag="h5" style={{
-                                    justifyContent: 'center',
-                                    fontFamily : 'Trebuchet MS',
-                                }}>STUDENT OF THE YEAR CONTEST</CardTitle>
-                                <CardSubtitle className="mb-2 text-muted" style={{
-                                    justifyContent: 'center',
-                                    fontFamily : 'Trebuchet MS',
-                                    fontStyle: 'italic',
-                                    fontSize: 'small',
-                                }}>Event Date: {moment('2021-10-15T04:00:00+05:30').format("dddd, MMMM Do YYYY, h")}pm  <br/>
-                                    Venue: Google Meet <br/>
-                                    Want to Participate? <a
-                                        href={'https://forms.gle/7oFj7dMSzbQvWXq1A'} target={'_blank'}>Fill this form</a></CardSubtitle>
-                            </CardHeader>
-                            <CardBody>
-                                <div className={'row'}>
-                                    <div className={'col-md-8'}>
-                                        <QuizTabs />
-                                    </div>
-                                    <div className={'col-md-4'}>
-                                        <img src={quizPoster} width={'300px'} height={'450px'}/>
-                                    </div>
-                                </div>
-                            </CardBody>
-                        </Card>
+                <section className="mt-5 mb-5">
+                    <h4 className="text-center dark-grey-text mb-5 pt-3 wow fadeIn" data-wow-delay="0.2s" style={{
+                        fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                        textTransform: 'capitalize', fontSize: 'xx-large', fontWeight: 'bold'}}>
+                        Glimpses
+                    </h4>
+                    <div className={'row'}>
+                        <div className={'col-md-4'}>
+                    <Player src={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
+                            preload = 'metadata'>
+                        <BigPlayButton position="center" />
+                        <ControlBar>
+                            <VolumeMenuButton vertical />
+                            <ReplayControl seconds={10} order={1.1} />
+                            <ForwardControl seconds={30} order={1.2} />
+                            <CurrentTimeDisplay order={4.1} />
+                            <TimeDivider order={4.2} />
+                            <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
+                        </ControlBar>
+                    </Player>
+                            <div className={'d-block d-md-none mb-2'} />
+                        </div>
+                        <div className={'col-md-4'}>
+                            <Player src={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
+                                    preload = 'metadata'>
+                                <BigPlayButton position="center" />
+                                <ControlBar>
+                                    <VolumeMenuButton vertical />
+                                    <ReplayControl seconds={10} order={1.1} />
+                                    <ForwardControl seconds={30} order={1.2} />
+                                    <CurrentTimeDisplay order={4.1} />
+                                    <TimeDivider order={4.2} />
+                                    <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
+                                </ControlBar>
+                            </Player>
+                            <div className={'d-block d-md-none mb-2'} />
+                        </div>
+                        <div className={'col-md-4'}>
+                            <Player src={'https://drive.google.com/uc?export=download&id=1EDfAmePz9Kj7aO-u4VnlDBL_H5f4lQ5N'}
+                                    preload = 'metadata'>
+                                <BigPlayButton position="center" />
+                                <ControlBar>
+                                    <VolumeMenuButton vertical />
+                                    <ReplayControl seconds={10} order={1.1} />
+                                    <ForwardControl seconds={30} order={1.2} />
+                                    <CurrentTimeDisplay order={4.1} />
+                                    <TimeDivider order={4.2} />
+                                    <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
+                                </ControlBar>
+                            </Player>
+                            <div className={'d-block d-md-none mb-2'} />
+                        </div>
                     </div>
-                </div>*/}
-                <div className={'row'}>
-                    <div className={'col-md-12'}>
-                        <section className="mt-5 mb-5">
-                            <h4 className="text-center dark-grey-text mb-5 pt-3 wow fadeIn" data-wow-delay="0.2s" style={{
-                                fontFamily : 'Trebuchet MS', fontStyle: 'normal',
-                                textTransform: 'capitalize', fontSize: 'xx-large', fontWeight: 'bold'}}>
-                                Glimpses
-                            </h4>
-                            <Card body outline className={'border-0'}>
-                            <div className={"row"}>
-                            <div className={'col-xl-4 col-lg-6 col-12 mt-4'}>
-                                <Card className={'border-0 align-self-center'}>
-                                    <Player src={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
-                                            fluid ={false}
-                                            height = {300}
-                                            width = {350}
-                                    >
-                                        <ControlBar>
-                                            <VolumeMenuButton vertical />
-                                            <ReplayControl seconds={10} order={1.1} />
-                                            <ForwardControl seconds={30} order={1.2} />
-                                            <CurrentTimeDisplay order={4.1} />
-                                            <TimeDivider order={4.2} />
-                                            <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
-                                        </ControlBar>
-                                    </Player>
-                                </Card>
-                            </div>
-                            <div className={'col-xl-4 col-lg-6 col-12 mt-4'}>
-                                <Card className={'border-0 align-self-center'}>
-                                    <Player src={"https://drive.google.com/uc?export=download&id=1UnZwKKmz0UAuzppg-qpFkb8YTBVYnPSZ"}
-                                            fluid ={false}
-                                            height = {300}
-                                            width = {350}
-                                    >
-                                        <ControlBar>
-                                            <VolumeMenuButton vertical />
-                                            <ReplayControl seconds={10} order={1.1} />
-                                            <ForwardControl seconds={30} order={1.2} />
-                                            <CurrentTimeDisplay order={4.1} />
-                                            <TimeDivider order={4.2} />
-                                            <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
-                                        </ControlBar>
-                                    </Player>
-                                </Card>
-                            </div>
-                            <div className={'col-xl-4 col-lg-6 col-12 mt-4'}>
-                                <Card className={'border-0 align-self-center'}>
-                                    <Player src={'https://drive.google.com/uc?export=download&id=1EDfAmePz9Kj7aO-u4VnlDBL_H5f4lQ5N'}
-                                            fluid ={false}
-                                            height = {300}
-                                            width = {350}
-                                    >
-                                        <ControlBar>
-                                            <VolumeMenuButton vertical />
-                                            <ReplayControl seconds={10} order={1.1} />
-                                            <ForwardControl seconds={30} order={1.2} />
-                                            <CurrentTimeDisplay order={4.1} />
-                                            <TimeDivider order={4.2} />
-                                            <PlaybackRateMenuButton rates={[1.75, 1.5, 1.25, 1, 0.8, 0.5]} order={7.1} />
-                                        </ControlBar>
-                                    </Player>
-                                </Card>
-                            </div>
-                            </div>
-                            </Card>
-                        </section>
-                    </div>
+                    </section>
                 </div>
-            </div>
         </React.Fragment>
     );
 }

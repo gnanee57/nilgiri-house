@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Loading} from "./LoadingComponent";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -7,21 +7,27 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchClubs} from "../redux/ActionCreators";
 
-function ClubsList(props) {
+function ClubsList() {
 
-    React.useEffect(() => {
+    const clubs=  useSelector(state => state.clubs);
+
+    const dispatch = useDispatch();
+
+    useEffect(async() => {
         document.title = 'Nilgiri Clubs & Societies';
+        dispatch(fetchClubs());
     }, []);
 
-
-    if (props.clubsLoading) {
+    if (clubs.loading) {
         return (
             <Loading />
         );
-    } else if (props.clubsErrMess) {
+    } else if (clubs.errMess) {
         return (
-            <h4>{props.clubsErrMess}</h4>
+            <h4>{clubs.errMess}</h4>
         );
     } else {
         return (
@@ -40,7 +46,7 @@ function ClubsList(props) {
                         </h4>
                     </section>
                     <div className={"row"}>
-                        {props.clubs.map(club =>  {
+                        {clubs.clubs.map(club =>  {
                             return (
                                 <div className={"col-lg-3 col-md-6 mb-2"}>
                                     <Card>

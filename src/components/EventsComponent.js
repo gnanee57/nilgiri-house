@@ -7,58 +7,70 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {Loading} from "./LoadingComponent";
 import {ExpandMore} from "@material-ui/icons";
-import {Collapse} from "@material-ui/core";
+import {Collapse, styled} from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from "moment";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {fetchEvents} from "../redux/ActionCreators";
+import IconButton from "@material-ui/core/IconButton";
 
 const PastEvents = (props) => {
 
     const CardTime = (props) => {
         if(props.event.eventStartDate === props.event.eventEndDate) {
-            if (props.event.eventStartTime !== '' || props.event.eventEndTime !== '') {
+            if (props.event.eventStartTime !== 'null' || props.event.eventEndTime !== 'null') {
                 return (
                     <Typography variant="body2" color="text.secondary">
                         {moment(props.event.eventStartDate).format("MMM Do YY")}
                         &nbsp; {moment(props.event.eventStartTime, 'hh:mm a').format("LT")}  &nbsp; -
                         &nbsp; {moment(props.event.eventEndTime, 'hh:mm a').format("LT")}
-                        <br/><br/>
-                        Venue: {props.event.venue} <br/>
+                        <br/>
                     </Typography>
                 );
             } else {
                 return (
                     <Typography variant="body2" color="text.secondary">
                         {moment(props.event.eventStartDate).format("MMM Do YY")}
-                        <br/><br/>
-                        Venue: {props.event.venue} <br/>
+                        <br/>
                     </Typography>
                 );
             }
         } else {
-            if (props.event.eventStartTime !== '' || props.event.eventEndTime !== '') {
+            if (props.event.eventStartTime !== 'null' || props.event.eventEndTime !== 'null') {
                 return (
                     <Typography variant="body2" color="text.secondary">
                         {moment(props.event.eventStartDate).format("MMM Do YY")}
                         &nbsp; {moment(props.event.eventStartTime, 'hh:mm a').format("LT")}  &nbsp; -
                         &nbsp; {moment(props.event.eventEndDate).format("MMM Do YY")} &nbsp;
                         {moment(props.event.eventEndTime, 'hh:mm a').format("LT")}
-                        <br/><br/>
-                        Venue: {props.event.venue} <br/>
+                        <br/>
                     </Typography>
                 );
             } else {
                 return (
                     <Typography variant="body2" color="text.secondary">
                         {moment(props.event.eventStartDate).format("MMM Do YY")} &nbsp; - &nbsp;
-                        {moment(props.event.eventEndTime, 'hh:mm a').format("LT")}
-                        <br/><br/>
-                        Venue: {props.event.venue} <br/>
+                        {moment(props.event.eventEndDate).format("MMM Do YY")}
+                        <br/>
                     </Typography>
                 );
             }
         }
     }
     const CardDescription = (props) => {
+
+        const ExpandMore = styled((props) => {
+            const { expand, ...other } = props;
+            return <IconButton {...other} />;
+        })(({ theme, expand }) => ({
+            transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+            marginLeft: 'auto',
+            transition: theme.transitions.create('transform', {
+                duration: theme.transitions.duration.shortest,
+            }),
+        }));
+
         const [expanded, setExpanded] = React.useState(false);
 
         const handleExpandClick = () => {
@@ -69,6 +81,7 @@ const PastEvents = (props) => {
             return (
                 <React.Fragment >
                     <CardActions>
+                        <Typography style={{marginRight: "auto"}} variant="body2" color="text.secondary">Venue: {props.event.venue}</Typography>
                         <ExpandMore
                             expand={expanded}
                             onClick={handleExpandClick}
@@ -81,12 +94,18 @@ const PastEvents = (props) => {
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
                         <CardContent>
                             <Typography paragraph>{props.event.eventDescription}</Typography>
+                            <CardFooter event = {props.event}/>
                         </CardContent>
                     </Collapse>
                 </React.Fragment>
             );
         } else {
-            return <div></div>;
+            return (
+                <CardContent style={{marginRight : "initial"}}>
+                    <Typography variant="body2" color="text.secondary">Venue: {props.event.venue}</Typography>
+                    <CardFooter event = {props.event}/>
+                </CardContent>
+            );
         }
     }
     const CardFooter = (props) => {
@@ -111,13 +130,13 @@ const PastEvents = (props) => {
                         <CardContent>
                             <Typography paragraph>{props.event.winnersTag}</Typography>
                             <Typography paragraph>
-                                {props.event.prizeWinners1}
+                                1st : {props.event.prizeWinners1}
                             </Typography>
                             <Typography paragraph>
-                                {props.event.prizeWinners2}
+                                2nd : {props.event.prizeWinners2}
                             </Typography>
                             <Typography paragraph>
-                                {props.event.prizeWinners3}
+                                3rd : {props.event.prizeWinners3}
                             </Typography>
                         </CardContent>
                     </Collapse>
@@ -166,10 +185,9 @@ const PastEvents = (props) => {
                                 <Typography gutterBottom variant="h5" component="div">
                                     {event.eventName}
                                 </Typography>
-                                <CardTime event = {event}/>
+                                <CardTime event={event} />
+                                <CardDescription event = {event}/>
                             </CardContent>
-                            <CardDescription event = {event}/>
-                            <CardFooter event = {event}/>
                         </Card>
                         </div>
                     );
@@ -182,8 +200,13 @@ const PastEvents = (props) => {
 
 export default function Events(props) {
 
-    React.useEffect(() => {
+    const events=  useSelector(state => state.events);
+
+    const dispatch = useDispatch();
+
+    useEffect(async() => {
         document.title = 'Nilgiri Events';
+        dispatch(fetchEvents());
     }, []);
 
     return (
@@ -193,9 +216,9 @@ export default function Events(props) {
                 backgroundSize : 'cover',
                 opacity: '0.8'
             }} />
-            <PastEvents events={props.events}
-                        eventsLoading={props.eventsLoading}
-                        eventsErrMess={props.eventsErrMess}/>
+            <PastEvents events={events.events}
+                        eventsLoading={events.loading}
+                        eventsErrMess={events.errMess}/>
 
         </React.Fragment>
     );

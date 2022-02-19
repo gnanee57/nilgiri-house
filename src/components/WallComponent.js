@@ -16,6 +16,7 @@ import Box from '@material-ui/core/Box';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import {
     Player,
+    BigPlayButton,
     ControlBar,
     ReplayControl,
     ForwardControl,
@@ -83,10 +84,12 @@ function RenderContent(props) {
                 <div className={'col-xl-4 col-lg-6 col-md-6 col-12 mb-4'}>
                     <Card className={'border-0'}>
                         <Player src={content.link}
+                                preload = 'metadata'
                                 fluid ={false}
                                 height = {300}
                                 width = {"auto"}
                         >
+                            <BigPlayButton position="center" />
                             <ControlBar>
                                 <VolumeMenuButton vertical />
                                 <ReplayControl seconds={10} order={1.1} />
