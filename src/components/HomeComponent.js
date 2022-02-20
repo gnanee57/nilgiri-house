@@ -424,27 +424,35 @@ function FeaturedAnnouncements() {
             <hr className="mb-2" />
             <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
                 fontSize: 'medium', fontWeight: 'bold'}}>
-                {moment('2021-10-01').format("MMM Do YY")} : A new segment is added to know your house
-                & Group Details in the Nilgiri House Website. Please checkout in the homepage.
+                {moment('2022-02-20').format("MMM Do YY")} : We congratulate Faisal Hasan and Soumyabrata Mahapatra for becoming new Secretary
+                and Deputy Secretary of Nilgiri House.
             </CardText>
             <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
                 fontSize: 'medium', fontWeight: 'bold'}}>
-                {moment('2021-09-30').format("MMM Do YY")} : The Expression of Interest(EOI) Form
-                for forming official clubs of Nilgiri House will be released within a week.
+                {moment('2022-02-15').format("MMM Do YY")} : We congratulate GokulaKrishnan M, Secretary of Nilgiri
+                House for becoming new Academic Affairs Coordinator of Student Executive Council of IITM BSC Program.
             </CardText>
             <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
                 fontSize: 'medium', fontWeight: 'bold'}}>
-                {moment('2021-09-29').format("MMM Do YY")} : We are pleased to inform you that our Nilgiri house is
-                now officially on Instagram and Telegram. We will keep updating our instagram page with house updates, funny memes and club
-                activities. Do give us a follow to keep yourself updated and make our family more stronger.
-                So please <a href={"https://www.instagram.com/nilgirihouse_iitm"} target={'_blank'}> follow </a> our Instagram page
-                and <a href={"https://t.me/joinchat/0Bkmw5zCYhY1MThl"} target={'_blank'}> join </a> our telegram group.
+                {moment('2022-01-24').format("MMM Do YY")} : Greetings from Nilgiri Academia, One last step to blast off!
+                This <a href={"https://forms.gle/qB7sVNQZpUmBrvCs6"} target={'_blank'}> form </a> is being shared for gathering people who can solve doubts of students during live sessions which are being conducted by Nilgiri house.
+                Do fill this <a href={"https://forms.gle/qB7sVNQZpUmBrvCs6"} target={'_blank'}> form </a> if you want to help in clearing student's doubts relating to a particular subject. Deadline to fill the form - 25/01/2022 at 6pm
             </CardText>
             <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
                 fontSize: 'medium', fontWeight: 'bold'}}>
-                {moment('2021-09-27').format("MMM Do YY")} : Quiz & End Tem Syllabus - SEPTEMBER TERM(FOUNDATIONAL LEVEL)
-                click <a href={'https://docs.google.com/document/u/2/d/e/2PACX-1vSbylA6h7TpwechTn6k50v6yalhSwSTAhtkSzUnGfFAOLMSHebyMnoHwGS_uzHEyOpZ33wgcTqjOMNV/pub#h.75spqegi2p7s'} target={'_blank'}> here </a>
-                to refer to the table for the syllabus of quiz & end-term exam.
+                {moment('2022-01-20').format("MMM Do YY")} : Greetings form Nilgiri Academia, The House of Nilgiri's
+                is happy to announce the coming back of its study groups that might benefit your preparation. This sessions aims
+                to explain the concepts as well as problem solving on weekly basis. As a first step we would like to know about
+                the courses you have enrolled this term so that we can assign appropriate study group for you. Kindly fill this
+                <a href={"https://forms.gle/QzaZrtMkqLHKJBRZ8"} target={'_blank'}> form </a> asap so that we can kick start the
+                study group before quiz 1 itself :: For more details: <a href={"https://docs.google.com/document/d/1Iew933Hx6oexAYaVGfaD-gXlJQh8Ijj4HYPUNVh6s_I/edit?usp=sharing"} target={'_blank'}>
+                read this document.</a>
+            </CardText>
+            <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                fontSize: 'medium', fontWeight: 'bold'}}>
+                {moment('2022-01-10').format("MMM Do YY")} : We are pleased to inform you that our Nilgiri house is
+                now officially on Youtube. So please <a href={"https://www.youtube.com/channel/UCTAxNwe8HM_mfYtuGKqKGZQ"} target={'_blank'}> subscribe </a> to our
+                our Youtube Channel.
             </CardText>
             <div className="wow fadeIn" data-wow-delay=".4s" style={{ display: "flex" }}>
                 <Button variant="outlined" color="primary" style={{ marginLeft: "auto" }}>
@@ -498,11 +506,10 @@ function UpcomingEvents() {
                             <h6 className="mb-3 dark-grey-text">
                                 Treasure Hunt</h6>
                             <p className="grey-text">If you're too busy to hunt, then you're too busy!
-                                Rise n shine. It's huntin' time!
-                            </p>
-                            {/*<a href="" className="font-small dark-grey-text">
+                                Rise n shine. It's huntin' time! &nbsp;
+                            <Link style={{ textDecoration: 'none' }} to={`/events/18`}>
                                 read more
-                            </a>*/}
+                            </Link></p>
                         </div>
                     </div>
                 </div>
@@ -517,15 +524,18 @@ function UpcomingEvents() {
                             <h4 className="indigo-text" style={{
                                 fontFamily : 'Trebuchet MS', fontStyle: 'normal',
                                 textTransform: 'capitalize', fontSize: 'x-large', fontWeight: 'bold'}}>
-                                TBD
+                                {moment('2022-02-21T19:00:00').format("MMM Do YY h a")} -&nbsp;
+                                {moment('2022-02-21T20:00:00').format("h a")}
                             </h4>
                             <h6 className="mb-3 dark-grey-text">
-                                Painting Competition</h6>
-                            <p className="grey-text">All you need to paint is a few tools,
-                                a little instruction, and a vision in your mind.</p>
-                            {/*<a href="" className="font-small dark-grey-text">
+                                Kya Raaz hai tumhare apni bhasha mein</h6>
+                            <p className="grey-text">On the auspicious occasion of the
+                                International Mother Language Day, Nilgiri House brings you an interesting
+                                Talk Show with the underlying theme of 'Kya Raaz hai tumhare apni bhasha mein'
+                                where you people will share some insights & interesting stories &nbsp;
+                            <Link style={{ textDecoration: 'none' }} to={`/events/16`}>
                                 read more
-                            </a>*/}
+                            </Link></p>
                         </div>
                     </div>
                 </div>
@@ -540,15 +550,16 @@ function UpcomingEvents() {
                             <h4 className="indigo-text" style={{
                                 fontFamily : 'Trebuchet MS', fontStyle: 'normal',
                                 textTransform: 'capitalize', fontSize: 'x-large', fontWeight: 'bold'}}>
-                                {moment('2021-11-14').format("MMM Do YY")}
+                                {moment('2022-02-21T20:00:00').format("MMM Do YY h a")}
                             </h4>
                             <h6 className="mb-3 dark-grey-text">
-                                Slay the King</h6>
-                            <p className="grey-text">One doesn't have to play well,
-                                it's enough to play better than your opponent</p>
-                            {/*<a href="" className="font-small dark-grey-text">
+                                Cross Lingua</h6>
+                            <p className="grey-text">Keeping your passion in mind, Nilgiri House brings you a funny
+                                Crossword competition where all the work-outable hints will lead you towards the names
+                                of some really popular languages over the world. &nbsp;
+                            <Link style={{ textDecoration: 'none' }} to={`/events/17`}>
                                 read more
-                            </a>*/}
+                            </Link></p>
                         </div>
                     </div>
                 </div>
@@ -788,7 +799,6 @@ function Home(props) {
     }, []);
 
     useEffect(async() => {
-        document.title = 'Nilgiri Home';
         dispatch(fetchStudentDetails(studentId));
     }, [studentId]);
 

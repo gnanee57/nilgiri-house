@@ -286,7 +286,7 @@ function HouseCouncil() {
                     </div>
 
                     <div className={'row'}>
-                        <div className={'col-md-12'}>
+                        <div className={'col-md-6'}>
                             <Card body outline className={'border-0'}>
                                 <CardHeader className={'text-center'} style={{backgroundColor: '#e6e5ff'}}>
                                     <CardTitle tag="h5" style={{
@@ -310,6 +310,47 @@ function HouseCouncil() {
                                         fontSize: 'large',
                                         fontWeight: 'bold'
                                     }}>Sowmya Ramesh</CardTitle>
+                                    <CardSubtitle className="mb-2 text-muted" style={{
+                                        justifyContent: 'center',
+                                        fontFamily: 'Trebuchet MS',
+                                        fontStyle: 'italic',
+                                        fontSize: 'medium',
+                                    }}>Ex-Secretary of Nilgiri House (May 2021 - Nov 2021)</CardSubtitle>
+                                </CardBody>
+                            </Card>
+                        </div>
+                        <div className={'col-md-6'}>
+                            <Card body outline className={'border-0'}>
+                                <CardHeader className={'text-center'} style={{backgroundColor: '#e6e5ff'}}>
+                                    <CardTitle tag="h5" style={{
+                                        fontFamily: 'Trebuchet MS',
+                                        textTransform: 'uppercase',
+                                        fontSize: 'x-large',
+                                        fontWeight: 'bold'
+                                    }}>Academic Affairs Coordinator - SEC</CardTitle>
+                                </CardHeader>
+                            </Card>
+                            <Card body outline className={'border-0 text-center'}>
+                                <div className={classes.root}>
+                                    <Avatar
+                                        src={'https://drive.google.com/uc?export=download&id=1ulCqx1bfdyoqTMOGucBcGCYR2jRmmEiH'}
+                                        className={classes.large}/>
+                                </div>
+                                <CardBody>
+                                    <CardTitle tag="h5" style={{
+                                        fontFamily: 'Trebuchet MS',
+                                        textTransform: 'uppercase',
+                                        fontSize: 'large',
+                                        fontWeight: 'bold'
+                                    }}>Gokulakrishnan. M</CardTitle>
+                                    <CardSubtitle className="mb-2 text-muted" style={{
+                                        justifyContent: 'center',
+                                        fontFamily: 'Trebuchet MS',
+                                        fontStyle: 'italic',
+                                        fontSize: 'medium',
+                                    }}>Ex-Secretary of Nilgiri House (Dec 2021 - Feb 2022) <br/>
+                                        Ex-Deputy Secretary of Nilgiri House (May 2021 - Nov 2021)
+                                    </CardSubtitle>
                                 </CardBody>
                             </Card>
                         </div>
@@ -341,10 +382,9 @@ function HouseCouncil() {
                                             <CardSubtitle className="mb-2 text-muted" style={{
                                                 justifyContent: 'center',
                                                 fontFamily: 'Trebuchet MS',
-                                                textTransform: 'uppercase',
                                                 fontStyle: 'italic',
                                                 fontSize: 'medium',
-                                            }}>[{student.studentId}]</CardSubtitle>
+                                            }}>Ex-Deputy Secretary of Nilgiri House (Dec 2021 - Feb 2022)</CardSubtitle>
                                         </CardBody>
                                     </Card>
                                 )}

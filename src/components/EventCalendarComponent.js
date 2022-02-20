@@ -13,7 +13,7 @@ import {CardActions} from "@material-ui/core";
 function EventsCalendar() {
 
     React.useEffect(() => {
-        document.title = 'Nilgiri Events Calendar'
+        document.title = 'Nilgiri Events Calendar';
     }, []);
 
     const [eventDetail, setEventDetail] = useState(null);

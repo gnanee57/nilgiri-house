@@ -1,19 +1,13 @@
 import * as React from 'react';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import {Loading} from "./LoadingComponent";
-import {ExpandMore} from "@material-ui/icons";
-import {Collapse, styled} from "@material-ui/core";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from "moment";
-import {useDispatch, useSelector} from "react-redux";
+import {CardText} from "reactstrap";
+import {Link} from "react-router-dom";
 import {useEffect} from "react";
-import {fetchEvents} from "../redux/ActionCreators";
-import IconButton from "@material-ui/core/IconButton";
+
 
 const PastEvents = (props) => {
 
@@ -21,44 +15,44 @@ const PastEvents = (props) => {
         if(props.event.eventStartDate === props.event.eventEndDate) {
             if (props.event.eventStartTime !== 'null' || props.event.eventEndTime !== 'null') {
                 return (
-                    <Typography variant="body2" color="text.secondary">
+                    <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                        fontSize: 'medium'}}>
                         {moment(props.event.eventStartDate).format("MMM Do YY")}
                         &nbsp; {moment(props.event.eventStartTime, 'hh:mm a').format("LT")}  &nbsp; -
                         &nbsp; {moment(props.event.eventEndTime, 'hh:mm a').format("LT")}
-                        <br/>
-                    </Typography>
+                    </CardText>
                 );
             } else {
                 return (
-                    <Typography variant="body2" color="text.secondary">
+                    <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                        fontSize: 'medium'}}>
                         {moment(props.event.eventStartDate).format("MMM Do YY")}
-                        <br/>
-                    </Typography>
+                    </CardText>
                 );
             }
         } else {
             if (props.event.eventStartTime !== 'null' || props.event.eventEndTime !== 'null') {
                 return (
-                    <Typography variant="body2" color="text.secondary">
+                    <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                        fontSize: 'medium'}}>
                         {moment(props.event.eventStartDate).format("MMM Do YY")}
                         &nbsp; {moment(props.event.eventStartTime, 'hh:mm a').format("LT")}  &nbsp; -
                         &nbsp; {moment(props.event.eventEndDate).format("MMM Do YY")} &nbsp;
                         {moment(props.event.eventEndTime, 'hh:mm a').format("LT")}
-                        <br/>
-                    </Typography>
+                    </CardText>
                 );
             } else {
                 return (
-                    <Typography variant="body2" color="text.secondary">
+                    <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                        fontSize: 'medium'}}>
                         {moment(props.event.eventStartDate).format("MMM Do YY")} &nbsp; - &nbsp;
                         {moment(props.event.eventEndDate).format("MMM Do YY")}
-                        <br/>
-                    </Typography>
+                    </CardText>
                 );
             }
         }
     }
-    const CardDescription = (props) => {
+    /*const CardDescription = (props) => {
 
         const ExpandMore = styled((props) => {
             const { expand, ...other } = props;
@@ -145,7 +139,7 @@ const PastEvents = (props) => {
         } else {
             return <div></div>;
         }
-    }
+    }*/
     if (props.eventsLoading) {
         return (
             <Loading/>
@@ -172,23 +166,25 @@ const PastEvents = (props) => {
                 <div className={"row"}>
                 {props.events.filter(event => event.type === "past").map(event => event).reverse().map(event => {
                     return (
-                        <div className={"col-lg-3 col-md-6 mb-2"}>
-                        <Card>
-                            <CardMedia
-                                component="img"
-                                alt={event.eventName}
-                                height="250"
-                                width="200"
-                                image={event.eventDownloadLink}
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    {event.eventName}
-                                </Typography>
-                                <CardTime event={event} />
-                                <CardDescription event = {event}/>
-                            </CardContent>
-                        </Card>
+                        <div className={"col-lg-3 col-md-6 mb-5"}>
+                            <Card style={{height:"400px"}}>
+                                <Link style={{ textDecoration: 'none' }} to={`/events/${event.eventId}`}>
+                                    <CardMedia
+                                        component="img"
+                                        alt={event.eventName}
+                                        height="250"
+                                        width="200"
+                                        image={event.eventDownloadLink}
+                                    />
+                                    <CardContent>
+                                        <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                                            fontSize: 'medium', fontWeight: 'bold'}}>
+                                            {event.eventName}
+                                        </CardText>
+                                        <CardTime event={event} />
+                                    </CardContent>
+                                </Link>
+                            </Card>
                         </div>
                     );
                 })}
@@ -200,13 +196,8 @@ const PastEvents = (props) => {
 
 export default function Events(props) {
 
-    const events=  useSelector(state => state.events);
-
-    const dispatch = useDispatch();
-
     useEffect(async() => {
         document.title = 'Nilgiri Events';
-        dispatch(fetchEvents());
     }, []);
 
     return (
@@ -216,9 +207,9 @@ export default function Events(props) {
                 backgroundSize : 'cover',
                 opacity: '0.8'
             }} />
-            <PastEvents events={events.events}
-                        eventsLoading={events.loading}
-                        eventsErrMess={events.errMess}/>
+            <PastEvents events={props.events}
+                        eventsLoading={props.eventsLoading}
+                        eventsErrMess={props.eventsErrMess}/>
 
         </React.Fragment>
     );

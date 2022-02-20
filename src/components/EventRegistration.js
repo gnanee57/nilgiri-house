@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 export default function EventRegistration(props) {
 
     React.useEffect(() => {
-        document.title = 'Nilgiri Events Registration'
+        document.title = 'Nilgiri Events Registration';
     }, []);
 
     const dispatch = useDispatch();

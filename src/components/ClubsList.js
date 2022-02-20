@@ -9,6 +9,7 @@ import CardActions from "@material-ui/core/CardActions";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchClubs} from "../redux/ActionCreators";
+import {CardText} from "reactstrap";
 
 function ClubsList() {
 
@@ -48,8 +49,8 @@ function ClubsList() {
                     <div className={"row"}>
                         {clubs.clubs.map(club =>  {
                             return (
-                                <div className={"col-lg-3 col-md-6 mb-2"}>
-                                    <Card>
+                                <div className={"col-lg-3 col-md-6 mb-4"}>
+                                    <Card style={{height:"560px"}}>
                                         <CardMedia
                                             component="img"
                                             alt={club.clubName}
@@ -58,23 +59,20 @@ function ClubsList() {
                                             image={club.clubPic}
                                         />
                                         <CardContent>
-                                            <Typography gutterBottom variant="h5" component="div">
+                                            <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                                                fontSize: 'medium', fontWeight: 'bold'}}>
                                                 {club.clubName}
-                                            </Typography>
-                                        </CardContent>
-                                        <CardContent>
-                                            <Typography paragraph>{club.clubDescription} <br/><br/>
+                                            </CardText>
+                                            <CardText className="wow fadeIn" data-wow-delay=".4s" style={{ justifyContent: 'center', fontFamily : 'Trebuchet MS', fontStyle: 'normal',
+                                                fontSize: 'medium'}}> {club.clubDescription} &nbsp;
                                                 For more details, <a href={ "mailto:" + club.contactId}>
-                                                contact </a> &nbsp;{club.clubLeader}
-                                            </Typography>
-                                        </CardContent>
-                                        <CardActions>
+                                                    contact </a> &nbsp;{club.clubLeader}
+                                            </CardText>
                                             <Button size="small"
-                                                    onClick={()=>
-                                                        window.open(club.clubWhatsAppLink, "_blank")}
+                                                    onClick={()=> window.open(club.clubWhatsAppLink, "_blank")}
                                                     aria-label="join now"
                                             ><WhatsAppIcon />&nbsp;Join WhatsApp Group</Button>
-                                        </CardActions>
+                                        </CardContent>
                                     </Card>
                                 </div>
                             );

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 function Club() {
 
     React.useEffect(() => {
-        document.title = 'Nilgiri Clubs & Societies'
+        document.title = 'Nilgiri Clubs & Societies';
     }, []);
 
     const classes = useStyles();

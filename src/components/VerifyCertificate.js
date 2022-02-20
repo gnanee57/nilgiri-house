@@ -5,6 +5,7 @@ import {Loading} from "./LoadingComponent";
 
 class VerifyCertificates extends Component {
 
+
     url = window.location.href;
 
     certId = this.url.split('=')[1];

@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 export default function GrievanceForm() {
 
     React.useEffect(() => {
-        document.title = 'Nilgiri Grievance Redressal'
+        document.title = 'Nilgiri Grievance Redressal';
     }, []);
 
     const dispatch = useDispatch();

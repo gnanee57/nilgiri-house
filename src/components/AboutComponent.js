@@ -122,6 +122,7 @@ function About() {
 
     React.useEffect(() => {
         document.title = 'Nilgiri : About Us'
+
     }, []);
 
 
