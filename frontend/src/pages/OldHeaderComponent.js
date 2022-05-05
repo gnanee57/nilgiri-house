@@ -55,7 +55,7 @@ function Header() {
                                 <NavLink onClick={() => { if(size.width < 768) toggle()}} className="dropdown-item justify-content-center"  to={"/clubs/clubsList"}>
                                     List of Clubs </NavLink>
                                 <DropdownItem divider />
-                                <a onClick={() => { if(size.width < 768) toggle()}} className="dropdown-item"  href="#">New Club Registration</a>
+                                <a onClick={() => { if(size.width < 768) toggle()}} className="dropdown-item"  href="src/pages/OldHeaderComponent#">New Club Registration</a>
                             </DropdownMenu>}
                         </UncontrolledDropdown>
                         <NavItem onClick={toggle} onClick={() => { if(size.width < 768) toggle()}} onMouseEnter={() => setEventShown(true)}
@@ -92,7 +92,7 @@ function Header() {
                             </NavLink>
                         </NavItem>
                         <NavItem onClick={() => { if(size.width < 768) toggle()}}>
-                            <a className="nav-link" as="a" href="https://onlinedegree.iitm.ac.in/" target="_blank">IITM HOME</a>
+                            <a className="nav-link" as="a" href="src/pages/OldHeaderComponent" target="_blank">IITM HOME</a>
                         </NavItem>
                     </Nav>
                 </Collapse>

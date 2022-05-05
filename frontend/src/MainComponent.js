@@ -1,24 +1,25 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useLayoutEffect, useState} from "react";
 import {Switch, Route, Redirect, withRouter} from "react-router-dom";
+import { createBrowserHistory } from 'history';
 import {useDispatch, useSelector} from "react-redux";
-import Header from "./HeaderComponent";
-import Navbar from "./TopMenu";
-import Home from "./HomeComponent";
-import About from "./AboutComponent";
-import Club from "./ClubComponent"
-import ClubsList from "./ClubsList";
-import EventsCalendar from "./EventCalendarComponent";
-import Events from "./EventsComponent";
-import Wall from "./WallComponent";
-import HouseCouncil from "./HouseCouncil";
-import Announcements from "./Announcements";
-import GrievanceForm from "./GrievanceForm"
-import FooterPage from "./FooterComponent";
-import EventRegistration from "./EventRegistration";
-import FetchCertificate from "./FetchCertificate";
-import VerifyCertificates from './VerifyCertificate';
-import {fetchWallContent, fetchCertificates, fetchEvents} from "../redux/ActionCreators";
-import EventDetail from "./EventDetail";
+import Header from "./pages/HeaderComponent";
+import Navbar from "./pages/TopMenu";
+import Home from "./pages/HomeComponent";
+import About from "./pages/AboutComponent";
+import Club from "./pages/ClubComponent"
+import ClubsList from "./pages/ClubsList";
+import EventsCalendar from "./pages/EventCalendarComponent";
+import Events from "./pages/EventsComponent";
+import Wall from "./pages/WallComponent";
+import HouseCouncil from "./pages/HouseCouncil";
+import Announcements from "./pages/Announcements";
+import GrievanceForm from "./pages/GrievanceForm"
+import FooterPage from "./pages/FooterComponent";
+import EventRegistration from "./pages/EventRegistration";
+import FetchCertificate from "./pages/FetchCertificate";
+import VerifyCertificates from './pages/VerifyCertificate';
+import {fetchWallContent, fetchCertificates, fetchEvents} from "./redux/ActionCreators";
+import EventDetail from "./pages/EventDetail";
 
 
 function Main() {
@@ -34,6 +35,14 @@ function Main() {
     const handleCertSearch = certId => {
         setCertId(certId);
     }
+
+    const history = createBrowserHistory();
+
+    history.listen(_ => {
+        window.scrollTo(0, 0)
+    })
+
+
 
     useEffect(async() => {
         dispatch(fetchWallContent());

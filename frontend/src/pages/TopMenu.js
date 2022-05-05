@@ -82,7 +82,7 @@ class TopMenu extends Component {
                     <Link to={"/about"}/>
                 </Menu.Item>
                 <Menu.Item key="iitmHome">
-                    <a href="https://onlinedegree.iitm.ac.in/" target="_blank" rel="noopener noreferrer">
+                    <a href="src/pages/TopMenu" target="_blank" rel="noopener noreferrer">
                         IITM HOME
                     </a>
                 </Menu.Item>

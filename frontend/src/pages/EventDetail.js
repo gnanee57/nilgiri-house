@@ -19,6 +19,7 @@ import {Loading} from "./LoadingComponent";
 
 export default function EventDetail(props) {
 
+
     const EventTime = () => {
         if(props.event.eventStartDate === props.event.eventEndDate) {
             if (props.event.eventStartTime !== 'null' || props.event.eventEndTime !== 'null') {
@@ -126,7 +127,7 @@ export default function EventDetail(props) {
                 </React.Fragment>
             );
         } else {
-            return <div></div>;
+            return <div/>;
         }
     }
 
@@ -162,7 +163,7 @@ export default function EventDetail(props) {
             );
         } else {
             return (
-                <React.Fragment></React.Fragment>
+                <React.Fragment/>
             );
         }
     }
@@ -182,7 +183,7 @@ export default function EventDetail(props) {
             );
         } else {
             return (
-                <React.Fragment></React.Fragment>
+                <React.Fragment/>
             );
         }
     }
