@@ -1,12 +1,11 @@
 {
   "name": "nilgiri_house",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@date-io/date-fns": "^2.11.0",
     "@emotion/react": "^11.4.0",
-    "@ericz1803/react-google-calendar": "^4.2.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
