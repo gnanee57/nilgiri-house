@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import MomentUtils from '@date-io/moment';
-import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker,} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker} from '@material-ui/pickers';
 import {MenuItem,} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import {useDispatch} from "react-redux";
@@ -297,7 +297,10 @@ export default function EventRegistration(props) {
                                                 <MenuItem value={'others'}>Others</MenuItem>
                                             </TextField>
                                         </div>
-                                        <div className='col-md-12'>
+                                    </div>
+                                </div>
+                            </div>
+                                        {/*<div className='col-md-12'>
                                         <MuiPickersUtilsProvider utils={MomentUtils}>
                                             <KeyboardDatePicker
                                                 required
@@ -347,7 +350,7 @@ export default function EventRegistration(props) {
                                         </div>
                                     </MuiPickersUtilsProvider>
                                 </div>
-                            </div>
+                            </div>*/}
                             <div className="col-10">
                                 <TextField
                                     fullWidth
