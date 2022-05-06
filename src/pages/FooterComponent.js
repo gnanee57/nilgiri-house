@@ -52,7 +52,7 @@ function FooterPage(){
                     <Col md="2">
                         <h5 style={{color: "white"}}  className="text-uppercase mb-4 mt-3 font-weight-bold">Forms</h5>
                         <ul className="list-unstyled">
-                            <li><a href="src/pages/FooterComponent#">New Club Registration</a></li>
+                            <li><a href="#">New Club Registration</a></li>
                             <li><Link to={"/events/eventRegistration"}>Event Registration</Link></li>
                             <li><Link to={'/grievance-form'}>Grievance Form</Link></li>
                         </ul>

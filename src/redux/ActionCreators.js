@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import { baseUrl } from '../shared/baseurl';
+import { baseUrl } from '../baseurl';
 
 export const fetchBirthday = () => (dispatch) => {
 

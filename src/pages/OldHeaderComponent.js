@@ -10,7 +10,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import EventIcon from '@material-ui/icons/Event';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import {NavLink} from "react-router-dom";
-import useWindowSize from "./useWindowSize";
+import useWindowSize from "../components/useWindowSize";
 
 function Header() {
 
