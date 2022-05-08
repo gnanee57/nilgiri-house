@@ -8,6 +8,8 @@ import { WallContent } from './wallContent';
 import { Clubs } from './clubs';
 import { HouseCouncil } from './houseCouncil';
 import { Certificates } from './certificates';
+import {Courses} from "./courses";
+import {Reviews} from "./reviews";
 
 
 export const ConfigureStore = () => {
@@ -19,7 +21,8 @@ export const ConfigureStore = () => {
             clubs: Clubs,
             houseCouncil: HouseCouncil,
             certificates: Certificates,
-
+            courses: Courses,
+            reviews: Reviews,
         }),
         applyMiddleware(thunk, logger)
     );

@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
-import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+import CardMembershipIcon from "@material-ui/icons/CardMembership";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchClubs} from "../../redux/ActionCreators";
 import {CardText} from "reactstrap";
@@ -69,7 +69,7 @@ function ClubsList() {
                                             <Button size="small"
                                                     onClick={()=> window.open(club.clubWhatsAppLink, "_blank")}
                                                     aria-label="join now"
-                                            ><WhatsAppIcon />&nbsp;Join WhatsApp Group</Button>
+                                            ><CardMembershipIcon />&nbsp;Click Here Join Club</Button>
                                         </CardContent>
                                     </Card>
                                 </div>

@@ -1,6 +1,6 @@
 {
   "name": "nilgiri_house",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
@@ -33,10 +33,12 @@
     "mdbreact": "^5.0.2",
     "moment": "^2.29.1",
     "react": "^17.0.2",
+    "react-animation-components": "^3.0.0",
     "react-dom": "^17.0.2",
     "react-player": "^2.9.0",
     "react-popper": "^2.2.5",
     "react-redux": "^7.2.6",
+    "react-redux-form": "^1.16.14",
     "react-scripts": "^1.1.5",
     "react-transition-group": "^4.4.2",
     "reactstrap": "^8.9.0",

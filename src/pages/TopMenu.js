@@ -3,6 +3,7 @@ import "antd/dist/antd.css";
 import {Menu} from 'antd';
 import {Link, withRouter} from "react-router-dom";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import SubtitlesIcon from "@material-ui/icons/Subtitles";
 import InfoIcon from "@material-ui/icons/Info";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import EventIcon from "@material-ui/icons/Event";
@@ -19,7 +20,6 @@ class TopMenu extends Component {
     }
 
     handleClick = e => {
-        console.log('click ', e);
         this.setState({ current: e.key });
     };
 
@@ -42,6 +42,9 @@ class TopMenu extends Component {
                   style={this.centerStyle}>
                 <Menu.Item key="/home" icon={<HomeIcon fontSize="small"/>}>Home
                     <Link to={"/home"}/>
+                </Menu.Item>
+                <Menu.Item key="/courses" icon={<SubtitlesIcon fontSize="small"/>}>Courses
+                    <Link to={"/courses"}/>
                 </Menu.Item>
                 <SubMenu key="/clubs" icon={<GroupWorkIcon fontSize="small"/>} title="Clubs">
                     <Menu.ItemGroup>
